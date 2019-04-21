@@ -1,0 +1,7 @@
+sudo: require
+dist: xenial
+language: bash
+
+branches:
+  only:
+    - develop
