@@ -4,4 +4,5 @@ language: bash
 
 branches:
   only:
+    - master
     - develop
