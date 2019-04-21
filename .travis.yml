@@ -13,4 +13,4 @@ before_install:
 
 
 script:
-  - bash test.sh ./ main
+  - make
