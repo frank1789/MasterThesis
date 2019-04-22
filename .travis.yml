@@ -21,7 +21,7 @@ after_success:
     provider: releases
     api_key: $release_key
     file:
-      - thesis-gwu.zip
+      # - thesis-gwu.zip
       - masterthesis.pdf
     skip_cleanup: true
     on:
