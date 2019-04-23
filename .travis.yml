@@ -13,8 +13,9 @@ before_install:
 - export PATH="/tmp/texlive/bin/x86_64-linux:$PATH"
 script:
 - latexmk -pdf -interaction=nonstopmode -halt-on-error -shell-escape masterthesis.tex
-#after_success:
-#- bash ./utilities/deploy.sh
+after_success:
+- bash ./utilities/deploy.sh
+- bash ./utilities/travis-push.sh
 
 deploy:
   provider: releases
@@ -24,4 +25,5 @@ deploy:
   skip_cleanup: true
   on:
     repo: frank1789/MasterThesis
-    tags: True
+    tags: true
+    branch: master
