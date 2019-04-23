@@ -1,30 +1,30 @@
 sudo: false
 language: generic
+
 matrix:
   include:
   - os: linux
+
 cache:
   directories:
   - "/tmp/texlive"
   - "$HOME/.texlive"
   timeout: 7200
+
 before_install:
 - bash ./travis_setup.sh
 - export PATH="/tmp/texlive/bin/x86_64-linux:$PATH"
+
 script:
 - latexmk -pdf -interaction=nonstopmode -halt-on-error -shell-escape masterthesis.tex
-before_deploy:
-- git config --local user.name frank1789
-- git config --local user.email francesco.argentieri89@gmail.com
-- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-- git tag $TRAVIS_TAG
+
+after_success:
+- bash ./utilities/deploy.sh
+
 deploy:
   provider: releases
   api-key:
     secure: RHOB6mfcuCK0roDn0DK1Nj5Ec/Zueul9IiG2gnoHgnT6M6E/Wf8uOuAtvZ1URP3gfUFNwR/fhaC5hi26GOMV737lHRdyveg4vpjjAHmQmyJwCNRZmGop0hVhP//IRzIJdkM4utRHjORGhuE6vnfMk66pdRU2r6zP5y/y3NHsz4pJyHjDULRUarCV5bh4kcCHEUyOuzmJTMk8L/WoPdIluB4b7qT6lOXXCYHQzeiuqYLBsYwr4193qV9RLw1nsXf5RMmkMchJd/RxdYLJfp41TAo35w6SpJ2qbmrV/F6RqkyBMG/GbUn39LtJslEfX9WVFsg1V57/4bLPz/cVXwxF+QyTlVreVyszE1N9CCMzWk4NMKF9Kpk3YgGufRrjQBJkZwB/L0bJi+qfimg7YGSdZTdgllo8wus/PDlFDOnEsWw8pCMUKcYSebqv82Oo0a+Xb3iz5nprFrmmkYm/yqE/7KkbW6m5Yje9p3OPgR+hg7B/oBo2iiS4eH1D+etvu31nTGklSQPevuF8gbCZKXMpDf0LcW01xtHY5R3xCfUmdWW+OJHHoxBm9FKFsBxTmnXZMkVTK28zOgS/NmirtbRKB6AXjpAi8iSY4fw7FYgHBcfCFSByp78qY9BEpI0p0to/JKjEQPIyIuDAsHpx23zrYoUVfmaM1NiHLQKP69RZ2HQ=
-  tag_name: "$TRAVIS_TAG"
-  target_commitish: "$TRAVIS_COMMIT"
-  name: "$TRAVIS_TAG"
   file:
   - masterthesis.pdf
   skip_cleanup: true
