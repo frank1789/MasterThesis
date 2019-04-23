@@ -26,7 +26,8 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key: $release_key
+  api_key: 
+   secure: $release_key
   tag_name: $TRAVIS_TAG
   target_commitish: $TRAVIS_COMMIT
   name: $TRAVIS_TAG
