@@ -22,8 +22,9 @@ deploy:
   api_key:
     secure: QQX6wusMld78vfbE1KlYVSmwcUOOvDr2FJ6sb5X5FaXZjAyVuZj97LCeUDQP3cGW5ZzJdLci6zMkH2mdvl896/59yjk3vBJLaUkJPJu/+O+uLWGRKFVueftPhMPj0vHvQ/7c3gilZNr3mkVXTYPbp5J/wRgwPaE2L4vjqrqbmbEP7gwZXmz53TfiK5z7j1fJUon/OTNKt2APfYsC6yZYFNhVWqXKsRDr00bRSnP34EeFLWg6l2a6T/5L21Bya4iKMC7NvYIMobqFU3OMBvVUOMUAFASrCsqbaeSpnDQpT5JnV8M257ZoLqq3PL0KYQOx3K7ZhW6SGkAdILEolNZVFr9YWCWbVvOJ7O4b3ov47NVpHrCh5uguppx1EroYaqSlAH5GMKAb6ADvVUaP7NsQa0mAvWz2GkoGZKhZYW/3tFPBFObosIMVJa3maKrbIirLay75NZdT3DvKRQpdHjvALBWWVKVJ597Cmk5eTms6yvK9hXX+YLkLWot+idMIU4o6X4TkVU5lBuv2iAaJ9SUypquG1Je0bHlCEl5ZHPFVrDqJjO8SgUVgbOSQs5cUUBDHB4wxmiF8bmf+aXaLIAL1/DTwGTW8ttK93mhFAwtdUtPENcLQ5LJ3saL2CgtMvu2oC4ZvgGAectZYyhV0J0yHt9lXSWFu8DAKXbR7tvBxZ4Q=
   file: masterthesis.pdf
+  body: "Automatically build by Travis CI"
+  overwrite: true
   skip_cleanup: true
   on:
     repo: frank1789/MasterThesis
-    tags: true
-    branch: master
+    all_branches: true
