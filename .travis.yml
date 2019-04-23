@@ -23,4 +23,3 @@ deploy:
   skip_cleanup: true
   on:
     repo: frank1789/MasterThesis
-    tags: true
