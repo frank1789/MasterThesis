@@ -17,7 +17,8 @@ script:
 
 after_success:
   - bash ./utilities/deploy.sh
-  deploy:
+
+deploy:
     provider: releases
     api_key: $release_key
     file:
