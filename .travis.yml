@@ -1,35 +1,26 @@
 sudo: false
 language: generic
-
 matrix:
   include:
   - os: linux
-
 cache:
   directories:
   - "/tmp/texlive"
   - "$HOME/.texlive"
   timeout: 7200
-
 before_install:
 - bash ./travis_setup.sh
 - export PATH="/tmp/texlive/bin/x86_64-linux:$PATH"
-
 script:
 - latexmk -pdf -interaction=nonstopmode -halt-on-error -shell-escape masterthesis.tex
-
 after_success:
 - bash ./utilities/deploy.sh
-
 deploy:
   provider: releases
-  api-key:
-    secure: RHOB6mfcuCK0roDn0DK1Nj5Ec/Zueul9IiG2gnoHgnT6M6E/Wf8uOuAtvZ1URP3gfUFNwR/fhaC5hi26GOMV737lHRdyveg4vpjjAHmQmyJwCNRZmGop0hVhP//IRzIJdkM4utRHjORGhuE6vnfMk66pdRU2r6zP5y/y3NHsz4pJyHjDULRUarCV5bh4kcCHEUyOuzmJTMk8L/WoPdIluB4b7qT6lOXXCYHQzeiuqYLBsYwr4193qV9RLw1nsXf5RMmkMchJd/RxdYLJfp41TAo35w6SpJ2qbmrV/F6RqkyBMG/GbUn39LtJslEfX9WVFsg1V57/4bLPz/cVXwxF+QyTlVreVyszE1N9CCMzWk4NMKF9Kpk3YgGufRrjQBJkZwB/L0bJi+qfimg7YGSdZTdgllo8wus/PDlFDOnEsWw8pCMUKcYSebqv82Oo0a+Xb3iz5nprFrmmkYm/yqE/7KkbW6m5Yje9p3OPgR+hg7B/oBo2iiS4eH1D+etvu31nTGklSQPevuF8gbCZKXMpDf0LcW01xtHY5R3xCfUmdWW+OJHHoxBm9FKFsBxTmnXZMkVTK28zOgS/NmirtbRKB6AXjpAi8iSY4fw7FYgHBcfCFSByp78qY9BEpI0p0to/JKjEQPIyIuDAsHpx23zrYoUVfmaM1NiHLQKP69RZ2HQ=
-  file:
-  - masterthesis.pdf
-  skip_cleanup: true
+  api_key:
+    secure: LsJrRsjNYuLt3p9y/e+BSTACnF+Mxe0fntyuk1zXEHRMHNs8T31awA5avNy11brYTXTJKbmI0lA2NshHqDYJkTOYKPMu3jQJ93Cuiar0qB70HcGwkCXmZADR3w8gRKGylUleXU17ewjdeSTWdnj5DR/vXD/yomUNZCNgtSLTZrs4QIClp7oahb34/FgtBbu5irUBm/WgVyFSlmV98GRqkaanUwZEmN0O7CbtMR2fviMD+JmQb2ovae6bF2Lx5dZYMxyxpRcwpQK94GcFhIVlq8rKkJCDx5M/G6IG5CLjfOBlLkcbLOff5Q+F4nJc7MR55W4m25DFifDbmuTtAYcwpoKKaqJdwX51hlYUWzfpaZKqrI62sOJFGDu27w+ej60F/AMgycrx5vp3PmHPLv67e8LC7XHQ4ugo9MgqrfMkUxtWOlHYweMQbcLaPsKSrBY2YFz5VvBho084BzBnUJCknHH4Lrxc1Mbta5blt0A7E5qGPDs04jMbK0P12qBhjhQ1+4pkWKWm5KTs0HbsvUWc+t/hjdi8r/1LUnC1/2KJTWvUgy6ofZ7JYKwcNOyiUv5aZf1SaVfrZ4fG9w7kMzMV7Paujdg6acDD2H6BY5lxnyvatgwp0JoChK1YwTWeOyASbv4SZILv+BjGfJG3krWlFyQyO2S6tVGIieTDhLbYnd8=
+  file: masterthesis.pdf
   on:
     repo: frank1789/MasterThesis
     tags: true
     branch: master
-  
