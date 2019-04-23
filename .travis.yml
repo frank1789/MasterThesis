@@ -15,6 +15,7 @@ script:
 - latexmk -pdf -interaction=nonstopmode -halt-on-error -shell-escape masterthesis.tex
 after_success:
 - bash ./utilities/deploy.sh
+before_deploy:
 - bash ./utilities/travis_push.sh
 
 deploy:
