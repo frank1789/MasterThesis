@@ -15,17 +15,27 @@ before_install:
 script:
   - latexmk -pdf -interaction=nonstopmode -halt-on-error -shell-escape masterthesis.tex
 
-after_success:
-  - bash ./utilities/deploy.sh
+#after_success:
+#  - bash ./utilities/deploy.sh
+
+before_deploy:
+- export TRAVIS_TAG="1.0.$TRAVIS_BUILD_NUMBER"
+- echo "$TRAVIS_TAG" "$TRAVIS_COMMIT"
+- git config --local user.name "$USER_NAME"
+- git config --local user.email "$USER_EMAIL"
+- git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
 
 deploy:
-    provider: releases
-    api_key: $release_key
-    file:
-      # - thesis-gwu.zip
-      - masterthesis.pdf
-    skip_cleanup: true
-    on:
-      repo: frank1789/MasterThesis
-      tags: true
-      branch: master
+  provider: releases
+  api_key: $release_key
+  tag_name: $TRAVIS_TAG
+  target_commitish: $TRAVIS_COMMIT
+  name: $TRAVIS_TAG
+  file:
+    - masterthesis.pdf
+  skip_cleanup: true
+  on:
+    repo: frank1789/MasterThesis
+    tags: true
+    branch: master
+      
