@@ -1,4 +1,4 @@
-%========================================  
+%========================================
 %PREAMBOLO
 %========================================
 
@@ -26,7 +26,7 @@
 \usepackage[english]{babel}
 \usepackage{ae}
 \usepackage{relsize}
-\usepackage{csquotes} 
+\usepackage{csquotes}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{mathdots}
@@ -81,7 +81,7 @@
 \usepgfplotslibrary{patchplots}
 \pgfplotsset{compat=1.13}
 
-%==Per APDL e linguaggi======================================          
+%==Per APDL e linguaggi======================================
 \usepackage{listings,color}
 \definecolor{codeBlue}{RGB}{0,0,255}
 \definecolor{codeGreen}{RGB}{0,128,0}
@@ -90,7 +90,7 @@
 \definecolor{codePink}{RGB}{255,0,255}
 \definecolor{codeGray}{rgb}{0.5,0.5,0.5}
 \lstdefinestyle{apdl-modified}
-    {   
+    {
         extendedchars=true,
         alsoletter={*},
         alsoletter={'},
@@ -134,11 +134,12 @@
         commentstyle=\color{codeGray}, % style of comments
         numberstyle=\tiny\color{codeGray}
     }
-\lstdefinelanguage{APDL}{style=apdl-modified}  
+\lstdefinelanguage{APDL}{style=apdl-modified}
+
 % === Per la bibliografia multicolonna ====================
 \usepackage{etoolbox}
 \patchcmd{\thebibliography}{\list}{\begin{multicols}{2}\smaller\list}{}{}
-\appto{\endthebibliography}{\end{multicols}}     
+\appto{\endthebibliography}{\end{multicols}}
 
 %========================================
 % TESTO DELLA TESI
@@ -148,7 +149,8 @@
 	\pagestyle{empty}
 	\input{frontespizio}
 	% === Indice ==========================================
-	\tableofcontents
+    \tableofcontents
+    \listoffigures
 
 	% === Capitoli Tesi ===================================
 	\pagestyle{plain}
