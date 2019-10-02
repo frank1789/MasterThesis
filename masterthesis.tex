@@ -10,6 +10,7 @@
 \usepackage[a-1b]{pdfx}
 \usepackage{hyperref}
 \usepackage{blindtext}
+\usepackage{gensymb}
 
 % === Regolazione dei margini =============================
 \addtolength{\oddsidemargin}{30pt}
@@ -32,6 +33,8 @@
 \usepackage{mathdots}
 \usepackage{mathtools}
 \usepackage{pagecolor}
+\usepackage{lettrine}
+\usepackage{siunitx}
 \hypersetup{
 %%pdfencoding=unicode
 	bookmarksnumbered=true,
@@ -61,7 +64,8 @@
 
 % === Per le tabelle ======================================
 \usepackage{tabularx}
-%\usepackage[table]{xcolor}
+\usepackage{xcolor}
+\usepackage{colortbl}
 
 %==Per le figure latex======================================
 %Package e librerie per TikZ e PGF, le librerie non sono tutte necessarie a questo documento LATEX.
@@ -79,6 +83,22 @@
 \usepgfplotslibrary{colorbrewer}
 \usepgfplotslibrary{patchplots}
 \pgfplotsset{compat=1.13}
+\usepackage{pgfplots}
+\usepgfplotslibrary{units} % to add units easily to axis
+\usepgfplotslibrary{fillbetween} % to fill inbetween curves
+\usepgfplotslibrary{colormaps} % to create colormaps
+\pgfplotsset{width=12.2cm, height=7cm}
+\pgfplotsset{compat=newest} %(making it only compatalbe with
+%new releases of pgfplots)
+\pgfdeclarehorizontalshading{visiblelight}{50bp}{
+color(0.00000000000000bp)=(violet);
+color(8.33333333333333bp)=(blue);
+color(16.66666666666670bp)=(cyan);
+color(25.00000000000000bp)=(green);
+color(33.33333333333330bp)=(yellow);
+color(41.66666666666670bp)=(orange);
+color(50.00000000000000bp)=(red)
+}%
 
 %==Per APDL e linguaggi======================================
 \usepackage{listings,color}
@@ -88,6 +108,7 @@
 \definecolor{codeOrange}{RGB}{255,128,128}
 \definecolor{codePink}{RGB}{255,0,255}
 \definecolor{codeGray}{rgb}{0.5,0.5,0.5}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
 \lstdefinestyle{apdl-modified}
     {
         extendedchars=true,
@@ -154,8 +175,9 @@
 	% === Capitoli Tesi ===================================
 	\pagestyle{plain}
 	\input{introduzione}
-	\input{start}
-%	\input{HW1}
+    \input{start}
+    \input{thermalcamera/thermalcamera.tex}
+    \input{thermalcamera/hardware.tex}
 %	\input{HW2}
 %	\input{HW3}
 %	\input{HW4}

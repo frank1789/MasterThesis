@@ -1,0 +1,58 @@
+\chapter{Hardware}
+\lettrine[lines=3]{T}{his} chapter describe hardware used in the project, in particular thermal camera modile
+and interface with other hardware and how to setup parts ad well the whole system
+to be able recevie video frames from camera module.
+
+\section{Thermal Camera module Lepton 2.5}
+
+The thermal camera module we use in thi project, we will go through its specification, modes of capture and communication protocol for both video frame transfer and camera control.
+Information about the camera are extracted from official documentation.
+% TODO CHECK DOCUMENTATION AND LINK IN REFERENCE-BIBLIOGRAPHI
+
+% TODO INSERT IMAGE FLIR LEPTON
+
+\subsection{Specification}
+In this project we use a Lepton 2.5 thermal camera module, made by the company FLIR which is currently one of the top manufactures of thermal camera solutions. It contains a sensor sensitive to long wave infra red (LWIR) light in range from 8 to 14 \si{\micro\meter}.
+The camera module is smaller than a dime and provides decent images with its 160 by 120 pixels resolution. The effective frame rate of the camera is only 8.8 \si{\hertz}, however for our needs this is not a problem. The camera only requires low voltage supply and has small power consumption of around 140 \si{\milli\watt}. See table 3.1 for more specifications.
+For better manipulation with the camera module we use a breakout board (figure 3.1) with a housing for the Lepton camera module. The breakout board provides better physical accessibility, improves heat dissipation and increases input voltage supply range to 3-5 volts, as it has its own regulated power supply. This power supply provides the camera module with three necessary voltages: 1.2, 2.8 and 2.8-3.1 \si{\volt}. The breakout board also supplies the camera with master clock signal. [14] The camera uses two interfaces for communication:
+\begin{itemize}
+    \item SPI for transferring video frames from the camera to a SPI master device.
+    \item I$^{2}$C for receiving control commands from the I$^{2}$C master device.
+\end{itemize}
+Even though the name of the project include the keyword low-cost, we need to think of this statement with respect to the thermal camera market. The Lepton 3 thermal camera module can be considered low-cost when compared to other thermal camera devices available—as it costs around $250$ (2018) 4.
+This could however be considerably more when compared to other nonthermal solutions, however way more than if we would utilize a simple infrared counting sensors for example.
+Spectral range Array format Pixel size Thermal sensitivity FOV horizontal FOV diagonal Depth of field Lens type Output format Clock speed Input voltage Power dissipation Dimensions
+% 8 to 14 𝜇𝑚
+% 160 × 120 pixels
+% 12 𝜇𝑚
+% <50 𝑚𝐾
+% 56∘
+% 71∘
+% 28 𝑐𝑚 to ∞
+% f/1.1 silicon doublet
+% 14-bit Y14 raw flux or 24-bit RGB888 false color 25 𝑀𝐻𝑧
+% 2.8 𝑉, 1.2 𝑉, 2.8-3.1 𝑉
+% 140 𝑚𝑊 operating, 5 𝑚𝑊 shutdown mode 11.8 × 12.7 × 7.2 𝑚𝑚
+
+\begin{table}[htb]
+    \centering
+    \label{tab:thcamspecifications}
+    \caption{Key Specifications}
+    \begin{tabular}{l c c}
+        \hline
+                                    &   FLIR Lepton 2.5 &          \\
+        \hline
+        \rowcolor{aliceblue!85} Resolution (h x v)	        &   80 $\times$ 60  &   pixels  \\
+        Spectral Range	                                    &   8  to 14        &   \si{\micro\meter}   \\
+        \rowcolor{aliceblue!85} Horizontal Field of View	&   51              &   \degree \\
+        Thermal Sensitivity	        &   < 50                &   \si{\milli\kelvin}  \\
+        \rowcolor{aliceblue!85} Frame Rate	                &   < 9             &   \si{\hertz} \\
+        Control Interface	                                &   I$^{2}$C        &               \\
+        \rowcolor{aliceblue!85} Video Interface	            &   SPI             &               \\
+        Promised Time to Image	                            &   < 0.5           &   \si{\second}    \\
+        \rowcolor{aliceblue!85} Integral Shutter		    &   yes             &   \\
+        Radiometry	                                        &   14-bit pixel value  &           \\
+        \rowcolor{aliceblue!85} Operating Power             &	$\sim$150       &   \si{\milli\watt} \\
+        \hline
+\end{tabular}
+\end{table}
