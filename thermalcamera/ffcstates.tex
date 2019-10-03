@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+    \node (start) at (1,13) {Lepton powered on};
+    \node [ellipse, fill=babyblueeyes, minimum size=15mm] (x) at (1,11) {\scriptsize{FFC Not Commanded}};
+    \node [ellipse, fill=babyblueeyes, minimum size=15mm] (y) at (1,8) {\scriptsize{FFC In Progress}};
+    \node [ellipse, fill=babyblueeyes, minimum size=15mm] (z) at (1, 5) {\scriptsize{FFC Complete}};
+    \draw [-latex] (start) to (x);
+    \draw [-latex, bend right] (y) node [right] {\tiny{FFC Complete}} (z);
+    \draw [-latex, bend right] (z) to (y) node [left] {\tiny{FFC Commanded}};
+    \draw [-latex, bend right] (x) to (y) node [left] {\tiny{FFC Commanded}};
+\end{tikzpicture}
