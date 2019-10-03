@@ -29,14 +29,14 @@ its default mode or configured into other modes through a command and control
 interface (CCI). The effective frame rate of the camera is only 8.6 \si{\hertz},
 however for our needs this is not a problem. The camera only requires low
 voltage supply and has small power consumption of around 140 \si{\milli\watt}.
-See table 3.1 for more specifications. For better manipulation with the camera
-module we use a breakout board (figure 3.1) with a housing for the Lepton camera
-module. The breakout board provides better physical accessibility, improves heat
-dissipation and increases input voltage supply range to 3-5 \si{\volt}, as it has its
-own regulated power supply. This power supply provides the camera module with
-three necessary voltages: 1.2, 2.8 and 2.5-3.1 \si{\volt}. The breakout board
-also supplies the camera with master clock signal. [14] The camera uses two
-interfaces for communication:
+See table \ref{tab:thcamspecifications} for more specifications. For better
+manipulation with the camera module we use a breakout board (figure 3.1) with a
+housing for the Lepton camera module. The breakout board provides better
+physical accessibility, improves heat dissipation and increases input voltage
+supply range to 3-5 \si{\volt}, as it has its own regulated power supply. This
+power supply provides the camera module with three necessary voltages: 1.2, 2.8
+and 2.5-3.1 \si{\volt}. The breakout board also supplies the camera with master
+clock signal. [14] The camera uses two interfaces for communication:
 \begin{itemize}
     \item SPI for transferring video frames from the camera to a SPI master
 device.
@@ -172,21 +172,17 @@ telemetry line and starts a $10$ \si{\second} counter. If the temperature of the
 Lepton falls below $80$ \si{\celsius} before the counter times out, the
 ``\emph{shutdown imminent}" bit is cleared and the system transitions back to
 the on state. If the counter does time out, Lepton automatically transitions to
-the standby state. \end{itemize}
+the standby state.
+\end{itemize}
 %
 \subsection{FFC States}
 \label{ssec:FFCstates}
-\begin{figure}[b]
-    \centering
-    \resizebox{0.80\textwidth}{!}{\input{thermalcamera/ffcstates.tex}}
-    \caption{FFC States.}
-    \label{fig:FFC States}
-\end{figure}
 Lepton is factory calibrated to produce an output image that is highly uniform,
-such as shown in Figure 8 (a), when viewing a uniform-temperature scene.
-However, drift effects over long periods of time degrade uniformity, resulting
-in imagery which appears more grainy (Figure 8 (b)) and/or blotchy (Figure 8
-(c)). Operation over a wide temperature range (for example, powering on at $-10$
+such as shown in Figure \ref{subfig:Highly uniform image}, when viewing a
+uniform-temperature scene. However, drift effects over long periods of time
+degrade uniformity, resulting in imagery which appears more grainy (Figure
+\ref{subfig:Grainy image}) and/or blotchy (Figure \ref{subfig:Blotchy image}).
+Operation over a wide temperature range (for example, powering on at $-10$
 \si{\celsius} and heating to $65$ \si{\celsius}) will also have a detrimental
 effect on image quality. For scenarios in which there is ample scene movement,
 such as most handheld applications, Lepton is capable of automatically
@@ -198,10 +194,24 @@ periodically perform a flat-field correction (FFC). FFC is a process whereby the
 NUC terms applied by the camera's signal processing engine are automatically
 recalibrated to produce the most optimal image quality. The sensor is briefly
 exposed to a uniform thermal scene, and the camera updates the NUC terms to
-ensure uniform output. The entire FFC process takes less than a second. Figure 8
-Examples of Good Uniformity, Graininess, and Blotchiness The current FFC state
-is provided through the telemetry line. There are three FFC states, as
-illustrated in Figure \ref{fig:FFC States}:
+ensure uniform output. The entire FFC process takes less than a second.
+%
+\begin{figure}[htb]
+    \centering
+    \subfloat[][\emph{Highly uniform image}.\label{subfig:Highly uniform image}]
+        {\includegraphics[width=.30\textwidth]{linearAGCa}} \quad
+    \subfloat[][\emph{Grainy image
+    (high-spatial frequency noise)}.\label{subfig:Grainy image}]
+        {\includegraphics[width=.30\textwidth]{linearAGCb.png}} \quad
+    \subfloat[][\emph{ Blotchy image
+    (low-spatial frequency noise)}.\label{subfig:Blotchy image}]
+        {\includegraphics[width=.30\textwidth]{linearAGCc.png}}
+    \caption{Examples of Good Uniformity, Graininess, and Blotchiness}
+    \label{fig:exampleffc}
+\end{figure}
+%
+The current FFC state is provided through the telemetry line. There are three
+FFC states, as illustrated in Figure \ref{fig:FFC States}:
 \begin{enumerate}
     \item FFC not commanded (default): In this state, Lepton applies by default a
 set of factory-generated FFC terms.
@@ -215,7 +225,13 @@ temperature has changed by a specified value (default = 3 \si{\celsius}) since
 the last FFC. The ``FFC desired" flag is intended to indicate to the host to
 command an FFC at the next possible opportunity.
 \end{enumerate}
-
+%
+\begin{figure}[htb]
+    \centering
+    \resizebox{0.50\textwidth}{!}{\input{thermalcamera/ffcstates.tex}}
+    \caption{FFC States.}
+    \label{fig:FFC States}
+\end{figure}
 %
 \subsection{AGC Modes}
 \label{ssec:AGCModes}
