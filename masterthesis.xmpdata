@@ -4,41 +4,41 @@
 %
 % Symbols permitted in metadata
 % =============================
-% 
+%
 % Within the metadata, all printable ASCII characters except
 % '\', '{', '}', and '%' represent themselves. Also, all printable
 % Unicode characters from the basic multilingual plane (i.e., up to
-% code point U+FFFF) can be used directly with the UTF-8 encoding. 
+% code point U+FFFF) can be used directly with the UTF-8 encoding.
 % Consecutive whitespace characters are combined into a single
 % space. Whitespace after a macro such as \copyright, \backslash, or
 % \sep is ignored. Blank lines are not permitted. Moreover, the
 % following markup can be used:
 %
-%  '\ '         - a literal space  (for example after a macro)                  
-%   \%          - a literal '%'                                                 
-%   \{          - a literal '{'                                                 
-%   \}          - a literal '}'                                                 
-%   \backslash  - a literal '\'                                                 
-%   \copyright  - the (c) copyright symbol                                      
+%  '\ '         - a literal space  (for example after a macro)
+%   \%          - a literal '%'
+%   \{          - a literal '{'
+%   \}          - a literal '}'
+%   \backslash  - a literal '\'
+%   \copyright  - the (c) copyright symbol
 %
 % The macro \sep is only permitted within \Author, \Keywords, and
 % \Org.  It is used to separate multiple authors, keywords, etc.
-% 
+%
 % List of supported metadata fields
 % =================================
-% 
+%
 % Here is a complete list of user-definable metadata fields currently
 % supported, and their meanings. More may be added in the future.
-% 
+%
 % General information:
 %
 %  \Author           - the document's human author. Separate multiple
 %                      authors with \sep.
 %  \Title            - the document's title.
 %  \Keywords         - list of keywords, separated with \sep.
-%  \Subject          - the abstract. 
+%  \Subject          - the abstract.
 %  \Org              - publishers.
-% 
+%
 % Copyright information:
 %
 %  \Copyright        - a copyright statement.
@@ -59,7 +59,7 @@
 %                      automatically set to "journal" if \Journaltitle
 %                      is specified, but can be overridden.
 % \Journaltitle      - The title of the journal in which the document
-%                      was published. 
+%                      was published.
 % \Journalnumber     - The ISSN for the publication in which the
 %                      document was published.
 % \Volume            - Journal volume.
@@ -84,8 +84,6 @@
 
 \Copyright    {Copyright \copyright\ 2019 Francesco Argentieri}
 
-\Keywords     {some keyword\sep
-               another keyword\sep
-               some more keywords}
+\Keywords     {FLIR, Lepton, C++, Qt, thermal image, Raspberry, Raspicam}
 
 \Subject      {test my the abstract.}
