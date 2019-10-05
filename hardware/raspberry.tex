@@ -2,16 +2,14 @@
 \label{sec:raspi3}
 The Raspberry Pi is a high-performance single-board computer designed to educate
 and solve real-world problems. This small computer supports a camera module that
-uses a Sony IMX219 8 mega-pixel CMOS sensor.  This paper shows that scientific
-and engineering-grade imagery can be produced with the Raspberry Pi 3  and its
-V2.1 camera module.
+uses a Sony IMX219 8 mega-pixel CMOS sensor.
 %
 \subsection{Specification}
 \label{ssec:raspispecification}
 The Raspberry Pi Foundation provides low-cost, high-performance single-board 
 Raspberry Pi computers to educate and solve real-world problems.  As of early
 2016, over 8 million Raspberry Pi's had been sold, making it one of the most
-popular single-board computers on the market.\cite{upton2016raspberry} The
+popular single-board computers on the market.\cite{upton2016raspberry}\\ The
 Raspberry Pi credit-card-sized computer supports several accessories, including
 a camera module containing the Sony IMX219 sensor. This computer and camera
 configuration is of particular interest since it can provide raw-data format
@@ -19,15 +17,15 @@ imagery that can be used for a multitude of applications, including computer
 vision, biophotonics, medical testing, remote sensing, astronomy, improved image
 quality, high dynamic range (HDR) imaging, and security monitoring. The
 Raspberry Pi 3 is the third generation single board Raspberry Pi computer and
-became available to consumers in February 2016. Some of the more significant
+became available to consumers in February 2016. \\Some of the more significant
 Raspberry Pi attributes, including interfaces, are described in Table
 \ref{tab:rapberryattributes}. At the time of this writing, a Raspberry Pi 3 sold
 for about \$35 USD and the V2.1 camera module sold for approximately \$25
-USD.\cite{upton2016raspberry, raspberrycam}, The Raspberry Pi Foundation
-provides several operating systems for the Raspberry Pi 3,  including Raspbian
-and a Debian-based Linux distribution, as well as third-party Ubuntu, Windows 10
-IOT Core, RISC OS, and specialized distributions for
-download.\cite{10.1117/1.JEI.26.1.013014}
+USD.\cite{upton2016raspberry, raspberrycam}\\
+The Raspberry Pi Foundation provides several operating systems for the 
+Raspberry Pi 3, including Raspbian and a Debian-based Linux distribution, as 
+well as third-party Ubuntu, Windows 10 IOT Core, RISC OS, and specialized 
+distributions for download.\cite{10.1117/1.JEI.26.1.013014}
 %
 \begin{table}[htb]
 \centering
@@ -51,11 +49,42 @@ download.\cite{10.1117/1.JEI.26.1.013014}
 %
 \section{Raspberry Pi, Camera Board V2}
 \label{sec:raspicam}
+The camera is based on the Sony IMX219 silicon CMOS back-lit sensor and produces
+8 mega-pixel images that are $3280 \times 2464$ pixels in size. \\
+The IMX219 sensor operates in the visible spectral range from 400 to 700 \si{\nano\meter}).\cite{raspberrycam2}
+Sensor specifications are detailed in Table \ref{tab:raspicamspec}.
+%
+\begin{table}[!h]
+	\centering
+	\caption{Sony IMX219 sensor chip specifications.}
+	\label{tab:raspicamspec}
+	\begin{tabular}{l l}
+		\hline
+		\textbf{Sensor parameter}			& 	\textbf{Specification}\\
+		\hline
+		Image sensor type		&	Back-lit CMOS\\
+		Image size				&	Diagonal 4.60 \si{\milli\meter} (type 1/4.0)\\
+		Number of active pixels	&	3280 (H) $\times$ 2464 (V) $\sim$ 8.08 mega-pixels\\
+		Chip size				&	5.095 \si{\milli\meter} (H) $\times$ 4.930 \si{\milli\meter}(V) (w/ Scribe)\\	
+		Unit cell size (pixel) 	&	1.12 \si{\micro\meter} (H) $\times$ 1.12 \si{\micro\meter}(V)\\
+		Substrate material		&	Silicon\\
+		Bit depth				&	10-bit A/D converter on chip\\
+		Data output				&	CSI2 serial data output (selection of 4 lane/ 2 lane)\\
+		Communication			&	2-wire serial communication circuit on chip\\
+		Max full-frame frame rate &	30 frames/s \\
+		Pixel rate 				&	280 mega-pixel/s (all-pixels mode)\\
+		Data rate				&	Max. 755 Mbps/lane (at 4 lane), 912 Mbps / lane(at 2 lane)\\
+		\hline
+	\end{tabular}
+\end{table}
+%
+\subsection{Specification}
+\label{ssec:raspcamspecification}
 The V2 camera module operates at a fixed focal length (3.04 \si{\milli\meter})
 and single $f$-number (F$2.0$) typically focused from the near-field to
 infinity. Images can be captured at ISO settings between 100 and 800 in manually
 set increments of 100 (although not verified above 600 in this investigation)
-and camera exposure times between 9 \si{\micro\second} and 6 \si{\second} using
+and camera exposure times between \SI{9}{\micro\second} and 6 \si{\second} using
 a rolling shutter. Some of the more significant camera specifications are shown
 in Table \ref{tab:raspicamspec2}. In addition to still photos, the Raspberry Pi
 Sony IMX219 sensor supports a cropped 1080p format at 30 frames per second (fps)
@@ -82,38 +111,6 @@ in Figure \ref{fig:boardcam}.\cite{upton2016raspberry, raspberrycam}
 	\end{tabular}
 \end{table}
 %
-\subsection{Specification}
-\label{ssec:raspcamspecification}
-The camera is based on the Sony IMX219 silicon CMOS back-lit sensor and produces
-8 mega-pixel images that are $3280 \times 2464$ pixels in size. The IMX219
-sensor operates in the visible spectral range (400 to 700 \si{\nano\meter}).
-Sensor specifications are detailed in Table
-\ref{tab:raspicamspec}.\cite{raspberrycam2}
-%
-\begin{table}[!h]
-	\centering
-	\caption{Sony IMX219 sensor chip specifications.}
-	\label{tab:raspicamspec}
-	\begin{tabular}{l l}
-		\hline
-		\textbf{Sensor parameter}			& 	\textbf{Specification}\\
-		\hline
-		Image sensor type		&	Back-lit CMOS\\
-		Image size				&	Diagonal 4.60 \si{\milli\meter} (type 1/4.0)\\
-		Number of active pixels	&	3280 (H) $\times$ 2464 (V) $\sim$ 8.08 mega-pixels\\
-		Chip size				&	5.095 \si{\milli\meter} (H) $\times$ 4.930 \si{\milli\meter}(V) (w/ Scribe)\\	
-		Unit cell size (pixel) 	&	1.12 \si{\micro\meter} (H) $\times$ 1.12 \si{\micro\meter}(V)\\
-		Substrate material		&	Silicon\\
-		Bit depth				&	10-bit A/D converter on chip\\
-		Data output				&	CSI2 serial data output (selection of 4 lane/ 2 lane)\\
-		Communication			&	2-wire serial communication circuit on chip\\
-		Max full-frame frame rate &	30 frames/s \\
-		Pixel rate 				&	280 mega-pixel/s (all-pixels mode)\\
-		Data rate				&	Max. 755 Mbps/lane (at 4 lane), 912 Mbps / lane(at 2 lane)\\
-		\hline
-	\end{tabular}
-\end{table}
-
 
 \begin{figure}[htb]
 	\centering

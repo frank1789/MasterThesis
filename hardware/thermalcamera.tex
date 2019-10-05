@@ -11,9 +11,7 @@ official documentation.
 
 \subsection{Specification}
 \label{ssec:specificationthermalcam}
-In this project we use a Lepton 2.5 thermal camera module, made by the company
-FLIR which is currently one of the top manufactures of thermal camera solutions.
-Lepton is an infrared camera system that integrates a fixed-focus lens assembly,
+Lepton is an infra-red camera system that integrates a fixed-focus lens assembly,
 an $80 \times 60$ long-wave infra-red (LWIR) micro-bolometer sensor array, and
 signal-processing electronics. Easy to integrate and operate, Lepton is intended
 for mobile devices as well as any other application requiring very small
@@ -29,32 +27,32 @@ voltage supply and has small power consumption of around 140 \si{\milli\watt}.
     \label{tab:thcamspecifications}
     \begin{tabular}{l c c}
         \hline
-                                                            &   FLIR Lepton 2.5 &          \\
+                                                            &   FLIR Lepton 2.5 	&          	\\
         \hline
-        \rowcolor{aliceblue!85} Resolution (h x w)	        &   80 $\times$ 60  &   pixels  \\
-        Spectral Range	                                    &   8  to 14        &   \si{\micro\meter}   \\
-        \rowcolor{aliceblue!85} Horizontal Field of View	&   51              &   \si{\degree} \\
-        Thermal Sensitivity	                                &   < 50            &   \si{\milli\kelvin}  \\
-        \rowcolor{aliceblue!85} Frame Rate	                &   < 9             &   \si{\hertz} \\
-        Control Interface	                                &   I$^{2}$C        &               \\
-        \rowcolor{aliceblue!85} Video Interface	            &   SPI             &               \\
-        Promised Time to Image	                            &   < 0.5           &   \si{\second}    \\
-        \rowcolor{aliceblue!85} Integral Shutter		    &   yes             &   \\
-        Radiometry	                                        &   14-bit pixel value  &           \\
-        \rowcolor{aliceblue!85} Operating Power             &	$\sim$150       &   \si{\milli\watt} \\
+        \rowcolor{aliceblue!85} Resolution (h x w)	       	&   80 $\times$ 60  	&	pixels	\\
+        Spectral Range	                                    	&   8  to 14        	&	\si{\micro\meter}	\\
+        \rowcolor{aliceblue!85} Horizontal Field of View		&   51              	&   \si{\degree}			\\
+        Thermal Sensitivity	                                	&   < 50            	&   \si{\milli\kelvin}	\\
+        \rowcolor{aliceblue!85} Frame Rate	                	&   < 9             	&   \si{\hertz} 			\\
+        Control Interface	                                	&   I$^{2}$C        	&               			\\
+        \rowcolor{aliceblue!85} Video Interface	            	&   SPI             	&               			\\
+        Promised Time to Image	                            	&   < 0.5           	&   \si{\second}    		\\
+        \rowcolor{aliceblue!85} Integral Shutter		    		&   yes             	&   			\\
+        Radiometry	                                        	&   14-bit pixel value  	&       \\
+        \rowcolor{aliceblue!85} Operating Power             	&	$\sim$150       	&   \si{\milli\watt} 	\\
         \hline
 \end{tabular}
 \end{table}
-
-
-See table \ref{tab:thcamspecifications} for more specifications. For better
+%
+See table \ref{tab:thcamspecifications} for more specifications.\\For better
 manipulation with the camera module we use a breakout board (figure 3.1) with a
 housing for the Lepton camera module. The breakout board provides better
 physical accessibility, improves heat dissipation and increases input voltage
 supply range to 3--5 \si{\volt}, as it has its own regulated power supply. This
 power supply provides the camera module with three necessary voltages: 1.2, 2.8
 and 2.5--3.1 \si{\volt}. The breakout board also supplies the camera with master
-clock signal. [14] The camera uses two interfaces for communication:
+clock signal. [14] \\
+The camera uses two interfaces for communication:
 \begin{itemize}
     \item SPI for transferring video frames from the camera to a SPI master
 device.
