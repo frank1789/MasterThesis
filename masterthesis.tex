@@ -10,7 +10,6 @@
 \usepackage[a-1b]{pdfx}
 \usepackage{hyperref}
 \usepackage{blindtext}
-\usepackage{gensymb}
 
 % === Regolazione dei margini =============================
 \addtolength{\oddsidemargin}{30pt}
@@ -23,7 +22,6 @@
 % === Impostazione dei font ===============================
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-%\usepackage[italian]{babel}
 \usepackage[english]{babel}
 \usepackage{ae}
 \usepackage{relsize}
@@ -36,13 +34,10 @@
 \usepackage{lettrine}
 \usepackage{siunitx}
 \hypersetup{
-%%pdfencoding=unicode
 	bookmarksnumbered=true,
 	linkcolor=black,
 	citecolor=black,
-	% pagecolor={none},
 	urlcolor=black,
-%    pdfauthor={Argentieri Francesco}
 }
 \usepackage{verbatim}
 \usepackage{alltt,footnote}
@@ -52,11 +47,11 @@
 
 % === Integrazione delle figure ===========================
 \usepackage{graphicx}
-\graphicspath{{./imgs/}{./thermalcamera/imgs/}}
+\graphicspath{{./imgs/}{./hardware/imgs/}}
 \renewcommand{\figurename}{Fig.}
 \usepackage{subfig}
 \usepackage{xcolor}
-
+%
 % === Per gli algoritmi ===================================
 \usepackage{algorithmicx}
 \usepackage[ruled]{algorithm}
@@ -158,9 +153,9 @@ color(50.00000000000000bp)=(red)
 \lstdefinelanguage{APDL}{style=apdl-modified}
 
 % === Per la bibliografia multicolonna ====================
-\usepackage{etoolbox}
-\patchcmd{\thebibliography}{\list}{\begin{multicols}{2}\smaller\list}{}{}
-\appto{\endthebibliography}{\end{multicols}}
+%\usepackage{etoolbox}
+%\patchcmd{\thebibliography}{\list}{\begin{multicols}{2}\smaller\list}{}{}
+%\appto{\endthebibliography}{\end{multicols}}
 
 %========================================
 % TESTO DELLA TESI
@@ -172,13 +167,17 @@ color(50.00000000000000bp)=(red)
 	% === Indice ==========================================
     \tableofcontents
     \listoffigures
+    \listoftables
 
 	% === Capitoli Tesi ===================================
 	\pagestyle{plain}
 	\input{introduzione}
     \input{start}
-    \input{thermalcamera/thermalcamera.tex}
-    \input{thermalcamera/hardware.tex}
+    % \input{raspberry.tex}
+    % \input{thermalcamera/thermalcamera.tex}
+    \input{hardware/hardware}
+    % \input{software.tex}
+    
 %	\input{HW2}
 %	\input{HW3}
 %	\input{HW4}

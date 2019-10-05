@@ -1,13 +1,6 @@
-\chapter{Hardware}
-\label{chap:}
-\lettrine[lines=3]{T}{his} chapter describe hardware used in
-the project, in particular thermal camera module and interface with other
-hardware and how to setup parts ad well the whole system to be able receive
-video frames from camera module.
-
 \section{Thermal Camera module Lepton 2.5}
-\label{sec:}
-The thermal camera module we use in thi project, we will go through its
+\label{sec:thermalcamera}
+The thermal camera module we use in this project, we will go through its
 specification, modes of capture and communication protocol for both video frame
 transfer and camera control. Information about the camera are extracted from
 official documentation.
@@ -17,11 +10,11 @@ official documentation.
 % TODO INSERT IMAGE FLIR LEPTON
 
 \subsection{Specification}
-\label{ssec:}
+\label{ssec:specificationthermalcam}
 In this project we use a Lepton 2.5 thermal camera module, made by the company
 FLIR which is currently one of the top manufactures of thermal camera solutions.
 Lepton is an infrared camera system that integrates a fixed-focus lens assembly,
-an $80 \times 60$ long-wave infrared (LWIR) microbolometer sensor array, and
+an $80 \times 60$ long-wave infra-red (LWIR) micro-bolometer sensor array, and
 signal-processing electronics. Easy to integrate and operate, Lepton is intended
 for mobile devices as well as any other application requiring very small
 footprint, very low power, and instant-on operation. Lepton can be operated in
@@ -29,38 +22,18 @@ its default mode or configured into other modes through a command and control
 interface (CCI). The effective frame rate of the camera is only 8.6 \si{\hertz},
 however for our needs this is not a problem. The camera only requires low
 voltage supply and has small power consumption of around 140 \si{\milli\watt}.
-See table \ref{tab:thcamspecifications} for more specifications. For better
-manipulation with the camera module we use a breakout board (figure 3.1) with a
-housing for the Lepton camera module. The breakout board provides better
-physical accessibility, improves heat dissipation and increases input voltage
-supply range to 3-5 \si{\volt}, as it has its own regulated power supply. This
-power supply provides the camera module with three necessary voltages: 1.2, 2.8
-and 2.5-3.1 \si{\volt}. The breakout board also supplies the camera with master
-clock signal. [14] The camera uses two interfaces for communication:
-\begin{itemize}
-    \item SPI for transferring video frames from the camera to a SPI master
-device.
-    \item I$^{2}$C for receiving control commands from the I$^{2}$C master
-device.
-\end{itemize}
-Even though the name of the project include the keyword low-cost, we need to
-think of this statement with respect to the thermal camera market. The Lepton 3
-thermal camera module can be considered low-cost when compared to other thermal
-camera devices available—as it costs around $250$ (2018) 4. This could however
-be considerably more when compared to other nonthermal solutions, however way
-more than if we would utilize a simple infrared counting sensors for example.
 %
 \begin{table}[htb]
     \centering
-    \label{tab:thcamspecifications}
     \caption{Key Specifications}
+    \label{tab:thcamspecifications}
     \begin{tabular}{l c c}
         \hline
                                                             &   FLIR Lepton 2.5 &          \\
         \hline
         \rowcolor{aliceblue!85} Resolution (h x w)	        &   80 $\times$ 60  &   pixels  \\
         Spectral Range	                                    &   8  to 14        &   \si{\micro\meter}   \\
-        \rowcolor{aliceblue!85} Horizontal Field of View	&   51              &   \degree \\
+        \rowcolor{aliceblue!85} Horizontal Field of View	&   51              &   \si{\degree} \\
         Thermal Sensitivity	                                &   < 50            &   \si{\milli\kelvin}  \\
         \rowcolor{aliceblue!85} Frame Rate	                &   < 9             &   \si{\hertz} \\
         Control Interface	                                &   I$^{2}$C        &               \\
@@ -73,15 +46,37 @@ more than if we would utilize a simple infrared counting sensors for example.
 \end{tabular}
 \end{table}
 
+
+See table \ref{tab:thcamspecifications} for more specifications. For better
+manipulation with the camera module we use a breakout board (figure 3.1) with a
+housing for the Lepton camera module. The breakout board provides better
+physical accessibility, improves heat dissipation and increases input voltage
+supply range to 3--5 \si{\volt}, as it has its own regulated power supply. This
+power supply provides the camera module with three necessary voltages: 1.2, 2.8
+and 2.5--3.1 \si{\volt}. The breakout board also supplies the camera with master
+clock signal. [14] The camera uses two interfaces for communication:
+\begin{itemize}
+    \item SPI for transferring video frames from the camera to a SPI master
+device.
+    \item I$^{2}$C for receiving control commands from the I$^{2}$C master
+device.
+\end{itemize}
+Even though the name of the project include the keyword low-cost, we need to
+think of this statement with respect to the thermal camera market. The Lepton 3
+thermal camera module can be considered low-cost when compared to other thermal
+camera devices available as it costs around $250$ (2018) 4. This could however
+be considerably more when compared to other nonthermal solutions, however way
+more than if we would utilize a simple infra-red counting sensors for example.
+%
 \begin{figure}[htb]
     \centering
-    \resizebox{0.8\textwidth}{!}{\input{thermalcamera/application.tex}}
+    \resizebox{0.8\textwidth}{!}{\input{hardware/application.tex}}
     \caption{my figure drawn in tikz}\label{fig:myfigure}
 \end{figure}
 %
 \subsection{System Architecture}
 \label{ssec:leptonarchitecture}
-The lens assembly focuses infrared radiation from the scene onto an 80x60 array
+The lens assembly focuses infrared radiation from the scene onto an $80 \times 60$ array
 of thermal detectors with 17-micron pitch. Each detector element is a
 vanadium-oxide (VOx) microbolometer whose temperature fluctuates in response to
 incident flux. The change in temperature causes a proportional change in each
@@ -94,7 +89,7 @@ applying a bias voltage and integrating the resulting current for a finite
 period of time called the integration period. The serial stream from the FPA is
 received by a system on a chip (SoC) device, which provides signal processing
 and output formatting.
-
+%
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.80\textwidth]{leptoncamera.png}
@@ -106,7 +101,7 @@ and output formatting.
 \label{ssec:pipeline}
 The video pipeline includes non-uniformity correction (NUC), defect replacement,
 spatial and temporal filtering, automatic gain correction (AGC), and
-colorization.
+colourization.
 %
 %insert image video stream
 %
@@ -210,7 +205,7 @@ ensure uniform output. The entire FFC process takes less than a second.
     \label{fig:exampleffc}
 \end{figure}
 %
-The current FFC state is provided through the telemetry line. There are three
+\\The current FFC state is provided through the telemetry line. There are three
 FFC states, as illustrated in Figure \ref{fig:FFC States}:
 \begin{enumerate}
     \item FFC not commanded (default): In this state, Lepton applies by default a
@@ -228,7 +223,7 @@ command an FFC at the next possible opportunity.
 %
 \begin{figure}[htb]
     \centering
-    \resizebox{0.50\textwidth}{!}{\input{thermalcamera/ffcstates.tex}}
+    \resizebox{0.35\textwidth}{!}{\input{hardware/ffcstates.tex}}
     \caption{FFC States.}
     \label{fig:FFC States}
 \end{figure}
@@ -253,11 +248,11 @@ in between. Because of this limitation of linear AGC, a more sophisticated
 algorithm is preferred. Similar to most AGC algorithms that optimize the use of
 gray shades, Lepton's is histogram-based. Essentially a histogram counts the
 number of pixels in each frame that have a given 14-bit value. Figure
-\ref{fig:histogram} the concept for a 3x3 pixel area.
+\ref{fig:histogram} the concept for a 3x3 pixel area.\linebreak
 %
 \begin{figure}[!h]
     \centering
-    \resizebox{0.80\textwidth}{!}{\input{thermalcamera/histogram.tex}}
+    \resizebox{0.80\textwidth}{!}{\input{hardware/histogram.tex}}
     \caption{Illustration of a Histogram for a $3 \times 3$ Pixel Area.}
     \label{fig:histogram}
 \end{figure}
@@ -320,3 +315,4 @@ included in the histogram and therefore does not affect the mapping function
 (note: this does not mean the portion outside of the ROI is not displayed or
 that AGC is not applied there, only that those portions outside the AGC ROI do
 not influence the mapping function).
+%
