@@ -1,0 +1,42 @@
+\tikzset{
+	block/.style = {draw, fill=white, rectangle, minimum height=3em, minimum width=3em, align=center},
+	tmp/.style  = {coordinate},
+	sum/.style= {draw, fill=white, circle, node distance=1cm},
+	input/.style = {coordinate},
+	output/.style= {coordinate},
+	pinstyle/.style = {circle,fill=black,inner sep=0pt,minimum size=3pt}
+}
+
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+	\node [input, name=rinput,     	node distance=3.5cm] (rinput) {};
+	% define block's system
+	\node [block, right of=rinput, 	node distance=3.5cm] (input) {Non-uniformity\\ correction (NUC)};
+	\node [block, right of=input,	node distance=3.5cm] (defect) {Defect\\ Replacement};
+	\node [block, right of=defect, 	node distance=3.5cm] (temporalfilter) {Spatial / Temporal \\ Filtering};
+    \node [block, below of=defect, 	node distance=3.5cm] (agc) {AGC};
+	\node [block, right of=agc, 	node distance=3.5cm] (colorize) {Colorize};
+	% mid-node connection
+	\node [pinstyle, right of=agc,	node distance=1.75cm] (tmp1) {};
+	\node [tmp, above of=tmp1,	node distance=1.65cm] (tmp2) {};
+	\node [pinstyle, right of=temporalfilter,	node distance=3.5cm] (tmp3) {};
+	\node [tmp, below of=tmp3,	node distance=1.5cm] (tmp4) {};
+	\node [tmp, left of=agc,	node distance=2cm] (tmp5) {};
+	\node [tmp, above of=tmp5,	node distance=2cm] (tmp6) {};
+	% output
+	\node [output, right of=tmp3, node distance=1.25cm] (output_agc2) {};
+	\node [output, below of=output_agc2, 	node distance=1.85cm] (output_agc) {};
+	\node [output, below of=output_agc, 	node distance=1.65cm] (output) {};
+	% connection
+    \draw [->] node[above left]{raw data in} (rinput) -- (input);
+	\draw [->] (input) -- (defect);
+    \draw [->] (defect) -- (temporalfilter);
+	\draw [->] (agc) -- (colorize);
+	\draw [->] (temporalfilter) -- (output_agc2) node[above right]{AGC disabled};
+	\draw [->] (tmp2) -- (output_agc) node[above right]{AGC enabled};
+	\draw [->] (colorize) -- (output) node[above right]{AGC / Colorization enabled};
+	\draw (tmp1) -- (tmp2);
+	\draw [->]	(tmp5) -- (agc);
+	\draw (tmp3) -- (tmp4) -- (tmp6);
+	\draw (tmp6) -- (tmp5);
+	\draw [color=gray,thick](1,-4.5) rectangle (14.5,1);
+\end{tikzpicture}

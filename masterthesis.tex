@@ -10,6 +10,7 @@
 \usepackage[a-1b]{pdfx}
 \usepackage{hyperref}
 \usepackage{blindtext}
+\usepackage{lmodern}
 
 % === Regolazione dei margini =============================
 \addtolength{\oddsidemargin}{30pt}
@@ -22,7 +23,6 @@
 % === Impostazione dei font ===============================
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-%\usepackage[italian]{babel}
 \usepackage[english]{babel}
 \usepackage{ae}
 \usepackage{relsize}
@@ -32,14 +32,13 @@
 \usepackage{mathdots}
 \usepackage{mathtools}
 \usepackage{pagecolor}
+\usepackage{lettrine}
+\usepackage{siunitx}
 \hypersetup{
-%%pdfencoding=unicode
 	bookmarksnumbered=true,
 	linkcolor=black,
 	citecolor=black,
-	% pagecolor={none},
 	urlcolor=black,
-%    pdfauthor={Argentieri Francesco}
 }
 \usepackage{verbatim}
 \usepackage{alltt,footnote}
@@ -49,11 +48,11 @@
 
 % === Integrazione delle figure ===========================
 \usepackage{graphicx}
-\graphicspath{{./imgs/}}
+\graphicspath{{./imgs/}{./hardware/imgs/}}
 \renewcommand{\figurename}{Fig.}
 \usepackage{subfig}
 \usepackage{xcolor}
-
+%
 % === Per gli algoritmi ===================================
 \usepackage{algorithmicx}
 \usepackage[ruled]{algorithm}
@@ -61,14 +60,15 @@
 
 % === Per le tabelle ======================================
 \usepackage{tabularx}
-%\usepackage[table]{xcolor}
+\usepackage{xcolor}
+\usepackage{colortbl}
 
 %==Per le figure latex======================================
 %Package e librerie per TikZ e PGF, le librerie non sono tutte necessarie a questo documento LATEX.
 \usepackage{tikz,fp,ifthen,fullpage}
 \usepackage{pgfmath}
 \usetikzlibrary{decorations.pathmorphing,backgrounds,fit,calc,through}
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows, automata, positioning}
 \usetikzlibrary{shapes,decorations,shadows}
 \usetikzlibrary{fadings}
 \usetikzlibrary{patterns}
@@ -79,6 +79,22 @@
 \usepgfplotslibrary{colorbrewer}
 \usepgfplotslibrary{patchplots}
 \pgfplotsset{compat=1.13}
+\usepackage{pgfplots}
+\usepgfplotslibrary{units} % to add units easily to axis
+\usepgfplotslibrary{fillbetween} % to fill inbetween curves
+\usepgfplotslibrary{colormaps} % to create colormaps
+\pgfplotsset{width=12.2cm, height=7cm}
+\pgfplotsset{compat=newest} %(making it only compatalbe with
+%new releases of pgfplots)
+\pgfdeclarehorizontalshading{visiblelight}{50bp}{
+color(0.00000000000000bp)=(violet);
+color(8.33333333333333bp)=(blue);
+color(16.66666666666670bp)=(cyan);
+color(25.00000000000000bp)=(green);
+color(33.33333333333330bp)=(yellow);
+color(41.66666666666670bp)=(orange);
+color(50.00000000000000bp)=(red)
+}%
 
 %==Per APDL e linguaggi======================================
 \usepackage{listings,color}
@@ -88,6 +104,8 @@
 \definecolor{codeOrange}{RGB}{255,128,128}
 \definecolor{codePink}{RGB}{255,0,255}
 \definecolor{codeGray}{rgb}{0.5,0.5,0.5}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
 \lstdefinestyle{apdl-modified}
     {
         extendedchars=true,
@@ -136,9 +154,9 @@
 \lstdefinelanguage{APDL}{style=apdl-modified}
 
 % === Per la bibliografia multicolonna ====================
-\usepackage{etoolbox}
-\patchcmd{\thebibliography}{\list}{\begin{multicols}{2}\smaller\list}{}{}
-\appto{\endthebibliography}{\end{multicols}}
+%\usepackage{etoolbox}
+%\patchcmd{\thebibliography}{\list}{\begin{multicols}{2}\smaller\list}{}{}
+%\appto{\endthebibliography}{\end{multicols}}
 
 %========================================
 % TESTO DELLA TESI
@@ -150,12 +168,17 @@
 	% === Indice ==========================================
     \tableofcontents
     \listoffigures
+    \listoftables
 
 	% === Capitoli Tesi ===================================
 	\pagestyle{plain}
 	\input{introduzione}
-	\input{start}
-%	\input{HW1}
+    \input{start}
+    % \input{raspberry.tex}
+    % \input{thermalcamera/thermalcamera.tex}
+    \input{hardware/hardware}
+    % \input{software.tex}
+
 %	\input{HW2}
 %	\input{HW3}
 %	\input{HW4}
