@@ -73,9 +73,9 @@ device.
 %
 \begin{figure}[htb]
     \centering
-    \resizebox{0.8\textwidth}{!}{\input{hardware/application.tex}}
-    \caption{my figure drawn in tikz}
-    \label{fig:myfigure}
+    \includegraphics[width=0.65\textwidth]{lepton_architecture.png}
+    \caption{Lepton Architecture.}
+    \label{fig:leptonarchitecture}
 \end{figure}
 %
 \subsection{System Architecture}
@@ -94,7 +94,7 @@ period of time called the integration period. The serial stream from the FPA is
 received by a system on a chip (SoC) device, which provides signal processing
 and output formatting.
 %
-\subsection{video pipeline}
+\subsection{Video Pipeline}
 \label{ssec:pipeline}
 The video pipeline includes non-uniformity correction (NUC), defect replacement,
 spatial and temporal filtering, automatic gain correction (AGC), and
