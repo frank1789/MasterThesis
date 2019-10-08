@@ -1,25 +1,29 @@
 \section{Thermal Camera module Lepton 2.5}
 \label{sec:thermalcamera}
-The thermal camera module we use in this project, we will go through its
-specification, modes of capture and communication protocol for both video frame
-transfer and camera control. Information about the camera are extracted from
-official documentation.
-
-% TODO CHECK DOCUMENTATION AND LINK IN REFERENCE-BIBLIOGRAPHY
-
-% TODO INSERT IMAGE FLIR LEPTON
-
+The thermal camera module we use in this project its made by FLIR, we will go
+through its techincal specification, modes of capture and communication protocol
+for both video frame transfer and camera control. Information about the camera
+are extracted from official documentation.
 \subsection{Specification}
 \label{ssec:specificationthermalcam}
 Lepton is an infra-red camera system that integrates a fixed-focus lens assembly,
 an $80 \times 60$ long-wave infra-red (LWIR) micro-bolometer sensor array, and
 signal-processing electronics. Easy to integrate and operate, Lepton is intended
-for mobile devices as well as any other application requiring very small
+for mobile devices as well as any application requiring very small
 footprint, very low power, and instant-on operation. Lepton can be operated in
 its default mode or configured into other modes through a command and control
 interface (CCI). The effective frame rate of the camera is only 8.6 \si{\hertz},
 however for our needs this is not a problem. The camera only requires low
 voltage supply and has small power consumption of around 140 \si{\milli\watt}.
+\begin{figure}[!htb]
+    \centering
+    \subfloat[][\emph{with and without socket}.\label{fig:camerarender1}]
+        {\includegraphics[width=0.5\textwidth]{leptoncamera.png}} \quad
+    \subfloat[][\emph{Pinout Diagram}.\label{subfig:Pinout Diagram}]
+        {\includegraphics[width=.30\textwidth]{pinout.png}}
+    \caption{Lepton Camera}
+    \label{fig:camerarender}
+\end{figure}
 %
 \begin{table}[htb]
     \centering
@@ -44,32 +48,34 @@ voltage supply and has small power consumption of around 140 \si{\milli\watt}.
 \end{tabular}
 \end{table}
 %
-See table \ref{tab:thcamspecifications} for more specifications.\\For better
-manipulation with the camera module we use a breakout board (figure 3.1) with a
+\linebreak See table \ref{tab:thcamspecifications} for more specifications. For better
+manipulation with the camera module we use a breakout board (figure \ref{fig:breakoutboard}) with a
 housing for the Lepton camera module. The breakout board provides better
 physical accessibility, improves heat dissipation and increases input voltage
 supply range to 3--5 \si{\volt}, as it has its own regulated power supply. This
 power supply provides the camera module with three necessary voltages: 1.2, 2.8
 and 2.5--3.1 \si{\volt}. The breakout board also supplies the camera with master
-clock signal. [14] \\
-The camera uses two interfaces for communication:
+clock signal.\cite{breakoutboard}
+%
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.50\textwidth]{Lepton_Breakout_Board_-_s_550x825.png}
+    \caption{Breakout board.}
+    \label{fig:breakoutboard}
+ \end{figure}
+\linebreak The camera uses two interfaces for communication:
 \begin{itemize}
     \item SPI for transferring video frames from the camera to a SPI master
 device.
     \item I$^{2}$C for receiving control commands from the I$^{2}$C master
 device.
 \end{itemize}
-Even though the name of the project include the keyword low-cost, we need to
-think of this statement with respect to the thermal camera market. The Lepton 3
-thermal camera module can be considered low-cost when compared to other thermal
-camera devices available as it costs around $250$ (2018) 4. This could however
-be considerably more when compared to other nonthermal solutions, however way
-more than if we would utilize a simple infra-red counting sensors for example.
 %
 \begin{figure}[htb]
     \centering
     \resizebox{0.8\textwidth}{!}{\input{hardware/application.tex}}
-    \caption{my figure drawn in tikz}\label{fig:myfigure}
+    \caption{my figure drawn in tikz}
+    \label{fig:myfigure}
 \end{figure}
 %
 \subsection{System Architecture}
@@ -79,7 +85,7 @@ of thermal detectors with 17-micron pitch. Each detector element is a
 vanadium-oxide (VOx) microbolometer whose temperature fluctuates in response to
 incident flux. The change in temperature causes a proportional change in each
 microbolometer’s resistance. VOx provides a high temperature coefficient of
-resistance (TCR) and low 1/f noise, resulting in excellent thermal sensitivity
+resistance (TCR) and low $1/f$ noise, resulting in excellent thermal sensitivity
 and stable uniformity. The microbolometer array is grown monolithically on top
 of a readout integrated circuit (ROIC) to comprise the complete focal plane
 array (FPA). Once per frame, the ROIC senses the resistance of each detector by
@@ -87,13 +93,6 @@ applying a bias voltage and integrating the resulting current for a finite
 period of time called the integration period. The serial stream from the FPA is
 received by a system on a chip (SoC) device, which provides signal processing
 and output formatting.
-%
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.80\textwidth]{leptoncamera.png}
-    \caption{Lepton Camera (with and without socket)}
-    \label{fig:camerarender}
-\end{figure}
 %
 \subsection{video pipeline}
 \label{ssec:pipeline}
@@ -192,13 +191,13 @@ ensure uniform output. The entire FFC process takes less than a second.
 \begin{figure}[htb]
     \centering
     \subfloat[][\emph{Highly uniform image}.\label{subfig:Highly uniform image}]
-        {\includegraphics[width=.30\textwidth]{linearAGCa}} \quad
+        {\includegraphics[width=.30\textwidth]{uniform}} \quad
     \subfloat[][\emph{Grainy image
     (high-spatial frequency noise)}.\label{subfig:Grainy image}]
-        {\includegraphics[width=.30\textwidth]{linearAGCb.png}} \quad
+        {\includegraphics[width=.30\textwidth]{grainy.png}} \quad
     \subfloat[][\emph{ Blotchy image
     (low-spatial frequency noise)}.\label{subfig:Blotchy image}]
-        {\includegraphics[width=.30\textwidth]{linearAGCc.png}}
+        {\includegraphics[width=.30\textwidth]{blotchy.png}}
     \caption{Examples of Good Uniformity, Graininess, and Blotchiness}
     \label{fig:exampleffc}
 \end{figure}
@@ -312,5 +311,5 @@ subset of the full image, any scene content located outside of the ROI is not
 included in the histogram and therefore does not affect the mapping function
 (note: this does not mean the portion outside of the ROI is not displayed or
 that AGC is not applied there, only that those portions outside the AGC ROI do
-not influence the mapping function).
+not influence the mapping function).\cite{flirdatasheet}
 %
