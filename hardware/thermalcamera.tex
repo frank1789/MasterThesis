@@ -100,8 +100,12 @@ The video pipeline includes non-uniformity correction (NUC), defect replacement,
 spatial and temporal filtering, automatic gain correction (AGC), and
 colourization.
 %
-%insert image video stream
-%
+\begin{figure}[!h]
+    \centering
+    \resizebox{0.4\textwidth}{!}{\input{hardware/blockdiagram.tex}}
+    \caption{Lepton video pipeline block diagram.}
+    \label{fig:videopipe}
+\end{figure}
 % nuc
 \paragraph{The non-uniformity correction (NUC)} block applies correction
 terms to ensure that the camera produces a uniform output for each pixel when
@@ -152,8 +156,7 @@ the on-state (and then transitioned back to standby if imaging is not required).
     \item Standby: In the standby state, all voltage forms are applied, but power
 consumption is approximately 4 \si{\milli\watt}. In the standby state, no
 functions are available, but it is possible to transition to the on state via
-the start-up sequence defined in Figure 7 on page 16. The shutdown sequence
-shown in Figure 7 on page 16 is the recommended transition back to the standby
+the start-up sequence. The shutdown sequence is the recommended transition back to the standby
 state. It is also possible to transition between standby and on states via
 software commands, as further defined in the software IDD.
     \item Overtemp: The
