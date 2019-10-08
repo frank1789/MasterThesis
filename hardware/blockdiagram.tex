@@ -26,8 +26,6 @@
 	\node [output, right of=tmp3, node distance=1.25cm] (output_agc2) {};
 	\node [output, below of=output_agc2, 	node distance=1.85cm] (output_agc) {};
 	\node [output, below of=output_agc, 	node distance=1.65cm] (output) {};
-	% \node [tmp, below of=defect] (tmp1){$H(s)$};
-	% \node [pin, right of=temporalfilter, node distance=3.5cm] (pin1) {};
 	% connection
     \draw [->] node[above left]{raw data in} (rinput) -- (input);
 	\draw [->] (input) -- (defect);
@@ -40,12 +38,5 @@
 	\draw [->]	(tmp5) -- (agc);
 	\draw (tmp3) -- (tmp4) -- (tmp6);
 	\draw (tmp6) -- (tmp5);
-
 	\draw [color=gray,thick](1,-4.5) rectangle (14.5,1);
-	% \draw [rectangle];
-
-
-
-
-
 \end{tikzpicture}
