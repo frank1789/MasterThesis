@@ -49,14 +49,14 @@ voltage supply and has small power consumption of around 140 \si{\milli\watt}.
 \end{tabular}
 \end{table}
 %
-\linebreak See table \ref{tab:thcamspecifications} for more specifications. For better
-manipulation with the camera module we use a breakout board (figure \ref{fig:breakoutboard}) with a
-housing for the Lepton camera module. The breakout board provides better
-physical accessibility, improves heat dissipation and increases input voltage
-supply range to 3--5 \si{\volt}, as it has its own regulated power supply. This
-power supply provides the camera module with three necessary voltages: 1.2, 2.8
-and 2.5--3.1 \si{\volt}. The breakout board also supplies the camera with master
-clock signal.\cite{breakoutboard}
+\linebreak See table \ref{tab:thcamspecifications} for more specifications. For
+better manipulation with the camera module we use a breakout board (figure
+\ref{fig:breakoutboard}) with a housing for the Lepton camera module. The
+breakout board provides better physical accessibility, improves heat dissipation
+and increases input voltage supply range to 3--5 \si{\volt}, as it has its own
+regulated power supply. This power supply provides the camera module with three
+necessary voltages: 1.2, 2.8 and 2.5--3.1 \si{\volt}. The breakout board also
+supplies the camera with master clock signal.\cite{breakoutboard}
 %
 \begin{figure}[!htb]
     \centering
@@ -81,8 +81,8 @@ device.
 %
 \subsection{System Architecture}
 \label{ssec:leptonarchitecture}
-The lens assembly focuses infrared radiation from the scene onto an $80 \times 60$ array
-of thermal detectors with 17-micron pitch. Each detector element is a
+The lens assembly focuses infrared radiation from the scene onto an $80 \times
+60$ array of thermal detectors with 17-micron pitch. Each detector element is a
 vanadium-oxide (VOx) microbolometer whose temperature fluctuates in response to
 incident flux. The change in temperature causes a proportional change in each
 microbolometer’s resistance. VOx provides a high temperature coefficient of
@@ -145,31 +145,27 @@ of explicit action from the host. The automatic transition to and from the
 overtemp state is an exception. In the figure, transitions that require specific
 host-side action are shown in bold. Automatic transitions are not bolded.
 %
-\begin{itemize}
-    \item Off: When no voltage is applied, Lepton is in the off
-state. In the off state, no camera functions are available.
-    \item Uninitialized:
+\begin{itemize} \item Off: When no voltage is applied, Lepton is in the off
+state. In the off state, no camera functions are available. \item Uninitialized:
 In the uninitialized state, all voltage forms are applied, but Lepton has not
 yet been booted and is in an indeterminate state. It is not recommended to leave
 Lepton in this state as power is not optimized; it should instead be booted to
 the on-state (and then transitioned back to standby if imaging is not required).
-    \item On: In the on state, all functions and interfaces are fully available.
-    \item Standby: In the standby state, all voltage forms are applied, but power
+\item On: In the on state, all functions and interfaces are fully available.
+\item Standby: In the standby state, all voltage forms are applied, but power
 consumption is approximately 4 \si{\milli\watt}. In the standby state, no
 functions are available, but it is possible to transition to the on state via
-the start-up sequence. The shutdown sequence is the recommended transition back to the standby
-state. It is also possible to transition between standby and on states via
-software commands, as further defined in the software IDD.
-    \item Overtemp: The
-overtemp state is automatically entered when the Lepton senses that its
-temperature has exceeded approximately $80$ \si{\celsius}. Upon entering the
-overtemp state, Lepton enables a ``\emph{shutdown imminent}" status bit in the
-telemetry line and starts a $10$ \si{\second} counter. If the temperature of the
-Lepton falls below $80$ \si{\celsius} before the counter times out, the
-``\emph{shutdown imminent}" bit is cleared and the system transitions back to
-the on state. If the counter does time out, Lepton automatically transitions to
-the standby state.
-\end{itemize}
+the start-up sequence. The shutdown sequence is the recommended transition back
+to the standby state. It is also possible to transition between standby and on
+states via software commands, as further defined in the software IDD. \item
+Overtemp: The overtemp state is automatically entered when the Lepton senses
+that its temperature has exceeded approximately $80$ \si{\celsius}. Upon
+entering the overtemp state, Lepton enables a ``\emph{shutdown imminent}" status
+bit in the telemetry line and starts a $10$ \si{\second} counter. If the
+temperature of the Lepton falls below $80$ \si{\celsius} before the counter
+times out, the ``\emph{shutdown imminent}" bit is cleared and the system
+transitions back to the on state. If the counter does time out, Lepton
+automatically transitions to the standby state. \end{itemize}
 %
 \subsection{FFC States}
 \label{ssec:FFCstates}
@@ -207,13 +203,11 @@ ensure uniform output. The entire FFC process takes less than a second.
 \end{figure}
 %
 \\The current FFC state is provided through the telemetry line. There are three
-FFC states, as illustrated in Figure \ref{fig:FFC States}:
-\begin{enumerate}
-    \item FFC not commanded (default): In this state, Lepton applies by default a
-set of factory-generated FFC terms.
-    \item FFC in progress: Lepton enters this
+FFC states, as illustrated in Figure \ref{fig:FFC States}: \begin{enumerate}
+\item FFC not commanded (default): In this state, Lepton applies by default a
+set of factory-generated FFC terms. \item FFC in progress: Lepton enters this
 state when FFC is commanded. The default FFC duration is nominally $23$ frames.
-    \item FFC complete: Lepton automatically enters this state whenever FFC is
+\item FFC complete: Lepton automatically enters this state whenever FFC is
 completed. Lepton also provides an ``FFC desired" flag in the telemetry line.
 The ``FFC desired" flag is asserted at start-up, when a specified period
 (default = 3 minutes) has elapsed since the last FFC, or when the sensor
