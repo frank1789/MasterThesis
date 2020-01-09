@@ -48,7 +48,7 @@
 
 % === Integrazione delle figure ===========================
 \usepackage{graphicx}
-\graphicspath{{./imgs/}{./hardware/imgs/}}
+\graphicspath{{./imgs/}{./hardware/imgs/}{./software/imgs/}}
 \renewcommand{\figurename}{Fig.}
 \usepackage{subfig}
 \usepackage{xcolor}
@@ -106,6 +106,9 @@ color(50.00000000000000bp)=(red)
 \definecolor{codeGray}{rgb}{0.5,0.5,0.5}
 \definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
 \definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
 \lstdefinestyle{apdl-modified}
     {
         extendedchars=true,
@@ -177,7 +180,7 @@ color(50.00000000000000bp)=(red)
     % \input{raspberry.tex}
     % \input{thermalcamera/thermalcamera.tex}
     \input{hardware/hardware}
-    % \input{software.tex}
+    \input{software/software.tex}
 
 %	\input{HW2}
 %	\input{HW3}
