@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{blindtext}
 \usepackage{lmodern}
+\usepackage{minted}
 
 % === Regolazione dei margini =============================
 \addtolength{\oddsidemargin}{30pt}
@@ -60,7 +61,6 @@
 
 % === Per le tabelle ======================================
 \usepackage{tabularx}
-\usepackage{xcolor}
 \usepackage{colortbl}
 
 %==Per le figure latex======================================
@@ -79,7 +79,6 @@
 \usepgfplotslibrary{colorbrewer}
 \usepgfplotslibrary{patchplots}
 \pgfplotsset{compat=1.13}
-\usepackage{pgfplots}
 \usepgfplotslibrary{units} % to add units easily to axis
 \usepgfplotslibrary{fillbetween} % to fill inbetween curves
 \usepgfplotslibrary{colormaps} % to create colormaps
@@ -96,8 +95,9 @@ color(41.66666666666670bp)=(orange);
 color(50.00000000000000bp)=(red)
 }%
 
-%==Per APDL e linguaggi======================================
-\usepackage{listings,color}
+%== Per APDL e linguaggi======================================
+\usemintedstyle{monokai}
+\definecolor{bg}{HTML}{282828} % from https://github.com/kevinsawicki/monokai
 \definecolor{codeBlue}{RGB}{0,0,255}
 \definecolor{codeGreen}{RGB}{0,128,0}
 \definecolor{codePurple}{RGB}{128,0,255}
@@ -109,57 +109,6 @@ color(50.00000000000000bp)=(red)
 \definecolor{light-gray}{gray}{0.95}
 \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
 \definecolor{amber}{rgb}{1.0, 0.75, 0.0}
-\lstdefinestyle{apdl-modified}
-    {
-        extendedchars=true,
-        alsoletter={*},
-        alsoletter={'},
-        keywordstyle=\color{codeOrange},
-        keywordstyle=[2]\color{codePurple},
-        keywordstyle=[3],
-        keywordstyle=[4]\color{codePink},
-        otherkeywords={
-            /solve,
-            /angle
-        },
-        keywords=[2]{
-            *abbr,
-            *dim
-        },
-        keywords=[3]{
-            m,
-            d
-        },
-        keywords=[4]{
-            ',
-            -,
-            ",
-            \%,
-            (,
-            ),
-            ,,
-            .,
-            :,
-            ;,
-            ?,
-            ^,
-            ~,
-            +,
-            <,
-            =,
-            >
-        },
-        sensitive=false, % keywords are not case-sensitive
-        morecomment=[l]{!}, % l is for line comment
-        commentstyle=\color{codeGray}, % style of comments
-        numberstyle=\tiny\color{codeGray}
-    }
-\lstdefinelanguage{APDL}{style=apdl-modified}
-
-% === Per la bibliografia multicolonna ====================
-%\usepackage{etoolbox}
-%\patchcmd{\thebibliography}{\list}{\begin{multicols}{2}\smaller\list}{}{}
-%\appto{\endthebibliography}{\end{multicols}}
 
 %========================================
 % TESTO DELLA TESI
@@ -180,7 +129,7 @@ color(50.00000000000000bp)=(red)
     % \input{raspberry.tex}
     % \input{thermalcamera/thermalcamera.tex}
     \input{hardware/hardware}
-    \input{software/software.tex}
+    \input{software/software}
 
 %	\input{HW2}
 %	\input{HW3}
