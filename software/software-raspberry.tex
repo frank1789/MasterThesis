@@ -85,12 +85,12 @@ before.
 \begin{listing}[ht] 
 \inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize]{c++}{software/code/leptonthread.cpp} 
 \caption{Infinite loop thread cameras.} 
-\label{lst:leptonthread} 
+\label{lst:rasp-leptonthread} 
 \end{listing}
 %
 Going to analyze in detail the infinite , reported in the
-listing(\ref{lst:leptonthread}), executed in a thread other than the main one
-that manages only the main interface, it can be observed that:
+listing(\ref{lst:rasp-leptonthread}), executed in a thread other than the main
+one that manages only the main interface, it can be observed that:
 \begin{itemize}
 \item When the function starts, an instance of the QImage type object is
 twinned to contain the image acquired during the cycle. The parameters of the
@@ -129,7 +129,7 @@ mixing tool on the fly.
 \begin{listing}[ht] 
 \inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize]{c++}{software/code/mainwindow.cpp} 
 \caption{Particular report function sending image.} 
-\label{lst:mainwindow} 
+\label{lst:rasp-code-thread} 
 \end{listing}
 %
 % % code list

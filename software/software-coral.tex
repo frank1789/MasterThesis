@@ -1,0 +1,58 @@
+%
+% introduction
+\section{Client}
+\label{sec:software-coral-intro}
+The software that acts as a client on the Coral dev-board, presented in chapter
+\ref{}, created by Google is based on the same Qt framework previously
+introduced in order to guarantee portability and reliability of the code. This,
+remember, has an ARM Cortex-A53 processor, but unlike the one mounted on
+Raspberry it executes 64-bit code and takes advantage of the new armv8
+architecture with a significant performance gain. This difference arises from
+the execution of Machine Learning operations supported by the TPU, described in
+detail in section \ref{}.
+%
+% interface
+As seen for the main program, here too we find a main interface executed in the
+main thread. The simplest interface is divided into two areas: the first one
+where it is possible to observe the flow of images coming from the TCP socket
+analyzed later. The second, on the other hand, offers the possibility of
+connecting to the TCP socket by entering the address and port of the machine on
+which the server is run, which is listening for possible connection requests.
+Once the connection between server and client is established, the label is
+updated with the images received.
+%
+% software analysis
+\subsection{Software Analysis}
+\label{ssec:software-coral-analysis}
+To avoid blockages and unpleasant delays in receiving images from the TCP
+socket, multi-thread programming was used. In fact, as previously described, the
+interface managed by QWidget is run on the main thread. If the connection is
+stable, the thread starts which allows reception in a queue waiting to leave. 
+On the other hand, this is prepared when the class is instantiated within the
+main function. Since this infinite cycle is the critical factor, we analyze its
+structure in detail as shown below.
+%
+% code list
+\begin{listing}[ht] 
+\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize]{c++}{software/code/streamerthread.cpp} 
+\caption{Particular report function sending image.} 
+\label{lst:coral-client-code} 
+\end{listing}
+%
+As you can see in the function code, shown in Listing
+\ref{lst:coral-client-code}, we observe the instance of the ``\emph{socket}"
+member object of the \emph{QTcpSocket} class type. By starting the connection, the
+server. The critical section from the \emph{while loop} is protected by a mutex,
+highlighted by the \textbf{QMutexLocker} class, a mutex indicates a process of
+synchronization between concurrent processes or threads, with which multiple
+parallel tasks are prevented from simultaneously accessing data in memory or
+other resources subject to race condition.\cite{wiki:mutex} 
+Locking and unlocking a QMutex in complex functions and statements or in
+exception handling code is error-prone. 
+QMutex Locker can be used in such situations to ensure that the state of the
+mutex is always well-defined. QMutex Locker should be created within a function
+where a QMutex needs to be locked. The mutex is locked when QMutexLocker is
+created. If locked, the mutex will be unlocked when the QMutex Locker is
+destroyed.
+Using QMutexLocker greatly simplifies the code, and makes it more
+readable.\cite{Qt:QMutexclass}
