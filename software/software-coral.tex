@@ -34,19 +34,19 @@ structure in detail as shown below.
 %
 % code list
 \begin{listing}[ht] 
-\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize]{c++}{software/code/streamerthread.cpp} 
+\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=12, lastline=26]{c++}{software/code/streamerthread.cpp} 
 \caption{Particular report function sending image.} 
 \label{lst:coral-client-code} 
 \end{listing}
 %
 As you can see in the function code, shown in Listing
 \ref{lst:coral-client-code}, we observe the instance of the ``\emph{socket}"
-member object of the \emph{QTcpSocket} class type. By starting the connection, the
-server. The critical section from the \emph{while loop} is protected by a mutex,
-highlighted by the \textbf{QMutexLocker} class, a mutex indicates a process of
-synchronization between concurrent processes or threads, with which multiple
-parallel tasks are prevented from simultaneously accessing data in memory or
-other resources subject to race condition.\cite{wiki:mutex} 
+member object of the \emph{QTcpSocket} class type. By starting the connection,
+the server. The critical section from the \emph{while loop} is protected by a
+mutex, highlighted by the \textbf{QMutexLocker} class, a mutex indicates a
+process of synchronization between concurrent processes or threads, with which
+multiple parallel tasks are prevented from simultaneously accessing data in
+memory or other resources subject to race condition.\cite{wiki:mutex} 
 Locking and unlocking a QMutex in complex functions and statements or in
 exception handling code is error-prone. 
 QMutex Locker can be used in such situations to ensure that the state of the
@@ -56,3 +56,18 @@ created. If locked, the mutex will be unlocked when the QMutex Locker is
 destroyed.
 Using QMutexLocker greatly simplifies the code, and makes it more
 readable.\cite{Qt:QMutexclass}
+The buffer is filled with reading from the socket and before putting the signal
+to update the image in the interface a small interval of time is waited to
+guarantee the complete reception of the image.
+Before updating the label on the dashboard, filter the image to verify that it
+is consistent and different from an empty or corrupt image, shows in listing
+\ref{lst:coral-ui-code} If this occurs, the function is immediately exited to
+avoid viewing an image being ready to receive a new image. 
+%
+% code list
+\begin{listing}[ht] 
+\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=88, lastline=100]{c++}{software/code/tcpclient.cpp} 
+\caption{Detail of the image reception function.} 
+\label{lst:coral-ui-code} 
+\end{listing}
+%

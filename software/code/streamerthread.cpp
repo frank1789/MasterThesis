@@ -10,10 +10,9 @@ StreamerThread::StreamerThread(QObject *parent)
 }
 
 void StreamerThread::run() {
+  QMutexLocker locker(&mutex);
   socket = new QTcpSocket;
   socket->connectToHost(m_address, m_port);
-  socket->write(new char[4]{1, 2, 3, 4});
-  QMutexLocker locker(&mutex);
   QByteArray buffer;
   while (m_quit == false) {
     if (socket->waitForReadyRead(3000)) {
