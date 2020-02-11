@@ -1,12 +1,22 @@
 \chapter{Software}
 \label{chap:software}
-\lettrine[lines=3]{I}{n} this chapter we will discuss the software used to
-control the cameras presented in the chapter. This software was designed to have
-a minimum number of dependencies and was specifically optimized to exploit the
-hardware already presented.
-
+%
+% preface chapter
+\lettrine[lines=3]{T}{his} chapter describes the software developed for the
+hardware described in the chapter. The choice to use the Qt framework guarantees
+the portability of the code thanks to the cross-platform support. The software
+is divided into two programs capable of communicating with each other: the first
+works on Raspberry Pi and allows the user to interface easily with the FLir
+thermal camera and with the Raspicam camera. It also acts as a TCP server for
+sending the images shot to connected devices. The second part is a client
+program that receives the data sent by the main device, and allows the analysis
+of the image through machine learning on dedicated hardware.
+%
+% input files
+\input{software/raspberrysoftware}
 \input{software/introduction}
 %
+% old
 the software created is based on the paradigm of object-oriented programming. It
 is a question of keeping the dependence on other libraries and frameworks to a
 minimum, trying to guarantee the portability of the source code on platforms
