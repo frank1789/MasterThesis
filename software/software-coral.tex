@@ -27,10 +27,10 @@ updated with the images received.
 To avoid blockages and unpleasant delays in receiving images from the TCP
 socket, multi-thread programming was used. In fact, as previously described, the
 interface managed by QWidget is run on the main thread. If the connection is
-stable, the thread starts which allows reception in a queue waiting to leave. 
+stable, the thread starts which allows reception in a queue waiting to leave.\\ 
 On the other hand, this is prepared when the class is instantiated within the
-main function. Since this infinite cycle is the critical factor, we analyze its
-structure in detail as shown below.
+main function. Since this infinite cycle is the critical factor, we analyse its
+structure in detail below.\linebreak
 %
 % code list
 \begin{listing}[ht] 
@@ -39,7 +39,7 @@ structure in detail as shown below.
 \label{lst:coral-client-code} 
 \end{listing}
 %
-As you can see in the function code, shown in Listing
+\\As you can see in the function code, shown in Listing
 \ref{lst:coral-client-code}, we observe the instance of the ``\emph{socket}"
 member object of the \emph{QTcpSocket} class type. By starting the connection,
 the server. The critical section from the \emph{while loop} is protected by a
@@ -67,7 +67,12 @@ avoid viewing an image being ready to receive a new image.
 % code list
 \begin{listing}[ht] 
 \inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=88, lastline=100]{c++}{software/code/tcpclient.cpp} 
-\caption{Detail of the image reception function.} 
+\caption{Implantation filter.} 
 \label{lst:coral-ui-code} 
 \end{listing}
 %
+% cnn part
+\subsection{CNN-PART-TPU-INFERENCE}
+%TODO
+...
+\newpage
