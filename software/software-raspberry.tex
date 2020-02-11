@@ -3,7 +3,7 @@
 \section{Interface}
 \label{sec:raspberry-software}
 As anticipated, the software run on the Raspberry Pi is made following the
-paradigm of object-oriented programming. Made in C ++\/Qt making extensive use
+paradigm of object-oriented programming. Made in C++/Qt making extensive use
 of the proprietary classes of the framework and the Standard Template Library
 (STL). This program has some dependencies with regard to the thermal camera
 drivers supplied by the manufacturer and are 32-bit, since the Raspberry Pi 3,
@@ -28,13 +28,15 @@ preferred not to perform a match of the images with pixel-by-pixel recalculation
 for two reasons: the first due to the high difference in size of the sensors as
 that of the thermal camera is $80 \times 60$ pixels while the Raspicam is $3280
 \times 2464$ pixels. The second is to not aggravate the computational load on
-the CPU. The second area provides some controls for the user, in fact it is
+the CPU.\\\linebreak
+The second area provides some controls for the user, in fact it is
 possible to save thermal images on files during the acquisition. you can change
 the heat map applied to the image on the fly by choosing from three different
 possibilities, in the figure you can observe the result. 
 Finally, it is possible to modify the mixing filter, also on the fly, of the
 video streams to obtain different effects to improve visibility or to increase
-details. The last section of the user interface shows the information relating
+details.\\
+The last section of the user interface shows the information relating
 to the TCP socket used for sending the video stream to other devices.
 %
 % image ui
@@ -82,40 +84,61 @@ accessed by multiple threads.}, but uses the signal and slot system as mentioned
 before.
 %
 % code list
-\begin{listing}[ht] 
-\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize]{c++}{software/code/leptonthread.cpp} 
-\caption{Infinite loop thread cameras.} 
-\label{lst:rasp-leptonthread} 
+\begin{listing}[ht]
+\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=36, lastline=100]{c++}{software/code/leptonthread.cpp} 
+\caption{Infinite loop thread cameras.}
+\label{lst:rasp-leptonthread}
 \end{listing}
 %
-Going to analyze in detail the infinite , reported in the
-listing(\ref{lst:rasp-leptonthread}), executed in a thread other than the main
+Going to analyse in detail the infinite loop, reported in the
+listing (\ref{lst:rasp-leptonthread}), executed in a thread other than the main
 one that manages only the main interface, it can be observed that:
 \begin{itemize}
 \item When the function starts, an instance of the QImage type object is
-twinned to contain the image acquired during the cycle. The parameters of the
+instantiated to contain the image acquired during the cycle. The parameters of the
 frame size are provided and the color space this allows to increase the speed of
-the cycle as it will not be cyclically canceled and reallocated the same, but
+the cycle as it will not be cyclically cancelled and reallocated the same, but
 will be reused. The communication with the thermal camera is opened via the SPI
 port if the cycle is not started or if the communication is interrupted the
 communication is closed.
+% code list
+%\begin{minipage}{\linewidth}
+%\centering
+%\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=36, lastline=61]{c++}{software/code/leptonthread.cpp} 
+%\captionof{listing}{Data acquisition from SPI.}
+%\label{lst:rasp-leptonthread-data} 
+%\end{minipage}
+%
 \item The main cycle is to acquire data from the saved camera registers, as the
 order is MSB\footnote{MSB can also stand for "most significant byte".
-\emph{Big-endian processor}: When data is loaded into a multibyte register, the
+\emph{Big-endian processor}: When data is loaded into a multi-byte register, the
 first byte (with the lowest address) is the most significant byte of the
 data.\cite{56322}}, reversed in according to LSB\footnote{LSB can also stand
 for "least significant byte". \emph{Little-endian processor}: When data is
-loaded into a multibyte register, the first byte (with the lowest address) is
+loaded into a multi-byte register, the first byte (with the lowest address) is
 the least significant byte of the data.\cite{56322}}. The values are then scaled
 to obtain a consistent representation of the hot and cold areas. Then the color
 map is applied to color the raw data obtained from the scaling process described
 above.
-\item The standard RGB image is acquired by the Raspicam library and passed
-through the slot.
-\item Finally, the thermal images, RGB, and the one resulting from mixing are
-emitted by signal.
+%% code list
+%\begin{minipage}{\linewidth}
+%\centering 
+%\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=79, lastline=108]{c++}{software/code/leptonthread.cpp} 
+%\captionof{listing}{Flip the MSB and LSB and colouration.} 
+%\label{lst:rasp-leptonthread-MSB-LSB} 
+%\end{minipage}\linebreak
+%%
+\item Finally, signals are output for the coloured thermal image, for the RGB
+image acquired by the Raspicam library and passed through the slot and the last
+resulting from mixing of previous two depend on effect of selected in UI interface.
+%% code list
+%\begin{minipage}{\linewidth}
+%\centering 
+%\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=36, lastline=117]{c++}{software/code/leptonthread.cpp} 
+%\captionof{listing}{Infinite loop thread cameras.} 
+%\label{lst:rasp-leptonthread} 
+%\end{minipage}
 \end{itemize}
-%
 As can be seen, the cycle proceeds without mutuals or blocking conditions, in
 fact, as previously described, it is possible to change the color map or the
 mixing tool on the fly.
@@ -126,8 +149,8 @@ mixing tool on the fly.
 \label{ssec:software-TCPSocket}
 
 % code list
-\begin{listing}[ht] 
-\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize]{c++}{software/code/mainwindow.cpp} 
+\begin{listing}
+\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=84, lastline=95]{c++}{software/code/mainwindow.cpp} 
 \caption{Particular report function sending image.} 
 \label{lst:rasp-code-thread} 
 \end{listing}

@@ -30,7 +30,7 @@ interface managed by QWidget is run on the main thread. If the connection is
 stable, the thread starts which allows reception in a queue waiting to leave.\\ 
 On the other hand, this is prepared when the class is instantiated within the
 main function. Since this infinite cycle is the critical factor, we analyse its
-structure in detail below.\linebreak
+structure in detail below.
 %
 % code list
 \begin{listing}[ht] 
@@ -40,7 +40,7 @@ structure in detail below.\linebreak
 \end{listing}
 %
 \\As you can see in the function code, shown in Listing
-\ref{lst:coral-client-code}, we observe the instance of the ``\emph{socket}"
+(\ref{lst:coral-client-code}), we observe the instance of the ``\emph{socket}"
 member object of the \emph{QTcpSocket} class type. By starting the connection,
 the server. The critical section from the \emph{while loop} is protected by a
 mutex, highlighted by the \textbf{QMutexLocker} class, a mutex indicates a
@@ -49,7 +49,7 @@ multiple parallel tasks are prevented from simultaneously accessing data in
 memory or other resources subject to race condition.\cite{wiki:mutex} 
 Locking and unlocking a QMutex in complex functions and statements or in
 exception handling code is error-prone. 
-QMutex Locker can be used in such situations to ensure that the state of the
+QMutexLocker can be used in such situations to ensure that the state of the
 mutex is always well-defined. QMutex Locker should be created within a function
 where a QMutex needs to be locked. The mutex is locked when QMutexLocker is
 created. If locked, the mutex will be unlocked when the QMutex Locker is
