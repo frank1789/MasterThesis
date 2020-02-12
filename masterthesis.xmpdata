@@ -78,12 +78,12 @@
 
 
 
-\Title        {Test}
+\Title        {Enhancing UAV capabilities with machine learning on board}
 
 \Author       {Francesco Argentieri}
 
 \Copyright    {Copyright \copyright\ 2019 Francesco Argentieri}
 
-\Keywords     {FLIR, Lepton, C++, Qt, thermal image, Raspberry Pi, Keras, TensorFlow, Python}
+\Keywords     {FLIR, Lepton, C++, Qt, thermal image, Raspberry Pi, Keras, TensorFlow, Python, Google, Coral, ARM, TPU}
 
 \Subject      {test my the abstract.}

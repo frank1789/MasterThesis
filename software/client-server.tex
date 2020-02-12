@@ -1,0 +1,6 @@
+\begin{tikzpicture}[block/.style={draw,minimum width=2cm,minimum height=1cm}, font=\sffamily] 
+\node[block](C) {Client}; 
+\node[block,right=9cm of C](S) {Server}; 
+\draw[-latex] (C.15) -- (S.165)	node[midway,above]{Request}; 
+\draw[-latex] (S.195) -- (C.-15) node[midway,below]{Response}; 
+\end{tikzpicture}

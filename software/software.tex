@@ -1,35 +1,20 @@
 \chapter{Software}
 \label{chap:software}
-\lettrine[lines=3]{I}{n} this chapter we will discuss the software used to
-control the cameras presented in the chapter. This software was designed to have
-a minimum number of dependencies and was specifically optimized to exploit the
-hardware already presented.
-
-\input{software/introduction}
 %
-the software created is based on the paradigm of object-oriented programming. It
-is a question of keeping the dependence on other libraries and frameworks to a
-minimum, trying to guarantee the portability of the source code on platforms
-with different hardware. The language chosen is C ++ with an intuitive use of
-the Qt framework thus once again guaranteed portability, as well as the
-graphical interface and high data performance the feature of compiled languages.
-The software thus created inside presents the graphic structures of Qwidget, the
-libraries to manage the Raspberry Pi camera seen in chapter 4 and the FLIR
-Lepton SDK.
-
-Once started, the application runs the main screen that can be divided into
-three main areas: the preview section, the fusion section, the sidebar of the
-commands. In the first section two widgets are shown that show the video streams
-captured by the two cameras in separate threads, this thanks to the extensive
-use of the ``\textbf{signal \& slot}"\footnote{Signals and slots are used for
-communication between objects. The signals and slots mechanism is a central
-feature of Qt and probably the part that differs most from the features provided
-by other frameworks. Signals and slots are made possible by Qt's meta-object
-system.\cite{qtsignalslot}} made available by Qt. In the sidebar of the
-controls, there are the operations that allow you to change the color palette of
-the thermal image, capture an image, select a particular blending method for the
-two video streams and see them combined in the central section. The central
-section, as anticipated, shows the superimposition of the thermal map on the RGB
-image captured by the traditional photo camera.
-
-
+% preface chapter
+\lettrine[lines=3]{T}{his} chapter describes the software developed for the
+hardware described in the chapter \ref{chap:hardware}. The choice to use the Qt
+framework guarantees the portability to garntiee cross-platform support, as well
+as the graphical interface and high data performance the feature of compiled
+languages.  The software is divided into two programs capable of communicating
+with each other: the first works on Raspberry Pi and allows the user to
+interface easily with the FLir thermal camera and with the Raspicam camera. It
+also acts as a TCP server for sending the images shot to connected devices. The
+second part is a client program that receives the data sent by the main device,
+and allows the analysis of the image through machine learning on dedicated
+hardware.
+%
+% input files
+\input{software/software-signalsslot.tex}
+\input{software/software-raspberry.tex}
+\input{software/software-coral.tex}

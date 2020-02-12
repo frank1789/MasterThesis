@@ -22,7 +22,7 @@ voltage supply and has small power consumption of around 140 \si{\milli\watt}.
         {\includegraphics[width=0.5\textwidth]{leptoncamera.png}} \quad
     \subfloat[][\emph{Pinout Diagram}.\label{subfig:Pinout Diagram}]
         {\includegraphics[width=.30\textwidth]{pinout.png}}
-    \caption{Lepton Camera}
+    \captionsource{Lepton Camera sketch.}{\cite{flirdatasheet}}
     \label{fig:camerarender}
 \end{figure}
 %
@@ -75,7 +75,7 @@ device.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.65\textwidth]{lepton_architecture.png}
-    \caption{Lepton Architecture.}
+    \captionsource{Lepton Architecture.}{\cite{flirdatasheet}}
     \label{fig:leptonarchitecture}
 \end{figure}
 %
@@ -104,7 +104,7 @@ colourization.
 \begin{figure}[!h]
     \centering
     \resizebox{0.65\textwidth}{!}{\input{hardware/blockdiagram.tex}}
-    \caption{Lepton video pipeline block diagram.}
+    \captionsource{Lepton video pipeline block diagram.}{\cite{flirdatasheet}}
     \label{fig:videopipe}
 \end{figure}
 % nuc
@@ -198,7 +198,7 @@ ensure uniform output. The entire FFC process takes less than a second.
     \subfloat[][\emph{ Blotchy image
     (low-spatial frequency noise)}.\label{subfig:Blotchy image}]
         {\includegraphics[width=.30\textwidth]{blotchy.png}}
-    \caption{Examples of Good Uniformity, Graininess, and Blotchiness}
+    \captionsource{Examples of Good Uniformity, Graininess, and Blotchiness}{\cite{flirdatasheet}}
     \label{fig:exampleffc}
 \end{figure}
 %
@@ -248,7 +248,7 @@ number of pixels in each frame that have a given 14-bit value. Figure
 \begin{figure}[!h]
     \centering
     \resizebox{0.80\textwidth}{!}{\input{hardware/histogram.tex}}
-    \caption{Illustration of a Histogram for a $3 \times 3$ Pixel Area.}
+    \captionsource{Illustration of a Histogram for a $3 \times 3$ Pixel Area.}{\cite{flirdatasheet}}
     \label{fig:histogram}
 \end{figure}
 %
@@ -280,7 +280,7 @@ contrast between portions of the histogram separated by gaps. Figure
 clip parameters.
 %
 \end{itemize}
-\begin{figure}[!h]
+\begin{figure}[htb]
     \centering
     \subfloat[][\emph{Linear AGC}.\label{subfig:linearagc}]
         {\includegraphics[width=.30\textwidth]{linearAGCa}} \quad
@@ -288,10 +288,11 @@ clip parameters.
         {\includegraphics[width=.30\textwidth]{linearAGCb.png}} \quad
     \subfloat[][\emph{Lepton's Variant of HistogramEqualization}.\label{subfig:varianhistograms}]
         {\includegraphics[width=.30\textwidth]{linearAGCc.png}}
-    \caption{Comparison of Linear AGC and Classic/Lepton Variant of Histogram Equalization}
+    \captionsource{Comparison of Linear AGC and Classic--Lepton \\ variant of Histogram Equalization}{\cite{flirdatasheet}}
     \label{fig:comparisionlinearAGC}
 \end{figure}
 %
+\newpage
 A high value of clip limit high results in a mapping more like classic histogram
 equalization, whereas a low value results in mapping more like linear AGC. For
 clip limit low, the opposite is true: a high value results in a mapping more
