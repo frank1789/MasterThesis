@@ -34,7 +34,7 @@ structure in detail below.
 %
 % code list
 \begin{listing}[ht] 
-\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=12, lastline=26]{c++}{software/code/streamerthread.cpp} 
+\inputminted[frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=12, lastline=26]{c++}{software/code/streamerthread.cpp} 
 \caption{Particular report function sending image.} 
 \label{lst:coral-client-code} 
 \end{listing}
@@ -62,12 +62,13 @@ to update the image in the interface a small interval of time is waited to
 guarantee the complete reception of the image.
 Before updating the label on the dashboard, filter the image to verify that it
 is consistent and different from an empty or corrupt image, shows in listing
-(\ref{lst:coral-ui-code}) If this occurs, the function is immediately exited to
+(\ref{lst:coral-ui-code}). 
+If this occurs, the function is immediately exited to
 avoid viewing an image being ready to receive a new image. 
 %
 % code list
 \begin{listing}[ht] 
-\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=88, lastline=100]{c++}{software/code/tcpclient.cpp} 
+\inputminted[frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=88, lastline=100]{c++}{software/code/tcpclient.cpp} 
 \caption{Implantation filter.} 
 \label{lst:coral-ui-code} 
 \end{listing}
@@ -76,4 +77,3 @@ avoid viewing an image being ready to receive a new image.
 \subsection{CNN-PART-TPU-INFERENCE}
 %TODO
 ...
-\newpage

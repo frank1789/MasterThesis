@@ -50,9 +50,19 @@
 % === Integrazione delle figure ===========================
 \usepackage{graphicx}
 \graphicspath{{./imgs/}{./hardware/imgs/}{./software/imgs/}{./neuralnetworks/imgs/}}
-\renewcommand{\figurename}{Fig.}
+%\renewcommand{\figurename}{Fig.}
+\usepackage{caption}
+\captionsetup[figure]{labelfont=bf}
+\newcommand*{\captionsource}[2]{%
+  \caption[{#1}]{%
+    #1%
+    \\\hspace{\linewidth}%
+    \textbf{Source:} #2%
+  }%
+}
 \usepackage{subfig}
 \usepackage{xcolor}
+
 %
 % === Per gli algoritmi ===================================
 \usepackage{algorithmicx}
@@ -96,7 +106,12 @@ color(50.00000000000000bp)=(red)
 }%
 
 %== Per APDL e linguaggi======================================
-\usemintedstyle{monokai}
+\usemintedstyle{manny}
+\usepackage{listings}
+\lstset{%
+  breaklines=true,
+  breakatwhitespace=true,
+}
 \definecolor{bg}{HTML}{282828} % from https://github.com/kevinsawicki/monokai
 \definecolor{codeBlue}{RGB}{0,0,255}
 \definecolor{codeGreen}{RGB}{0,128,0}
@@ -116,7 +131,8 @@ color(50.00000000000000bp)=(red)
 \begin{document}
 	% === Frontespizio ====================================
 	\pagestyle{empty}
-	\input{frontespizio}
+	\input{frontespizio.tex}
+	\input{abstract.tex}
 	% === Indice ==========================================
     \tableofcontents
     \listoffigures
@@ -124,8 +140,7 @@ color(50.00000000000000bp)=(red)
 
 	% === Capitoli Tesi ===================================
 	\pagestyle{plain}
-	\input{introduzione}
-    \input{start}
+%	\input{introduzione.tex}
     \input{hardware/hardware.tex}
     \input{software/software.tex}
     \input{neuralnetworks/neuralnetworks.tex}
@@ -135,7 +150,7 @@ color(50.00000000000000bp)=(red)
 %	\input{HW5}
 %	\input{HW6}
 %	\input{HW7}
-	%\input{conclusione}
+%	\input{conclusione}
 	% === Bibliografia ====================================
 	\newpage
 	\bibliographystyle{IEEEtran}

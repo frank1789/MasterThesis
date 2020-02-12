@@ -58,7 +58,7 @@ to the TCP socket used for sending the video stream to other devices.
 The user interface is run on the main thread, in order to maximize the
 performance of the executed code the image acquisition operation is performed in
 the secondary thread. Thanks to the use of the signal and slot system of Qt, 
-introduced before in \ref{sec:soft-signal-slot}, it is possible to update the 
+introduced before in (\ref{ref:soft-signal-slot}), it is possible to update the 
 labels without blocks typical of multi-threaded programming. 
 The difficulty of concurrent programming usually consists in
 synchronizing the access to resources by different threads that act in
@@ -84,17 +84,15 @@ accessed by multiple threads.}, but uses the signal and slot system as mentioned
 before.
 %
 % code list
-\begin{listing}[ht]
-\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=36, lastline=100]{c++}{software/code/leptonthread.cpp} 
-\caption{Infinite loop thread cameras.}
-\label{lst:rasp-leptonthread}
-\end{listing}
+\inputminted[frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=36, lastline=100]{c++}{software/code/leptonthread.cpp} 
+\captionof{listing}{Infinite loop thread cameras.\label{lst:rasp-leptonthread}}
 %
+\pagebreak
 Going to analyse in detail the infinite loop, reported in the
 listing (\ref{lst:rasp-leptonthread}), executed in a thread other than the main
 one that manages only the main interface, it can be observed that:
 \begin{itemize}
-\item When the function starts, an instance of the QImage type object is
+\item (line 37--56) When the function starts, an instance of the \texttt{QImage} type object is
 instantiated to contain the image acquired during the cycle. The parameters of the
 frame size are provided and the color space this allows to increase the speed of
 the cycle as it will not be cyclically cancelled and reallocated the same, but
@@ -109,7 +107,7 @@ communication is closed.
 %\label{lst:rasp-leptonthread-data} 
 %\end{minipage}
 %
-\item The main cycle is to acquire data from the saved camera registers, as the
+\item (line 66--78) The main cycle is to acquire data from the saved camera registers, as the
 order is MSB\footnote{MSB can also stand for "most significant byte".
 \emph{Big-endian processor}: When data is loaded into a multi-byte register, the
 first byte (with the lowest address) is the most significant byte of the
@@ -128,7 +126,7 @@ above.
 %\label{lst:rasp-leptonthread-MSB-LSB} 
 %\end{minipage}\linebreak
 %%
-\item Finally, signals are output for the coloured thermal image, for the RGB
+\item (line 79--97) Finally, signals are output for the coloured thermal image, for the RGB
 image acquired by the Raspicam library and passed through the slot and the last
 resulting from mixing of previous two depend on effect of selected in UI interface.
 %% code list
@@ -160,7 +158,7 @@ sending. Upon exiting the function body, the mutex is unlocked, thus giving free
 access to resources again.
 % code list
 \begin{listing}[ht]
-\inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=84, lastline=95]{c++}{software/code/mainwindow.cpp} 
+\inputminted[frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=84, lastline=95]{c++}{software/code/mainwindow.cpp} 
 \caption{Particular report function sending image.} 
 \label{lst:rasp-code-thread} 
 \end{listing}

@@ -17,7 +17,7 @@ communicate with one another.
 Other toolkits achieve this kind of communication using callbacks. A callback is
 a pointer to a function, so if you want a processing function to notify you
 about some event you pass a pointer to another function (the callback) to the
-processing function. The processing function then calls the callback when
+processing function.\linebreak The processing function then calls the callback when
 appropriate. While successful frameworks using this method do exist, callbacks
 can be unintuitive and may suffer from problems in ensuring the type-correctness
 of callback arguments.\cite{Qt:signal-slot}
@@ -30,17 +30,18 @@ many predefined signals, but we can always subclass widgets to add our own
 signals to them. A slot is a function that is called in response to a particular
 signal. Qt's widgets have many pre-defined slots, but it is common practice to
 subclass widgets and add your own slots so that you can handle the signals that
-you are interested in. 
+you are interested in.\hfill \break
 %
 %
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=0.65\textwidth]{abstract-connections.png}
-	\caption{Signal and Slot scheme.\\Source: https://doc.qt.io/qt-5/signalsandslots.html}
+	\captionsource{Signal and Slot scheme.}{
+	\href{https://doc.qt.io/qt-5/signalsandslots.html}{https://doc.qt.io/qt-5/signalsandslots.html}}
 	\label{fig:software-signal-slots-scheme}
 \end{figure}
 %
-The signals and slots mechanism is type safe: The signature of a signal must
+\newline The signals and slots mechanism is type safe: The signature of a signal must
 match the signature of the receiving slot. (In fact a slot may have a shorter
 signature than the signal it receives because it can ignore extra arguments.)
 Since the signatures are compatible, the compiler can help us detect type
