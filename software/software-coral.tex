@@ -41,28 +41,28 @@ structure in detail below.
 %
 \\As you can see in the function code, shown in Listing
 (\ref{lst:coral-client-code}), we observe the instance of the \texttt{socket}
-member object of the \tetxbf\texttt{{QTcpSocket}} class type. 
+member object of the \texttt{QTcpSocket} class type. 
 By starting the connection, the server. 
 The critical section from the \emph{while loop} is protected by a mutex,
-highlighted by the \textbf{\texttt{QMutexLocker}} class, a mutex indicates a
+highlighted by the \texttt{QMutexLocker} class, a mutex indicates a
 process of synchronization between concurrent processes or threads, with which
 multiple parallel tasks are prevented from simultaneously accessing 
 data in memory or other resources subject to race condition.\cite{wiki:mutex} 
 Locking and unlocking a \texttt{QMutex} in complex functions and statements or
-in exception handling code is error-prone. 
-QMutexLocker can be used in such situations to ensure that the state of the
-mutex is always well-defined. \tetxttt{QMutex} Locker should be created within a
-function where a \tetxttt{QMutex} needs to be locked. The mutex is locked when
-\tetxttt{QMutexLocker} is created. If locked, the mutex will be unlocked when
-the \tetxttt{QMutex} Locker is destroyed.
-Using \tetxttt{QMutexLocker} greatly simplifies the code, and makes it more
+in exception handling code is error-prone.
+\texttt{QMutexLocker} can be used in such situations to ensure that the state of the
+mutex is always well-defined. \texttt{QMutexLocker} should be created within a
+function where a \texttt{QMutex} needs to be locked. The mutex is locked when
+\texttt{QMutexLocker} is created. If locked, the mutex will be unlocked when
+the \texttt{QMutexLocker} is destroyed.
+Using \texttt{QMutexLocker} greatly simplifies the code, and makes it more
 readable.\cite{Qt:QMutexclass}
 The buffer is filled with reading from the socket and before putting the signal
 to update the image in the interface a small interval of time is waited to
 guarantee the complete reception of the image.
 Before updating the label on the dashboard, filter the image to verify that it
 is consistent and different from an empty or corrupt image, shows in listing
-\ref{lst:coral-ui-code} If this occurs, the function is immediately exited to
+(\ref{lst:coral-ui-code}) If this occurs, the function is immediately exited to
 avoid viewing an image being ready to receive a new image. 
 %
 % code list
