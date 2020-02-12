@@ -312,3 +312,17 @@ included in the histogram and therefore does not affect the mapping function
 that AGC is not applied there, only that those portions outside the AGC ROI do
 not influence the mapping function).\cite{flirdatasheet}
 %
+\subsection{Interface}
+\label{ssec:lepton-interface}
+
+The camera uses two interfaces for communication:
+∙ SPI for transferring video frames from the camera to a SPI master device. ∙ I2C for receiving control commands from the I2C master device.
+
+In this project we are mostly interested in SPI and I2C hardware modules, that enable us to receive video frames from, as well as control the thermal camera directly from a high-level Linux system running on the board.
+The Orange Pi PC2 board also provides connectivity to three UART7, two TWI8 and one SPI9 hardware modules.
+The CPU has enough processing power to maintain smooth operation without delays, which turned out to be crucial for maintaining synchronization with the camera module when transferring video frames.
+6 Orange Pi PC 2 official product page http://www.orangepi.org/orangepipc2/ 7UART – Universal Asynchronous Receiver-Transmitter
+8TWI – Two wire interface – identical to I2C (Inter-integrated circuit)
+9SPI – Serial peripheral interface bus
+
+
