@@ -27,15 +27,15 @@ through filters made available as default the overlay filter is used. It was
 preferred not to perform a match of the images with pixel-by-pixel recalculation
 for two reasons: the first due to the high difference in size of the sensors as
 that of the thermal camera is $80 \times 60$ pixels while the Raspicam is $3280
-\times 2464$ pixels. The second is to not aggravate the computational load on
-the CPU.\\\linebreak
+\times 2464$ pixels. Furthermore motivation is due to not aggravate the 
+computational load on the CPU.
 The second area provides some controls for the user, in fact it is
 possible to save thermal images on files during the acquisition. you can change
 the heat map applied to the image on the fly by choosing from three different
 possibilities, in the figure you can observe the result. 
 Finally, it is possible to modify the mixing filter, also on the fly, of the
 video streams to obtain different effects to improve visibility or to increase
-details.\\
+details.
 The last section of the user interface shows the information relating
 to the TCP socket used for sending the video stream to other devices.
 %
@@ -57,9 +57,9 @@ to the TCP socket used for sending the video stream to other devices.
 \label{ssec:raspberry-softw-analysis}
 The user interface is run on the main thread, in order to maximize the
 performance of the executed code the image acquisition operation is performed in
-the secondary thread. Thanks to the use of the signal and slot system of Qt it
-is possible to update the labels without blocks typical of multi-threaded
-programming. 
+the secondary thread. Thanks to the use of the signal and slot system of Qt, 
+introduced before in \ref{sec:soft-signal-slot}, it is possible to update the 
+labels without blocks typical of multi-threaded programming. 
 The difficulty of concurrent programming usually consists in
 synchronizing the access to resources by different threads that act in
 competition on the same resources. Having two or more threads accessing the same
@@ -145,21 +145,22 @@ mixing tool on the fly.
 %
 % analysing comunication
 % description socket tcp
-\subsection{TCP communication}
+\newpage
+\section{TCP communication}
 \label{ssec:software-TCPSocket}
-
+...\\
+...\\
+In particular, we observe the function in (\ref{lst:rasp-code-thread}) which 
+sends the image just captured by the RGB camera to the server to be 
+encapsulated in the message before send. 
+In the function it is possible to observe the presence of a mutex which is 
+locked to protect the resource and avoid overwriting through function calls. 
+The frame, i.e. the resource, is converted and stored in buffer before
+sending. Upon exiting the function body, the mutex is unlocked, thus giving free
+access to resources again.
 % code list
-\begin{listing}
+\begin{listing}[ht]
 \inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=84, lastline=95]{c++}{software/code/mainwindow.cpp} 
 \caption{Particular report function sending image.} 
 \label{lst:rasp-code-thread} 
 \end{listing}
-%
-% % code list
-% \begin{listing}[ht] 
-% \inputminted[bgcolor=bg,frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize]{c++}{software/code/streamthread.cpp} 
-% \caption{Infinite loop stream thread.} 
-% \label{lst:streamthread} 
-% \end{listing}
-%
-
