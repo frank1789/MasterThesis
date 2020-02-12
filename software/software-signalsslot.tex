@@ -44,20 +44,20 @@ The signals and slots mechanism is type safe: The signature of a signal must
 match the signature of the receiving slot. (In fact a slot may have a shorter
 signature than the signal it receives because it can ignore extra arguments.)
 Since the signatures are compatible, the compiler can help us detect type
-mismatches when using the function pointer-based syntax. The string-based SIGNAL
-and SLOT syntax will detect type mismatches at runtime. Signals and slots are
-loosely coupled: A class which emits a signal neither knows nor cares which
-slots receive the signal. Qt's signals and slots mechanism ensures that if you
-connect a signal to a slot, the slot will be called with the signal's parameters
-at the right time. Signals and slots can take any number of arguments of any
-type. They are completely type safe.
+mismatches when using the function pointer-based syntax. The string-based
+\textbf{SIGNAL} and \textbf{SLOT} syntax will detect type mismatches at runtime.
+Signals and slots are loosely coupled: A class which emits a signal neither
+knows nor cares which slots receive the signal. Qt's signals and slots mechanism
+ensures that if you connect a signal to a slot, the slot will be called with the
+signal's parameters at the right time. Signals and slots can take any number of
+arguments of any type. They are completely type safe.
 
-All classes that inherit from QObject or one of its subclasses (e.g., QWidget)
-can contain signals and slots. Signals are emitted by objects when they change
-their state in a way that may be interesting to other objects. This is all the
-object does to communicate. It does not know or care whether anything is
-receiving the signals it emits. This is true information encapsulation, and
-ensures that the object can be used as a software component.
+All classes that inherit from \texttt{QObject} or one of its subclasses (e.g.,
+\texttt{QWidget}) can contain signals and slots. Signals are emitted by objects
+when they change their state in a way that may be interesting to other objects.
+This is all the object does to communicate. It does not know or care whether
+anything is receiving the signals it emits. This is true information
+encapsulation, and ensures that the object can be used as a software component.
 
 Slots can be used for receiving signals, but they are also normal member
 functions. Just as an object does not know if anything receives its signals, a
