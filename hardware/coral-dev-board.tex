@@ -172,7 +172,7 @@ that increase dramatically. This implies that the last adder in the chain must
 be attend all intermediate result before its output becomes stable.
 If we consider a chain of 250 input each of one with $2\, \si{\nano\second}$
 delay, we obtain total time of $500 \,\si{\nano\second}$ waiting. \\
-Consequently clock result extremely slow $2\,\si{\mega\hertz}$, then solution adopted
+Consequently clock results extremely slow $2\,\si{\mega\hertz}$, then solution adopted
 is structured pipeline where between each adder is inserted a memory element
 that keep keeps the result stable for the next adder. 
 As show in figure (\ref{fig:4-bit-adder-register}). \hfill \break
@@ -188,7 +188,7 @@ As show in figure (\ref{fig:4-bit-adder-register}). \hfill \break
 That is the only time the output can change. When the clock signal is high or
 low, the inputs cannot manipulate the output, then it remains stable.  
 Just before the clock rises, the input must be stable for a minimum time, also just after the rise time. 
-In contrapposition to the previous example, now consider a delay of $0.1 \,\si{\nano\second}$ and adding the register's propagation time of $(0.4 \,\si{\nano\second})$, the total propagation reach for a
+In contrast to the previous example, now consider a delay of $0.1 \,\si{\nano\second}$ and adding the register's propagation time of $(0.4 \,\si{\nano\second})$, the total propagation reach for a
 new stable signal is now $2.5 \si{\nano\second}$, which results increasing up to clock speed of $400 \,\si{\mega\hertz}$. Observable in figure (\ref{fig:pipe}).
 %
 \begin{figure}[htb]
@@ -212,13 +212,10 @@ speed.\cite{TPU:explained}
 %
 \subsection{The mul-add cell}
 \label{ssec:The-mul-add-cell} 
-Every input signal of the neural node has its own effect on
-the final result. This gives one simple multiplication per input with a weight
-value. 
-Just like an adder, a multiplication can build with the same basic digital
-gates. As you can imagine, more gates are now needed to perform a multiplication
-than a summation. In the formula of the neural node, each input is multiplied by
-its own weight value. The symbol can therefore even more straightforward.
+The input signal of every neural node has effect on final result.
+This gives a simple multiplication for an input mediate by a weight value. 
+The operation of multiplication can be implemented with same logic of an adder, then are necessary more gates.
+Remembering that the neural node has multiplied his value for weight value. Thus the representation assume the scheme in figure (\ref{fig:mul-add-register}). \hfill \break
 %
 \begin{figure}[htb]
 	\centering
@@ -228,35 +225,32 @@ its own weight value. The symbol can therefore even more straightforward.
 \end{figure}
 %
 %
-For the sake of simplicity, no additional propagation time fixing registers have
-been added. With the formula of the neural node in mind, it is now relatively
-easy to design such a neuron with a few mul-add cells. Below the schematic for a
-three input neuron.
+%\break For the sake of simplicity, no additional propagation time fixing registers have
+%been added. With the formula of the neural node in mind, it is now relatively
+%easy to design such a neuron with a few mul-add cells. Below the schematic for a
+%three input neuron.
 %
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.65\textwidth]{Neuron.png}
-	\captionsource{3 input neuron.}{\href{https://qengineering.eu/google-corals-tpu-explained.html}{Q-engineering}}
+	\includegraphics[width=0.75\textwidth]{Neuron.png}
+	\captionsource{schematic for a
+three input neuron.}{\href{https://qengineering.eu/google-corals-tpu-explained.html}{Q-engineering}}
 	\label{fig:3-input-neuron}
 \end{figure}
 %
-%  
-One important point to mention, are the registers at input X1 and X2. They
-create a delay line and are placed here to synchronize the necessary latency in
-the mul-add chain. When the second mul-add cell accumulates the output from the
-first cell (signal A) it is delayed one clock cycle. Therefore the
-multiplication of X1 with its weight need also be delayed one cycle in order to
-have the results at the same time. The color scheme above the design makes it
-all clear. Every color is now an element of the input vector [X0, X1, X2].
-Looking at the horizontal lines, inputs A and B have always identical colors.
-Meaning they appear simultaneous, they are synchronized. The same applies to
-inputs C and D. 
+%
+\newline
+Are necessary many important clarifications about the input registers \texttt{X1} and \texttt{X2} displayed in figure (\ref{fig:3-input-neuron}).
+They generate a delay line in the \emph{mul-add} chain, thus can permit to correct synchronize.
+Considering the second cell \emph{mul-add} who sum the output from previous cell (signal \texttt{A}) retarded by one clock cycle.
+Consequently also the multiplication between the value in register \texttt{X1} and weight value must be delayed the same amount of time.
+The schema reported in figure (\ref{fig:3-input-neuron}) shows for each colour that represent the vector of input \texttt{$[X0, X1, X2]$} while the input \texttt{A} and \texttt{B}, represented by lines straight, maintains always same colour. 
+This means that they appear simultaneous, i.e. are synchronised.
+The same must be valid for input \texttt{C} and \texttt{D}.
 %
 \subsection{Systolic array}
 \label{ssec:hard-systolic-array}
-Once a neural node has been created, it is easy to extend this scheme for the
-other neurons on the same layer. Given that each individual input is connected
-to all neurons in the next layer, the diagram will look like this.
+Starting from structure, just examined, is quite easy extend it to other neurons, taking into account that every single input is connected with all neurons in the next layer, as shows in figure (\ref{fig:systolic-array-edge-tpu}).
 %
 \begin{figure}[htb]
 	\centering
@@ -266,57 +260,54 @@ to all neurons in the next layer, the diagram will look like this.
 \end{figure}
 %
 %
-This type of design is called a systolic array. All values are pumped through
-the stages from top to bottom, hence the name. Looking at the timing, the array
-can accept a complete input vector every clock cycle. So, the propagation is
-still intact with 2.5 nS in the above-mentioned examples. At the same speed, the
-array generates complete output vectors. If the systolic array expands in depth
-or width, the propagation time still remains the same. Only the latency time
-increases. This enormous parallel calculation capacity is the reason why
-systolic arrays are widely used in neural network hardware.
+The adoption of this solution, called systolic array, permits to have an increment of speed in parallel calculation. 
+Since the propagation time remains unchanged for an spread of systolic array in depth or width, while only the latency time grows up this represent the solution widely used for neural network hardware.
+%
+%The sizes of the systolic array in the Edge TPU are not known yet. The first TPU
+%Google uses in its datacenter contains 256 x 256 \emph{mul-add} cells. Running at 700
+%MHz it can theoretical performs 256 x 256 x 700.000.000 = 46 trillion \emph{mul-adds}
+%per second. Or if you look to individual operations 92 trillion (92 TOPS).
+%However, this impressive figure is purely theoretical. In practice, there are
+%some factors that slow performance.
+%
+%The systolic array is made up of hardware. This means that it has fixed
+%dimensions. Therefore, the input and output vectors also have fixed dimensions.
+%However, the numbers of neurons per layer are determined by the design and are
+%certainly not constant. If the number is smaller than the size of the array, it
+%is, of course, possible to expand an input vector with leading zeros, so that
+%the dimension equals the array size. The same technique can be applied to an
+%oversized output vector.
+%
+%If the input vector contains more elements than the width of the systolic array,
+%the entire arithmetic calculation must be performed in more than one call. To
+%this end, the input vector is cut into a series of smaller vectors that match
+%the width of the series. They are then processed one after the other. The
+%intermediate results must be stored in a buffer. These values must be added
+%after completion of all the systolic calls. Note that not only the input vector
+%is split into smaller parts, but all weights used in the multiplication must be
+%updated according to the formula's processing section. This may require a
+%massive memory transfer. Below an example of a systolic array with only four
+%inputs processing a vector of size 12.
+%
+%
+%
+%Looking at Google's schematic overview of the TPU, these output buffers and
+%accumulators are drawn at the bottom. (In their diagram, the output is at the
+%bottom instead of the right as on our drawing).
+%Google TPU detail
+%
+%  
+%Buffers have also been placed on the input vector side in the diagram above.
+%They act as a first-in-first-out buffer, a FIFO. This guarantees continuous
+%input of the systolic array with input values. It may also have some rotating
+%operations, which increases the performance of CNN networks. It is unclear
+%whether Google uses this method here.  
+
+\subsection{Activation unit}
+\label{ssec:activation-unit}
+Once the output is available, it is sent to the activation unit. This module within the Edge TPU applies the activation function to the output. It is hardwired. In other words, you cannot alter the function, it works like a ROM. Probably it is a ReLU function as it is nowadays the most used activation function and it is very easy to implement in hardware.\cite{TPU:explained}
+\newpage
  
-The sizes of the systolic array in the Edge TPU are not known yet. The first TPU
-Google uses in its datacenter contains 256 x 256 mul-add cells. Running at 700
-MHz it can theoretical performs 256 x 256 x 700.000.000 = 46 trillion mul-adds
-per second. Or if you look to individual operations 92 trillion (92 TOPS).
-However, this impressive figure is purely theoretical. In practice, there are
-some factors that slow performance.
- 
-The systolic array is made up of hardware. This means that it has fixed
-dimensions. Therefore, the input and output vectors also have fixed dimensions.
-However, the numbers of neurons per layer are determined by the design and are
-certainly not constant. If the number is smaller than the size of the array, it
-is, of course, possible to expand an input vector with leading zeros, so that
-the dimension equals the array size. The same technique can be applied to an
-oversized output vector.
-
-If the input vector contains more elements than the width of the systolic array,
-the entire arithmetic calculation must be performed in more than one call. To
-this end, the input vector is cut into a series of smaller vectors that match
-the width of the series. They are then processed one after the other. The
-intermediate results must be stored in a buffer. These values must be added
-after completion of all the systolic calls. Note that not only the input vector
-is split into smaller parts, but all weights used in the multiplication must be
-updated according to the formula's processing section. This may require a
-massive memory transfer. Below an example of a systolic array with only four
-inputs processing a vector of size 12.
-%
-
-%
-%
-Looking at Google's schematic overview of the TPU, these output buffers and
-accumulators are drawn at the bottom. (In their diagram, the output is at the
-bottom instead of the right as on our drawing).
-Google TPU detail
-
-  
-Buffers have also been placed on the input vector side in the diagram above.
-They act as a first-in-first-out buffer, a FIFO. This guarantees continuous
-input of the systolic array with input values. It may also have some rotating
-operations, which increases the performance of CNN networks. It is unclear
-whether Google uses this method here.  
-Activation unit.
-Once the output is available, it is sent to the activation unit. This module within the Edge TPU applies the activation function to the output. It is hardwired. In other words, you cannot alter the function, it works like a ROM. Probably it is a ReLU function as it is nowadays the most used activation function and it is very easy to implement in hardware.  
 TPU versus Edge TPU.
 The Google's Edge TPU is a much smaller device than the TPUs that Google uses in its data centers. Below the PCB with the original TPU and the Edge TPU on the same scale.
 TPU vs Edge TPU
