@@ -1,4 +1,4 @@
-#!/bin/bash
+#!usr/bin/env sh
 
 # deploy to github tagged releases
 if [ -n "$TRAVIS_TAG" ]; then
@@ -14,15 +14,8 @@ else
     echo "Done making a tag"
 fi
 
-# create a zip file for CTAN
-# create a new directory and copy files to it and then zip it up
-# mkdir thesis-gwu
-# latexmk -C
-# rm tex/*.aux
-# cp -rt ./thesis-gwu figures tex LICENSE.md README.md thesis-bib.bib thesis-gwu.cls thesis-sample.pdf thesis-sample.tex
+if [ "$TRAVIS_BRANCH" = "develop" ]; then
+    ./ci/deploy.rb envdev.tld
+fi
 
-# zip -r9 thesis-gwu.zip  thesis-gwu 
-
-# Can use ctan-o-mat to automatticaly deploy
-# modify thesis-gwu.pkg version number and anything else
-# then run ctan-o-mat -v --<validate or submit> --pkg ./utilities/thesis-gwu.pkg
+if [ "$TRAVIS_BRANCH" = "master" ]; then ./ci/deploy.rb envprod.tld; fi
