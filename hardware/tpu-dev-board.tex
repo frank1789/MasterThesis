@@ -59,7 +59,7 @@ neural node, then keeping in mind the scheme in figure (\ref{fig:neuron}): the
 \textbf{multiplier}, the \textbf{adder} and the \textbf{activation function} 
 must be included in the hardware.
 Start with analysing the diagram of the 4-bit adder realized in figure
-(\ref{fig:4-bit-adder}).
+(\ref{fig:4-bit-adder}).\hfill \break
 Where: \texttt{A} and \texttt{B} are the inputs. If the output overflows 
 \texttt{C4} the carry out is set. \texttt{C0} is the carry-in of a previous 
 phase.\cite{TPU:explained}
@@ -110,8 +110,8 @@ Just before the clock rises, the input must be stable for a minimum time, also
 just after the rise time. In contrast to the previous example, now consider a
 delay of $0.1 \,\si{\nano\second}$ and adding the register's propagation time of
 $(0.4 \,\si{\nano\second})$, the total propagation reach for a new stable signal
-is now $2.5 \si{\nano\second}$, which results increasing up to clock speed of
-$400 \,\si{\mega\hertz}$. Observable in figure (\ref{fig:pipe}).
+is now $2.5 \,\si{\nano\second}$, which results increasing up to clock speed of
+$400 \,\si{\mega\hertz}$. Observable in figure (\ref{fig:pipe}). \hfill \break
 %
 \begin{figure}[htb]
 	\centering
@@ -121,7 +121,8 @@ $400 \,\si{\mega\hertz}$. Observable in figure (\ref{fig:pipe}).
 \end{figure}
 %
 %
-Taking into account the table in figure \ref{fig:pipe}, each color represents a
+\newline
+Taking into account the table in figure (\ref{fig:pipe}), each color represents a
 value. After four clock cycles, the value at the input has propagated through
 the network and appears at the output.	Because the registers are updated
 simultaneously a new input is accepted every $2.5 \,\si{\nano\second}$.	The
@@ -139,7 +140,7 @@ multiplication can be implemented with same logic of an adder, then are
 necessary more gates. 
 Remembering that the neural node has multiplied his value for weight value. 
 Thus the representation assume the scheme in figure
-(\ref{fig:mul-add-register}).\hfill \break
+(\ref{fig:mul-add-register}).
 %
 \begin{figure}[htb]
 	\centering
@@ -163,7 +164,6 @@ three input neuron.}{\href{https://qengineering.eu/google-corals-tpu-explained.h
 \end{figure}
 %
 %
-\newline
 Are necessary many important clarifications about the input registers
 \texttt{X1} and \texttt{X2} displayed in figure (\ref{fig:3-input-neuron}). They
 generate a delay line in the \emph{mul-add} chain, thus can permit to correct
@@ -263,4 +263,3 @@ function and it is very easy to implement in hardware.\cite{TPU:explained}
 % chip. It leaves only a simple transfer of input vectors, output vectors and
 % weights to the chip.	
 % Practice.
-
