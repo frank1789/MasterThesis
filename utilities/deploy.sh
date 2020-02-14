@@ -8,14 +8,7 @@ else
     git config --local user.name 'travis'
     git config --local user.email 'travis'
     DATE=$(date +"%Y%m%d")
-
+    # generate tag
     git tag -a v$(date +"%Y%m%dT%H%M%S")-${TRAVIS_BUILD_NUMBER} -m "Travis build $TRAVIS_BUILD_NUMBER pushed a tag"
-
     echo "Done making a tag"
 fi
-
-if [ "$TRAVIS_BRANCH" = "develop" ]; then
-    ./ci/deploy.rb envdev.tld
-fi
-
-if [ "$TRAVIS_BRANCH" = "master" ]; then ./ci/deploy.rb envprod.tld; fi
