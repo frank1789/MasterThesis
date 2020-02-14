@@ -1,3 +1,0 @@
-[submodule "utilities/versiontag"]
-	path = utilities/versiontag
-	url = https://github.com/franiglesias/versiontag.git
