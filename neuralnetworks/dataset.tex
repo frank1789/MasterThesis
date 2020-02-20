@@ -26,16 +26,24 @@ seen and so necessary to measure the degree of confidence acquired in the networ
 \subsection{Landing zone dataset}
 \label{ssec:landing-zone}
 %
-The dataset was artificially constructed with a 3D Blender graphics program. 
+The dataset was artificially constructed with a 3D Blender graphics program.(\ref{fig:blender})\\ 
 The object of interest are the drone landing mats. These have different shapes
 and colors in fact they are available in various color shapes. The signs on
 these also vary from the classic H to X to more or less conspicuous symbols.
 Thus three models were created, two with a circular plan and one with a square
 plan. Textures were then applied to these two models to obtain a faithful
-representation of that of concrete objects. After the construction of the carpet
-models, it was necessary to contextualise them in credible scenarios. \hfill \break
-Thus,
-three main scenarios were created: first scenario placed in the middle of a road
+representation of that of concrete objects. \hfill \break
+After the construction of the carpet models, it was necessary to contextualise 
+them in credible scenarios. \hfill \break
+%
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.75\textwidth]{blender.png}
+	\caption{Modelling phase of the scenario in Blender.}
+	\label{fig:blender}
+\end{figure}
+%
+\\Thus, three main scenarios were created: first scenario placed in the middle of a road
 junction. Second scenario near a straight road flanked by a side-walk.
 Third zone is set in the countryside. To take the shots, some photographic
 factors were taken into account, in fact they are generated starting from the
@@ -52,7 +60,8 @@ A scheme is visible in figures (\ref{fig:poi_dataset}). \hfill \break
 	\label{fig:poi_dataset}
 \end{figure}
 %
-\\To increase the variety of rendered shots, a very basic day-night cycle was
+\newpage
+To increase the variety of rendered shots, a very basic day-night cycle was
 used to detect the color variation. All the shots are taken with a top view as
 seen in the examples shown in (\ref{fig:renders}).
 After completing the shots they annotated themselves highlighting the position
@@ -61,13 +70,12 @@ The process is carried out with the aid of a software that extracts and
 generates the annotations. as shown in figure (\ref{fig:annotation}).
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=0.75\textwidth]{annotation.png}
+	\includegraphics[width=0.70\textwidth]{annotation.png}
 	\caption{Process of annotation.}
 	\label{fig:annotation}
 \end{figure}
 %
-\newpage
-\begin{figure}[htb]
+\begin{figure}[!h]
     \centering
     \subfloat[][\emph{middle of a road junction (sunrise)}.\label{subfig:junction}]
         {\includegraphics[width=.50\textwidth]{result1.jpg}} \quad
@@ -79,15 +87,15 @@ generates the annotations. as shown in figure (\ref{fig:annotation}).
     \label{fig:renders}
 \end{figure}
 %
-\newpage
+\\\newpage
 \subsection{Thermal imaging dataset}
 \label{ssec:thermal-image-dataset}
 The dataset created and distributed free of charge by
 FLIR\footnote{\href{https://www.flir.com/oem/adas/adas-dataset-form/}{https://www.flir.com/oem/adas/adas-dataset-form/}}
 was used to train the neural network on the recognition and classification of
-objects in thermal images. The ability to sense thermal infrared radiation, or
+objects in thermal images. The ability to sense thermal infra-red radiation, or
 heat, within the ADAS context provides both complementary and distinct
-advantages to existing sensor technologies such as visible cameras, Lidar and
+advantages to existing sensor technologies such as visible cameras, LiDAR and
 radar systems: With over 15 years of experience in automotive, FLIR has the only
 automotive-qualified thermal sensor that is deployed in over 500,000 cars today
 for driver warning systems. The FLIR thermal sensors can detect and classify
@@ -97,9 +105,30 @@ supplemental dataset beyond LiDAR, radar and visible cameras. The detection
 range is four times farther than typical headlights. When combined with visible
 light data and distance scanning data from LiDAR and radar, thermal data paired
 with machine learning creates a more comprehensive detection and classification
-system.\cite{flirdataset}
+system.\cite{flirdataset}\hfill\break
+The dataset provided by FLIR was created from videos collected from a moving
+vehicle in Santa Barbara, California, USA covering roads and highways in
+different weather conditions. Although there are many objects in the images to
+be catalogued, only ten types of objects have been selected, in particular:
+\begin{itemize}
+\item Category 1: People
+\item Category 2: Bicycles - bicycles and motorcycles (not consistent with coco)
+\item Category 3: Cars - personal vehicles and some small commercial vehicles.
+\item Category 17: Dogs
+\end{itemize}
 %
-\begin{figure}[htb]
+The boxes around the objects of interest are as narrow as possible in fact: when
+occlusion occurred, only non-occluded parts of the object were annotated. Heads
+and shoulders were favoured for inclusion in the bounding box over other parts of
+the body for people and dogs. When occlusion allowed only parts of limbs or
+other minor parts of an object to be visible, they were not annotated. 
+Wheels were the important part of the Bicycles category.
+Bicycle parts typically occluded by riders, such as handlebars, were not included in the bounding box.
+People riding the bicycle were annotated separately from the bicycle. When an
+object was split by an occlusion, two separate annotations were given to the two
+visible parts of the object.
+%
+\begin{figure}[!h]
     \centering
     \subfloat[][\emph{person}.\label{subfig:th-person}]
         {\includegraphics[width=.50\textwidth]{FLIR_00658.jpeg}} \quad
