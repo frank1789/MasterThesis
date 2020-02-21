@@ -53,7 +53,7 @@ were generated with respect to the landing mat position, these positions vary in
 height, width and depth with respect to the carpet placed on the ground.
 A scheme is visible in figures (\ref{fig:poi_dataset}). \hfill \break
 %
-\begin{figure}[!h]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=0.75\textwidth]{poi_dataset.png}
 	\caption{Configuration camera position.}
@@ -75,7 +75,7 @@ generates the annotations. as shown in figure (\ref{fig:annotation}).
 	\label{fig:annotation}
 \end{figure}
 %
-\begin{figure}[!h]
+\begin{figure}[htb]
     \centering
     \subfloat[][\emph{middle of a road junction (sunrise)}.\label{subfig:junction}]
         {\includegraphics[width=.50\textwidth]{result1.jpg}} \quad
@@ -87,7 +87,7 @@ generates the annotations. as shown in figure (\ref{fig:annotation}).
     \label{fig:renders}
 \end{figure}
 %
-\\\newpage
+%
 \subsection{Thermal imaging dataset}
 \label{ssec:thermal-image-dataset}
 The dataset created and distributed free of charge by
@@ -106,7 +106,7 @@ range is four times farther than typical headlights. When combined with visible
 light data and distance scanning data from LiDAR and radar, thermal data paired
 with machine learning creates a more comprehensive detection and classification
 system.\cite{flirdataset}\hfill\break
-The dataset provided by FLIR was created from videos collected from a moving
+\\The dataset provided by FLIR was created from videos collected from a moving
 vehicle in Santa Barbara, California, USA covering roads and highways in
 different weather conditions. Although there are many objects in the images to
 be catalogued, only ten types of objects have been selected, in particular:
@@ -128,7 +128,7 @@ People riding the bicycle were annotated separately from the bicycle. When an
 object was split by an occlusion, two separate annotations were given to the two
 visible parts of the object.
 %
-\begin{figure}[!h]
+\begin{figure}[htb]
     \centering
     \subfloat[][\emph{person}.\label{subfig:th-person}]
         {\includegraphics[width=.50\textwidth]{FLIR_00658.jpeg}} \quad

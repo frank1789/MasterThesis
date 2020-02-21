@@ -7,7 +7,7 @@ each object by  bounding box. On the other hand semantic segmentation aims to
 predict pixel-wise classifiers to assign a specific category label to each
 pixel, thus providing an even richer understanding of an image. However, in
 contrast to object detection, semantic segmentation does not distinguish between
-multiple objects of the same category.\cite{wu2020recent}
+multiple objects of the same category.\cite{wu2020recent}\\
 Current state-of-the-art object detection systems are variants of the following
 approach: hypothesize bounding boxes, re-sample pixels or features for each box,
 and apply a high quality classifier.\\  
@@ -69,6 +69,29 @@ the SSD for classification regression and bounded box regression and the output
 layer for exporting the detection result.\cite{Li_2018} 
 The advantage of this net are speed and accuracy in detection task borrowed from
 reduced compute complexity.
+%
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{l c c c}
+	\hline
+		Model name								&Speed (ms)	& COCO mAP\footnote{AP (Average precision) is a popular metric in measuring the accuracy of object detectors like Faster R-CNN, SSD, etc. Average precision computes the average precision value for recall value over 0 to 1}	& Outputs\\
+		\hline
+		ssd\_mobilenet\_v1\_coco					&	30		&	21		&	Boxes\\
+		ssd\_mobilenet\_v1\_0.75\_depth\_coco 		&	26		&	18		&	Boxes\\
+		ssd\_mobilenet\_v1\_quantized\_coco 		&	29		&	18		&	Boxes\\
+	ssd\_mobilenet\_v1\_0.75\_depth\_quantized\_coco 	&	29		&	16		&	Boxes\\
+		ssd\_mobilenet\_v1\_ppn\_coco 				&	26		&	20		&	Boxes\\
+		ssd\_mobilenet\_v1\_fpn\_coco 				&	56		&	32		&	Boxes\\
+		ssd\_resnet\_50\_fpn\_coco 					&	76		&	35		&	Boxes\\
+		ssd\_mobilenet\_v2\_coco					&	31		&	22		&	Boxes\\
+		ssd\_mobilenet\_v2\_quantized\_coco			&	29		&	22		&	Boxes\\
+		ssdlite\_mobilenet\_v2\_coco				&	27		&	22		&	Boxes\\
+		\hline
+	\end{tabular}
+	\captionsource{Performance comparison model based on SSD MobileNet.}
+	{\href{https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md}{GitHub - TensorFlow model zoo}}
+	\label{tab:mobilent-timing}
+\end{table}
 %
 % This section describes our proposed SSD framework for detection (Sec. 2.1) and the associated training methodology (Sec. 2.2). Afterwards, Sec. 3 presents dataset-specific model details and experimental results.
 %
