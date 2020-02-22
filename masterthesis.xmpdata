@@ -84,6 +84,19 @@
 
 \Copyright    {Copyright \copyright\ 2019 Francesco Argentieri}
 
-\Keywords     {FLIR, Lepton, C++, Qt, thermal image, Raspberry Pi, Keras, TensorFlow, Python, Google, Coral, ARM, TPU}
+\Keywords     {FLIR\sep
+				Lepton\sep
+				 C++\sep
+				 Qt\sep
+				 thermal image\sep
+				 Raspberry Pi\sep
+				 Keras\sep
+				 TensorFlow\sep
+				 Python\sep
+				 Google\sep
+				 Coral\sep
+				 ARM\sep
+				 TPU\sep
+				 Object Detection}
 
 \Subject      {test my the abstract.}
