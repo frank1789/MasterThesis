@@ -74,7 +74,7 @@ reduced compute complexity.
 	\centering
 	\begin{tabular}{l c c c}
 	\hline
-		Model name								&Speed (ms)	& COCO mAP\footnote{AP (Average precision) is a popular metric in measuring the accuracy of object detectors like Faster R-CNN, SSD, etc. Average precision computes the average precision value for recall value over 0 to 1}	& Outputs\\
+		Model name								&Speed (ms)	& COCO mAP\footnotemark	& Outputs\\
 		\hline
 		ssd\_mobilenet\_v1\_coco					&	30		&	21		&	Boxes\\
 		ssd\_mobilenet\_v1\_0.75\_depth\_coco 		&	26		&	18		&	Boxes\\
@@ -92,6 +92,7 @@ reduced compute complexity.
 	{\href{https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md}{GitHub - TensorFlow model zoo}}
 	\label{tab:mobilent-timing}
 \end{table}
+\footnotetext{AP (Average precision) is a popular metric in measuring the accuracy of object detectors like Faster R-CNN, SSD, etc. Average precision computes the average precision value for recall value over 0 to 1.}
 %
 % This section describes our proposed SSD framework for detection (Sec. 2.1) and the associated training methodology (Sec. 2.2). Afterwards, Sec. 3 presents dataset-specific model details and experimental results.
 %
