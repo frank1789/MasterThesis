@@ -182,9 +182,6 @@ the control bits can contain information such as: the sending node of the
 packet, the recipient node of the package, package length information,
 information that allows you to verify the correctness of the package. \cite{mandrioli2008informatica}
 %
-% %TODO Insert image
-% image 
-%
 \subsection{Architecture}
 \label{ssec:soft-client-server}
 Client/server architectures are based on the functional division of IT
@@ -209,10 +206,21 @@ and the communication channel with which the server is connected to the network.
 \end{figure}
 %
 \newline In the Internet protocol suite there is also the Transmission Control Protocol
-(TCP). It is the complement of the Internet Protocol, yielding the well known
-TCP/IP. TCP provides reliable, ordered, and error-checked delivery of the
+(TCP).\\
+It is the complement of the Internet Protocol, yielding the well known TCP/IP.\\ 
+TCP provides reliable, ordered, and error-checked delivery of the
 messages between applications on an IP network. The most used internet
 applications, i.e. the World Wide Web, e-mail, file transfer, rely on TCP.
+%
+%
+\begin{figure}[htb]
+    \centering
+    \subfloat[][\emph{server socket through which the server can listen to client sockets and establish a connection}]{\includegraphics[width=.45\textwidth]{tcp-scheme.png}} 	\quad
+    \subfloat[][\emph{TCP Header Format}]{\includegraphics[width=.45\textwidth]{tcp-headers.jpg}}
+    \captionsource{TCP protocol.}{%
+    \href{https://www.lifewire.com/tcp-headers-and-udp-headers-explained-817970}{Lifewire}}
+    \label{fig:tcp-scme}
+\end{figure}
 %
 \subsection{Server implementation}
 \label{ssec:soft-rasp-server}
