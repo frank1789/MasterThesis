@@ -102,7 +102,7 @@ void LeptonThread::run() {
 void LeptonThread::snapImage() {
   QImage bigger = m_ir_image.scaled(6 * m_ir_image.size().width(),
                                     6 * m_ir_image.size().height());
-  bigger.save("/home/pi/snap.png");
+  bigger.save("/home/pi/snap.jpg");
   QLabel *popup = new QLabel();
   QPixmap pixmap = QPixmap::fromImage(bigger);
   popup->setPixmap(pixmap);
