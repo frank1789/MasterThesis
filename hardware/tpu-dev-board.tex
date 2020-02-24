@@ -19,8 +19,8 @@ network performs. See this list for a selection of several types of deep
 learning networks. Each node has always three basic components. 
 A multiplier multiplies all the inputs with their respective so-called weight,
 the synapses. An adder who accumulates all the individual multiplications. 
-And an activation function that shapes the output given the addition. A
-schematic view below (\ref{fig:neuron}).\hfill \break
+And an activation function that shapes the output given the addition. 
+A schematic view below (\ref{fig:neuron}).\hfill \break
 %
 \begin{figure}[htb]
 	\centering
@@ -38,17 +38,19 @@ schematic view below (\ref{fig:neuron}).\hfill \break
 %
 Deep neural network is consist of millions of neural nodes distribute over many
 layers; despite the simplicity of the operation, only on multiplication and one
-addition, require long compute time to obtain a result. keep in mind that for
-training a network requires many epochs. In other words, the main problem is
-time. The algorithms is well suited for parallel execution. Although
-distributing the algorithm over the processes and threads can be an option
-actually provides disappoint results for the presence of bottlenecks due to
-architecture general purpose. On the other hand use of Graphical Processing
-Unit, the GPU on video card designed for efficient manipulation memory. Their
-highly parallel structure make them more efficient respect CPU especially for
-algorithms that process large blocks of data in parallel. The best choice is the
-use of the Tensor Processing Unit, the TPU. This device has been specially
-designed for the above neural node algorithm.
+addition, do you require longer time to obtain a result. 
+Keep in mind that for training a network requires many epochs. In other words,
+the main problem is time. 
+The algorithms is well suited for parallel execution. 
+Although distributing the algorithm over the processes and threads can be an
+option actually provides disappoint results for the presence of bottlenecks due
+to architecture general purpose. 
+On the other hand use of Graphical Processing Unit, the GPU on video card
+designed for efficient manipulation memory. 
+Their highly parallel structure make them more efficient respect CPU especially
+for algorithms that process large blocks of data in parallel. 
+The best choice is the use of the Tensor Processing Unit, the TPU. 
+This device has been specially designed for the above neural node algorithm.
 %
 \subsection{The adder}
 \label{ssec:hard-adder}
@@ -195,8 +197,8 @@ neurons in the next layer, as shows in figure
 The adoption of this solution, called systolic array, permits to have an
 increment of speed in parallel calculation. 
 Since the propagation time remains unchanged for an spread of systolic array in
-depth or width, while only the latency time grows up this represent the solution
-widely used for neural network hardware.
+depth or width, while only the delay time increases the solution represented
+which is widely used for neural network hardware. 
 %
 %The sizes of the systolic array in the Edge TPU are not known yet. The first TPU
 %Google uses in its datacenter contains 256 x 256 \emph{mul-add} cells. Running at 700
