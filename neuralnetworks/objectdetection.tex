@@ -1,45 +1,47 @@
 \section{Deep Learning for Object Detection}
 \label{sec:nn-objectdetection}
 Object detection is fundamental computer vision problem visual recognition other
-than as image classification, semantic segmentation. In particular object
-detection not only recognize object categories but also predict the location of
-each object by  bounding box. On the other hand semantic segmentation aims to
-predict pixel-wise classifiers to assign a specific category label to each
-pixel, thus providing an even richer understanding of an image. However, in
-contrast to object detection, semantic segmentation does not distinguish between
-multiple objects of the same category.\cite{wu2020recent}\\
+than image classification, semantic segmentation. 
+In particular object detection not only recognizes object categories but also
+predicts the location of each object by a bounding box. 
+On the other hand semantic segmentation aims to predict pixel-wise classifiers
+to assign a specific category label to each pixel, thus providing an even richer
+understanding of an image. 
+However, in contrast to object detections, semantic segmentation does not
+distinguish between multiple objects of the same category.\cite{wu2020recent}\\
 Current state-of-the-art object detection systems are variants of the following
 approach: hypothesize bounding boxes, re-sample pixels or features for each box,
-and apply a high quality classifier.\\  
-Although accurate, these approaches have
-been too computationally intensive for embedded systems and, even with high-end
-hardware, too slow for real-time or near real-time applications. Often detection
-speed for these approaches is measured in seconds per frame, and even the
-fastest high-accuracy detector, the basic Faster R-CNN, operates at only 7
-frames per second (FPS). There have been a wide range of attempts to build
-faster detectors by attacking each stage of the detection pipeline, but so far,
-significantly increased speed comes only at the cost of significantly decreased
-detection accuracy.\cite{liu2016ssd}
+and apply a high quality classifier.
+Although accurate, these approaches have been too computationally intensive for
+embedded systems and, even with high-end hardware, too slow for real-time or
+near real-time applications. 
+Often detection speed for these approaches is measured in seconds per frame, and
+even the fastest high-accuracy detector, the basic Faster R-CNN, operates at
+only $7$ frames per second (FPS). 
+There have been a wide range of attempts to build faster detectors by attacking
+each stage of the detection pipeline, but so far, significantly increased speed
+comes only at the cost of significantly decreased detection
+accuracy.\cite{liu2016ssd}
 To derive a performance improvement translated into an increase in detection
 speed with high precision ($58$ FPS with mAP $72.1\%$ on VOC2007 test, vs Faster
-R-CNN $7$ FPS with mAP $73.2\%$ or YOLO $45$ FPS with mAP $63.4\%$). From this
-derives the elimination of the proposals of delimitation boxes and of the
-subsequent phase of re-filling of the pixels or of the characteristics.
+R-CNN $7$ FPS with mAP $73.2\%$ or YOLO $45$ FPS with mAP $63.4\%$). 
+From this derives the elimination of the proposals of delimitation boxes and of
+the subsequent phase of re-filling of the pixels or of the characteristics. 
 Furthermore, the improvements introduced can be summarized in the use of a
 convolution filter to predict the categories of objects and offsets in the
 positions in the positioning of the panes, using separate predictors (filters)
 for different aspect ratio detections, and applying these filters to multiple
 features maps from the later stages of a network in order to perform detection
-at multiple scales. \hfill \break
-It is observed that With these modifications we can achieve
-high-accuracy detection using relatively low resolution input, further
-increasing processing speed. While these contributions may seem small
-independently, we note that the resulting system improves accuracy on high-speed
-detection for PASCAL VOC from $63.4\%$ mAP for YOLO to $72.1\%$ mAP for the
-network used.\cite{liu2016ssd,Huang2016SpeedAccuracyTF}
-So to ensure stability and portability of the model is used The API TensorFlow
-Object Detection is an open source framework based on TensorFlow which
-simplifies the construction, training and implementation of object detection
+at multiple scales.
+It is observed that with these modifications we can achieve high-accuracy
+detection using relatively low resolution input and further increasing
+processing speed. While these contributions may seem independently small, we
+note that the resulting system improves accuracy on high-speed detection for
+PASCAL VOC from $63.4\%$ mAP for YOLO to $72.1\%$ mAP for the network
+used.\cite{liu2016ssd,Huang2016SpeedAccuracyTF}
+So as to ensure stability and portability of the model The API TensorFlow Object
+Detection is used, an open source framework based on TensorFlow which simplifies
+the construction, training and implementation of object detection
 Templates.\cite{objectdetectionAPI}
 %
 %
@@ -54,11 +56,11 @@ Templates.\cite{objectdetectionAPI}
 %
 \subsection{Single Shot Detector MobileNet}
 \label{ssec:single-shot-detector}
-The model of SSD in based on idea of we want detect the position of object
-interest, in addition to knowing what it is one who classified. To better
-comprehension let's start from nomenclature:
+The model of SSD is based on the idea that we want to detect the position of an 
+object of interest, in addition to knowing which one is classified. 
+To better comprehend let’s start from nomenclature: 
 \begin{description}
-\item[Single Shot] The localization and classification operation must be single forward pass of the network.
+\item[Single Shot] The localization and classification operation must be a single forward pass of the network.
 \item[Multibox] Technique for bounding box regression.
 \item[Detector] The neural network has the duty classifies those detected object.
 \end{description}
