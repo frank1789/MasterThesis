@@ -1,20 +1,21 @@
 \section{Datatset}
 \label{sec:dataset}
 Particular attention is needed in the construction of a good training dataset, 
-in fact, as seen before in (\ref{subsec:supervised-learnig}), we deal with a 
-supervised learning where we know the response of our labels and bounding box position's objects.
-A script is provided that can build a dataset divided into folders: training, 
-validation and testing; as you can see in figure (\ref{fig:datasetstructure}).
-A large number of figures per sample that clearly highlights the characteristics 
-that you want to study allows a greater rate of success of the training 
+in fact, as seen before in (\ref{subsec:supervised-learnig}), we deal with a
+supervised learning where we know the response of our labels and bounding box
+positioned objects. A script is provided that can build a dataset divided into
+folders: training, validation and testing; as you can see in figure
+(\ref{fig:datasetstructure}).
+A large number of figures per sample that clearly highlight the characteristics
+that you want to study allows a greater rate of success of the training
 preventing the \emph{overfitting}.
-Acquiring a large number of images is not always achievable, using some 
-augmentation techniques, virtually allows to increase the observability of a 
-images, for example, by rotating, distorting and translating them.
-The two train and validated folders are essential for the addition of the 
-neural network.
-Instead, the test folder contains a set of images that the network has never 
-seen and so necessary to measure the degree of confidence acquired in the network.\linebreak
+Acquiring a large number of images is not always achievable, using some
+augmentation techniques, which virtually allow to increase the observability of
+images, for example, by rotating, distorting and translating them. 
+The two train and validated folders are essential for the addition of the neural
+network. Instead, the test folder contains a set of images that the network has
+never seen and so it is necessary to measure the degree of confidence acquired
+in the network.\linebreak
 %
 \begin{figure}[htb]
 	\centering
@@ -31,10 +32,11 @@ The object of interest are the drone landing mats. These have different shapes
 and colors in fact they are available in various color shapes. The signs on
 these also vary from the classic H to X to more or less conspicuous symbols.
 Thus three models were created, two with a circular plan and one with a square
-plan. Textures were then applied to these two models to obtain a faithful
+plan. 
+Textures were then applied to these two models to obtain a faithful
 representation of that of concrete objects. \hfill \break
 After the construction of the carpet models, it was necessary to contextualise 
-them in credible scenarios. \hfill \break
+them in credible scenarios.\hfill \break
 %
 \begin{figure}[htb]
 	\centering
