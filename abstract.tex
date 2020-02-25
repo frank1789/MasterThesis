@@ -25,27 +25,48 @@ field of Information Technology (IT) driven by the continual request for
 decreasing capacity and costs.
 So embedded systems represent a now important slice of the entire IT sector, in
 particular they guide thanks to their mutual dependence on hardware and software
-in the mobile field and the Internet of Things (IoT). These devices take
-advantage of application characteristics to optimize the design.
+in the mobile field and the Internet of Things (IoT).\\
+These devices take advantage of application characteristics to optimize the design.
 Thus the introduction of platforms dedicated to neural computation has pushed
 the adoption of specific energy efficient and powerful processors.\\
 
 \noindent This project focuses the activity of providing the drone with greater 
-awareness of the surrounding area by allowing the resolution of Computer Vision
-problems through the Convolution Neural Network.
-The approach used through the use of Convolution Neural Network algorithms
-solves two of the problems: one for classification and one for object dection,
-returning in the first case the label of the subject, in the second it provides
-the location of the target within the image acquired.\\
-Although software solutions already exist and are imminent in commercial drones
-as closed license applications. The need to provide an open source solution is a
-necessary choice for the whole sector.\\
-On the other hand, the use of open source software requires that new solutions
-that are modifications, upgrades or new implementations, require that they also
-be released under the same license. 
-n addition, specific architectures, such as ARM and TPU, were used to give a
-solution to the problem. Such architectures in partiocolarment and optimized aid
-promise high performance with reduced consumption during processing.
+awareness of the environment that surrounds it, making it less dependent on the 
+pilot and therefore more autonomous in fulfilling set tasks.\\
+Although commercial solutions already implemented in drones available on the 
+market, these are distributed in closed form.
+Hence the idea of expanding the drone's capabilities through open source 
+software.\\
+The project to achieve the objectives is divided into several steps which are 
+not independent and which constrain certain design choices.
+The first problem is the need to classify and determine the position of a target
+within the image. This is solved by the use of deep neural networks,
+i.e. convolutional neural networks.
+In particular, the construction of the training dataset affects the response 
+provided by the neural network. 
+So a dataset specifically calibrated for the task will guarantee better results.
+So through the use of 3D graphics techniques, a dataset was built based on
+plausibly real scenarios and on the instruments mounted on board the drone such
+as cameras.\\
+The training process based on fine-tuning techniques involves adjusting the
+parameters in order to ensure a good compromise between calculation times and
+accuracy of the result.
+The creation of ad-hoc software capable of being executed on multiple platforms
+is a requirement in the prototyping phase. For this the use of a framework is
+essential for the success of this aspect.
+Furthermore, it is necessary to guarantee communication between the devices for
+this reason and being in an initial phase, it was preferred to resort to
+communication using the TCP protocol which guarantees the control and reception
+of packets sent within the computer network.\\ 
+Use of both color and thermal cameras, it is necessary that the acquisition of 
+the video streams proceeds without blocking during the execution of the program 
+using parallelization.
+The processing of the neural network on general-purpose processors represents a
+high computational load which negatively affects the time required to obtain the
+response.\\
+Therefore the use of a framework capable of guaranteeing a compression of the
+neural model to guarantee a response in extremely short times proves to be a
+winning choice also for hardware dedicated to mobile and IoT products.\\
 
 
 
