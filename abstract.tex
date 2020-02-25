@@ -32,7 +32,7 @@ the adoption of specific energy efficient and powerful processors.\\
 
 \noindent This project focuses the activity of providing the drone with greater 
 awareness of the environment that surrounds it, making it less dependent on the 
-pilot and therefore more autonomous in fulfilling set tasks.\\
+pilot and therefore more autonomous in fulfilling set tasks.
 Although commercial solutions already implemented in drones available on the 
 market, these are distributed in closed form.
 Hence the idea of expanding the drone's capabilities through open source 
@@ -68,13 +68,11 @@ Therefore the use of a framework capable of guaranteeing a compression of the
 neural model to guarantee a response in extremely short times proves to be a
 winning choice also for hardware dedicated to mobile and IoT products.\\
 
-\noindent 
-A brief introduction to the world of UAVs is given in chapter
+\noindent A brief introduction to the world of UAVs is given in chapter
 \ref{chap:introduction} where the general characteristics of these apperaches
 are presented. 
 A brief representation of their constituent components and the autonomy levels
 that can be implemented in this type of aircraft.\\
-
 \noindent Chapter \ref{chap:hardware} introduces the hardware used to make the
 prototype by analyzing the computer boards in particular the Raspberry Pi 3b and
 the Google Coral Dev-Board.\\
@@ -85,21 +83,19 @@ Processor Unit for neural calculus.\\
 There are also cameras used to acquire images, in particular there is the
 Raspberry PiCamera V2 equipped with sensor 8-Mega-pixels. 
 Instead, for the acquisition of thermal images, a FLIR Lepton 2.5 with a sensor
-capable of providing images of the size $ 80 \times 60 $ was preferred.\\ 
+capable of providing images of the size $ 80 \times 60 $ was preferred.
 Finally, it is presented in the logic that makes the use of the Tensor Processor
 Unit so attractive and its implications in energy consumption and tensor
 calculation.\\
-
 \noindent In chapter \ref{chap:software} the software developed to be executed
 on the boards is analyzed. 
 In particular, they justify the choices to use the Qt framework in
 order to guarantee ease during the development phase and cross-platform support.
 The critical functions within the program are analyzed in detail, highlighting
-the design and implementation choices.\\ 
+the design and implementation choices.
 As well as a comparison of the performances between the tested architectures, in
 particular: Intel i7 (x86\_64), ARM cortex-A53 (armv7l) and ARM cortex-A53
 (aarch64).\\
-
 \noindent The design and implementation of the dataset is presented in chapter
 \ref{chap:neuralnetworks}, this represents a fundamental aspect in the training
 process of the neural network.
@@ -113,21 +109,19 @@ time to effect the inference.
 Correctness in the suggested answer to the classification and object detection
 problem. 
 Without forgetting the possibility of being performed on specific hardware.\\
-
 Chapter \ref{chap:conclusion} presents the results achieved in the execution of 
 the project highlighting the strengths of the choices made and the solutions
 used.
 In contrast, there are the limits of the model used, the quantization process as
 well as the choices partly due to the still immature technology and the lack of
 references in the literature.\\
-
 \noindent The last chapter \ref{chap:future-work} presents possible future
 developments, strategies that will benefit the various aspects examined in the
 thesis.
 In particular, diversify and characterize the dataset in order to make the
 classification and object detection even more characteristic and specific.
 Adopting different and more optimized neural network models. 
-As well as different training techniques and tools.\\ 
+As well as different training techniques and tools.
 Lastly, a more efficient and efficient optimization of the code in order to
 limit and reduce time and consumption of resources and energy for the benefit of
 greater execution speed and downtime with implications also on the energy
