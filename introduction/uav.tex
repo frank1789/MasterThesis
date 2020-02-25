@@ -2,7 +2,7 @@
 \label{sec:unmanned-aerial-vehicle}
 %
 %
-An unmanned aerial vehicle (UAV) (commonly known as a drone) is an aircraft 
+An unmanned aerial vehicle UAV (commonly known as a drone) is an aircraft 
 without a human pilot on board and a type of unmanned vehicle. 
 UAVs are a component of an unmanned aircraft system (UAS); which include a UAV,
 a ground-based controller, and a system of communications between the two.\\  
@@ -14,6 +14,16 @@ While they originated mostly in military applications, their use is rapidly
 expanding to commercial, scientific, recreational, agricultural, policing and
 surveillance, product deliveries, aerial photography, infrastructure
 inspections, and drone racing.\cite{wiki:uav}
+%
+%
+\begin{figure}[htb]
+    \centering
+    \subfloat[][\emph{Northrop Grumman Bat carrying EO/IR and SAR sensors, laser range finders, laser designators, Infra-Red cameras}.]{\includegraphics[width=.40\textwidth]{Northrop_Grumman_Bat_UAV_in_flight_in_June_2014.JPG}} \\
+    \subfloat[][\emph{A DeltaQuad VTOL fixed wing surveillance UAV}.]{\includegraphics[width=.40\textwidth]{DeltaQuad_VTOL_surveillance_UAV.jpg}}
+    \captionsource{UAVs used in various operations.}{
+    \href{https://en.wikipedia.org/wiki/Unmanned_aerial_vehicle}{Wikipedia}}
+    \label{fig:uavs-image}
+\end{figure}
 %
 %
 \subsection{UAV components}
@@ -37,8 +47,8 @@ on both crewed and uncrewed aircraft, with varying feature sets.\cite{wiki:uav}
 %
 \begin{figure}[htb]
     \centering
-    \subfloat[][\emph{typical quadcopter design}.\label{subfig:quadcopter-design}]{\includegraphics[width=.50\textwidth]{dji_mavic_2-1.jpg}} \\
-    \subfloat[][\emph{multirotor drone design}.\label{subfig:multicopter}]{\includegraphics[width=.50\textwidth]{unnamed.jpg}} \\
+    \subfloat[][\emph{typical quadcopter design}.\label{subfig:quadcopter-design}]{\includegraphics[width=.50\textwidth]{dji_mavic_2-1.jpg}} \quad
+    \subfloat[][\emph{multirotor drone design}.\label{subfig:multicopter}]{\includegraphics[width=.50\textwidth]{unnamed.jpg}}
     \captionsource{Example of design choices in the realization of UAVs shape}{
     \href{https://www.dji-store.it/guida-acquisto-migliori-droni-dji-per-riprese-aeree/}{DJI}; 
     \href{http://www.italdron.com/it/droni-professionali-e-accessori/droni-professionali/bigone-8hse-pro}{Italdron}}
@@ -103,36 +113,41 @@ aircraft.
 %
 \subsection{Autonomy}
 \label{ssec:autonomy}
-
-
-% ICAO classifies uncrewed aircraft as either remotely piloted aircraft or fully autonomous.[67] Actual UAVs may offer intermediate degrees of autonomy. E.g., a vehicle that is remotely piloted in most contexts may have an autonomous return-to-base operation.
-
-% Basic autonomy comes from proprioceptive sensors. Advanced autonomy calls for situational awareness, knowledge about the environment surrounding the aircraft from exterioceptive sensors: sensor fusion integrates information from multiple sensors.[52]
-
-% Basic principles[modifica]
-% One way to achieve autonomous control employs multiple control-loop layers, as in hierarchical control systems. As of 2016 the low-layer loops (i.e. for flight control) tick as fast as 32,000 times per second, while higher-level loops may cycle once per second. The principle is to decompose the aircraft's behavior into manageable "chunks", or states, with known transitions. Hierarchical control system types range from simple scripts to finite state machines, behavior trees and hierarchical task planners. The most common control mechanism used in these layers is the PID controller which can be used to achieve hover for a quadcopter by using data from the IMU to calculate precise inputs for the electronic speed controllers and motors.[citation needed]
-
-% Examples of mid-layer algorithms:
-
-% Path planning: determining an optimal path for vehicle to follow while meeting mission objectives and constraints, such as obstacles or fuel requirements
-% Trajectory generation (motion planning): determining control maneuvers to take in order to follow a given path or to go from one location to another[68][69]
-% Trajectory regulation: constraining a vehicle within some tolerance to a trajectory
-% Evolved UAV hierarchical task planners use methods like state tree searches or genetic algorithms.[70]
-
-% Autonomy features[modifica]
-
-% UAV's degrees of autonomy
-% UAV manufacturers often build in specific autonomous operations, such as:
-
-% Self-level: attitude stabilization on the pitch and roll axes.
-% Altitude hold: The aircraft maintains its altitude using barometric or ground sensors.
-% Hover/position hold: Keep level pitch and roll, stable yaw heading and altitude while maintaining position using GNSS or inertal sensors.
-% Headless mode: Pitch control relative to the position of the pilot rather than relative to the vehicle's axes.
-% Care-free: automatic roll and yaw control while moving horizontally
-% Take-off and landing (using a variety of aircraft or ground-based sensors and systems; see also:Autoland)
-% Failsafe: automatic landing or return-to-home upon loss of control signal
-% Return-to-home: Fly back to the point of takeoff (often gaining altitude first to avoid possible intervening obstructions such as trees or buildings).
-% Follow-me: Maintain relative position to a moving pilot or other object using GNSS, image recognition or homing beacon.
-% GPS waypoint navigation: Using GNSS to navigate to an intermediate location on a travel path.
-% Orbit around an object: Similar to Follow-me but continuously circle a target.
-% Pre-programmed aerobatics (such as rolls and loops)
+%
+UAVs have various levels of autonomy, that is, they are not completely
+autonomous and do not require continuous intervention by the remote operator.
+They have algortimi of return to the house which can be performed with a certain
+level of autonomy. 
+Up to high levels of autonomy which allow more complex operations. 
+Autonomy derives from the awareness of the situation in which the drone is
+located. 
+The knowledge derives from the data acquired by the sensors mounted on board the
+drone. 
+The use of sensor fusion to integrate the information collected allows to limit
+the error committed and to increase the precision and accuracy of the
+information obtained. 
+UAV's degrees of autonomy are often implemented by UAV manufacturers often build
+in specific autonomous operations, such as:
+\begin{itemize}
+	\item Self-level: attitude stabilization on the pitch and roll axes.
+	\item Altitude hold: The aircraft maintains its altitude using barometric or ground sensors.
+	\item Hover/position hold: Keep level pitch and roll, stable yaw heading and altitude while maintaining position using GNSS or inertal sensors.
+	\item Headless mode: Pitch control relative to the position of the pilot rather than relative to the vehicle's axes.
+	\item Care-free: automatic roll and yaw control while moving horizontally.
+	\item Take-off and landing (using a variety of aircraft or ground-based sensors and systems; see also:Autoland)
+	\item Failsafe: automatic landing or return-to-home upon loss of control signal.
+	\item Return-to-home: Fly back to the point of takeoff (often gaining altitude first to avoid possible intervening obstructions such as trees or buildings).
+	\item Follow-me: Maintain relative position to a moving pilot or other object using GNSS, image recognition or homing beacon.
+	\item GPS waypoint navigation: Using GNSS to navigate to an intermediate location on a travel path.
+	\item Orbit around an object: Similar to Follow-me but continuously circle a target.
+	\item Pre-programmed aerobatics (such as rolls and loops).\cite{wiki:uav}
+\end{itemize}
+%
+%
+\begin{figure}[htb]
+	\centering
+    \includegraphics[width=0.50\textwidth]{Degrees_of_autonomy.jpg}
+    \captionsource{UAV's degrees of autonomy.}{\href{https://en.wikipedia.org/wiki/Unmanned_aerial_vehicle}{Wikipedia}}
+    \label{fig:uav-autonomy}
+\end{figure}
+%
