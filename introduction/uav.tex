@@ -53,7 +53,7 @@ Thus they are normally equipped with 4, 6, or 8 motor called quadcopter,
 exacopter or octocopter.
 The mainly difference that exist between different configuration is the payload
 capacity that it can carry in flight.
-
+%
 \paragraph{Power supply}
 Small UAVs mostly use lithium-polymer batteries (Li-Po), while larger vehicles
 rely on conventional airplane engines. Scale or size of aircraft is not the
@@ -61,50 +61,48 @@ defining or limiting characteristic of energy supply for a UAV.
 Battery elimination circuitry (BEC) is used to centralize power distribution and
 often harbors a microcontroller unit (MCU). Costlier switching BECs diminish
 heating on the platform.\cite{wiki:uav}
-
-% Computing[modifica]
-% UAV computing capability followed the advances of computing technology, beginning with analog controls and evolving into microcontrollers, then system-on-a-chip (SOC) and single-board computers (SBC).
-
-% System hardware for small UAVs is often called the flight controller (FC), flight controller board (FCB) or autopilot.
-
-% Sensors[modifica]
-% Position and movement sensors give information about the aircraft state. Exteroceptive sensors deal with external information like distance measurements, while exproprioceptive ones correlate internal and external states.[52]
-
-% Non-cooperative sensors are able to detect targets autonomously so they are used for separation assurance and collision avoidance.[53]
-
-% Degrees of freedom (DOF) refers to both the amount and quality of sensors on board: 6 DOF implies 3-axis gyroscopes and accelerometers (a typical inertial measurement unit – IMU), 9 DOF refers to an IMU plus a compass, 10 DOF adds a barometer and 11 DOF usually adds a GPS receiver.[54]
-
-% Actuators[modifica]
-% UAV actuators include digital electronic speed controllers (which control the RPM of the motors) linked to motors/engines and propellers, servomotors (for planes and helicopters mostly), weapons, payload actuators, LEDs and speakers.
-
-% Software[modifica]
-% UAV software called the flight stack or autopilot. UAVs are real-time systems that require rapid response to changing sensor data. Examples include Raspberry Pis, Beagleboards, etc. shielded with NavIO, PXFMini, etc. or designed from scratch such as Nuttx, preemptive-RT Linux, Xenomai, Orocos-Robot Operating System or DDS-ROS 2.0.
-
-% Loop principles[modifica]
-
-% Typical flight-control loops for a multirotor
-% UAVs employ open-loop, closed-loop or hybrid control architectures.
-
-% Open loop – This type provides a positive control signal (faster, slower, left, right, up, down) without incorporating feedback from sensor data.
-% Closed loop – This type incorporates sensor feedback to adjust behavior (reduce speed to reflect tailwind, move to altitude 300 feet). The PID controller is common. Sometimes, feedforward is employed, transferring the need to close the loop further.[55]
-% Flight controls[modifica]
-% UAVs can be programmed to perform aggressive manœuvres or landing/perching on inclined surfaces,[56] and then to climb toward better communication spots.[57] Some UAVs can control flight with varying flight modelisation,[58][59] such as VTOL designs.
-
-% UAVs can also implement perching on a flat vertical surface.[60]
-
-% Communications[modifica]
-% Most UAVs use a radio for remote control and exchange of video and other data. Early UAVs had only narrowband uplink. Downlinks came later. These bi-directional narrowband radio links carried command and control (C\& C) and telemetry data about the status of aircraft systems to the remote operator. For very long range flights, military UAVs also use satellite receivers as part of satellite navigation systems. In cases when video transmission was required, the UAVs will implement a separate analog video radio link.
-
-% In the most modern UAV applications, video transmission is required. So instead of having 2 separate links for C\& C, telemetry and video traffic, a broadband link is used to carry all types of data on a single radio link. These broadband links can leverage quality of service techniques to optimize the C\& C traffic for low latency. Usually these broadband links carry TCP/IP traffic that can be routed over the Internet.
-
-% The radio signal from the operator side can be issued from either:
-
-% Ground control – a human operating a radio transmitter/receiver, a smartphone, a tablet, a computer, or the original meaning of a military ground control station (GCS). Recently control from wearable devices,[61] human movement recognition, human brain waves[62] was also demonstrated.
-% Remote network system, such as satellite duplex data links for some military powers.[63] Downstream digital video over mobile networks has also entered consumer markets,[64] while direct UAV control uplink over the cellular mesh and LTE have been demonstrated and are in trials.[65]
-% Another aircraft, serving as a relay or mobile control station – military manned-unmanned teaming (MUM-T).[66]
-% A protocol MAVLink is increasingly becoming popular to carry command and control data between the ground control and the vehicle
-
+%
+\paragraph{Compuntig}
+The hardware systems mounted on the drone have undergone an evolution in step
+with the advancement of the IT sector, so much so that the analog controls have
+been gradually replaced by microcontrollers up to System On Chip (SoC) with
+single board cmaputer such as the Raspberry. In addition, UAVs are equipped with
+flight controllers, flight controller boards and autopilots.
+%
+\paragraph{Sensors and Actuators}
+Drone control is allowed through the cooperation of proprioceptive and
+exteroceptive sensors that send their information to the central processing
+unit.
+The data coming from the platform measures accelerations and angular speeds
+through accelerometers and gyroscopes that process and transmit the attitude
+data such as orientation and position.
+The GPS allows the spatial location of the aircraft on a map and to control the
+route with respect to a planned trajectory. The altimeter allows you to
+continuously record changes in altitude. The magnetometer is a device that
+allows you to define the magnetic field vector at the point where you measure
+with the drone and then obtain the orientation with respect to the North.
+Knowledge and control of these measures allows the central system to allow
+control of the actuators. Other more less common sensors may be present to
+perform the most varied tasks.
+%
+\paragraph{Communications}
+Most UAVs use a radio for remote control and exchange of video and other data.
+The connections depending on the use cases and needs can be narrowband and
+broadband. Generally, the sending and receiving of the commands is carried out
+by means of a radio connection from the ground, especially for remote piloting.\\
+Other connections that exploit protocols such as TCP/IP are used for sending
+multimedia data such as filming areas and transmitted to mobile devices such as
+smartphones, tablets and so on.
+Other types of connections can be used depending on the sector of use, in fact
+for the military sector these may differ to ensure greater safety and
+robustness.\\ 
+More and more UAVs are implementing the MAVlink protocol for the
+transport of data of control and control between piloting on the ground and
+aircraft.
+%
+%
 \subsection{Autonomy}
+\label{ssec:autonomy}
 
 
 % ICAO classifies uncrewed aircraft as either remotely piloted aircraft or fully autonomous.[67] Actual UAVs may offer intermediate degrees of autonomy. E.g., a vehicle that is remotely piloted in most contexts may have an autonomous return-to-base operation.
