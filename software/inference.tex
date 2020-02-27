@@ -10,14 +10,23 @@ information regarding the input and output of the model.
 For this case, where you are interested in the problem of object detection, the
 size of the image is requested at the input and the number of color channels in
 this case is constant and fixed at three.
-Furthermore, the function reported in listing 4534243 is analyzed, which allows
-to adapt the model input with the data, that is, the images coming from the
-camera, taking into account to satisfy the neural model input and to adapt the
-information for the tensor calculation if in floating point, or in 8-bit
-integers.
+Furthermore, the function reported in listing (\ref{lst:inference-support}) is
+analyzed, which allows to adapt the model input with the data, that is, the
+images coming from the camera, taking into account to satisfy the neural model
+input and to adapt the information for the tensor calculation if in floating
+point, or in 8-bit integers.
 It also takes into account the process of quantization that took place during
 the transformation from original model to lite model, in fact the input will
-also be recalculated. 
+also be recalculated.
+%
+%
+\begin{listing}[ht] 
+\inputminted[frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=29, lastline=70]{c++}{software/code/model_support_function.hpp} 
+\caption{function that adapts the input image to the input required by the neural model.} 
+\label{lst:inference-support} 
+\end{listing}
+%
+%
 For fully integer models, the inputs are unsigned integer 8-bit.\\ 
 The mean and standard deviation (\texttt{std\_dev}), calculated as in
 \eqref{eq:stddev}, values specify how to \texttt{uint8} values map to the float
@@ -28,6 +37,23 @@ The mean is the integer value from $0$ to $255$ that maps to floating point
 \label{eq:stddev}
 \text{\texttt{std\_dev}} = \frac{255}{\text{\texttt{float}}_\text{max}-\text{\texttt{float}}_\text{min}}
 \end{equation}
+Different hardware may have preferences and restrictions that may cause slight
+deviations when implementing the specification that result in implementations
+that are not bit-exact. Whereas that may be acceptable in most cases, the nature
+of machine learning (and deep learning in the most common case) makes it
+impossible to provide any hard guarantees.\cite{tflite-8bit}\\
+8-bit quantization approximates floating point values using the following
+formula \eqref{eq:8-bit}.
+\begin{equation}
+\label{eq:8-bit}
+\text{\texttt{real}}_\text{\texttt{value}} = {\text{\texttt{int8}}_\text{value}-\text{\texttt{zero}}_\text{point}} \times \text{\texttt{scale}} 
+\end{equation}
+%
+Per-axis (aka per-channel in Conv ops) or per-tensor weights are represented by
+int8 two’s complement values in the range $[-127, 127]$ with zero-point equal to
+0. Per-tensor activations/inputs are represented by \texttt{int8} two’s
+complement values in the range $[-128, 127]$, with a zero-point in range $[-128,
+127]$.
 %
 %
 \subsection{Architecture x86\_64}
