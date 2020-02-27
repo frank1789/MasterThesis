@@ -109,14 +109,42 @@ hand, the number of false positive cases increases on the other.
 \subsection{Architecture armv7l}
 \label{ssec:armv7l-bench-inference}
 %
-\begin{figure}[htb]
+We now analyze the result of the execution of the inference process on the
+hardware of the Raspberry Pi 3b computer board which mounts an ARM cortex-A53
+processor.
+In fact, the figures (\ref{fig:armv7l-bench}) show that the processes present a
+different number and row, this is because parallel architecture is exploited and
+in particular in the benchmark it has been possible to capture the distribution
+of the tasks on the threads.
+Unlike what is seen in the previous section, the inference is made immediately without
+considering the expectation of the streaming of images by the socket.
+The work cycle examined has a total duration of $694.296 \,\si{\milli\second}$,
+please note that here too more than one core is assigned to the inference
+process.
+Moving forward in the analysis, we can distinguish within the cycle:
+\begin{itemize}
+	\item In green the image acquisition by the camera in the second thread.
+	\item The orange rectangle the updating of the interface with the new image in the first thread.
+	\item In bright green the execution of the function in the first thread that passes the image acquired by the camera to the function that performs the inference.
+	\item The segment filled in olive green rectangle the inference process performed in the second thread.
+\end{itemize}
+As can be seen in figure (\ref{subfig:arm7-time-inference}), the inference process by the
+\textbf{ModelTesnorFLowLite::run} function has an execution time of $528.105 
+\,\si{\milli\second}$, considerably slower than the \texttt{x86\_64}
+architecture previously discussed. although it has a longer execution time, the
+whole program is not affected by this aspect due to the optimization carried out
+by the compiler and by exploiting the multi-threading architecture as well as the
+possibility of using SIMD\footnote{Single Instruction Multiple Data}
+instructions.
+%
+\begin{figure}[ht]
 	\centering
 	\subfloat[][\emph{thread}.\label{subfig:arm7-all-bench}]%
-		{\includegraphics[width=\textwidth]{x86_64_1.jpg}} \\
+		{\includegraphics[width=\textwidth]{arm_32_1.jpg}} \\
 	\subfloat[][\emph{time inference}.\label{subfig:arm7-time-inference}]%
-		{\includegraphics[width=\textwidth]{x86_64_2.jpg}} \\
+		{\includegraphics[width=\textwidth]{arm_32_2.jpg}} \\
 	\subfloat[][\emph{total time cycle}.\label{subfig:arm7-time-cycle}]%
-		{\includegraphics[width=\textwidth]{x86_64_3.jpg}}
+		{\includegraphics[width=\textwidth]{arm_32_3.jpg}}
 	\caption{Visual benchmark inference on \texttt{armv7l} architecture.}
 	\label{fig:armv7l-bench}
 \end{figure}
