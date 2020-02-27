@@ -18,10 +18,16 @@ integers.
 It also takes into account the process of quantization that took place during
 the transformation from original model to lite model, in fact the input will
 also be recalculated. 
-For fully integer models, the inputs are unsigned integer 8-bit. The mean and
-standard deviation (\texttt{std\_dev}) values specify how to uint8 values map to
-the float input values used while training the model.
-The mean is the integer value from $0$ to $255$ that maps to floating point $0.0f$. std\_dev is $255 / (float_max - float_min)$
+For fully integer models, the inputs are unsigned integer 8-bit.\\ 
+The mean and standard deviation (\texttt{std\_dev}), calculated as in
+\eqref{eq:stddev}, values specify how to \texttt{uint8} values map to the float
+input values used while training the model.
+The mean is the integer value from $0$ to $255$ that maps to floating point
+\texttt{$0.0\text{f}$}. 
+\begin{equation}
+\label{eq:stddev}
+\text{\texttt{std\_dev}} = \frac{255}{\text{\texttt{float}}_\text{max}-\text{\texttt{float}}_\text{min}}
+\end{equation}
 %
 %
 \subsection{Architecture x86\_64}
@@ -41,18 +47,20 @@ Lite module uses 8 cores, but it is possible to set a number of cores greater
 than or equal to 1.
 Comparing the two figures (\ref{subfig:time-cycle}) and
 (\ref{subfig:time-inference}) it is observed that the duration of the cycle is
-approximately $64.376 \si{\milli\second}$ and the other hand the infercence time
-is $54.251 \si{\milli\second}$.
+approximately $64.376 \,\si{\milli\second}$ and the other hand the infercence time
+is $54.251 \,\si{\milli\second}$.
 This time includes the execution of the functions described above, from this it
 is possible to deduce that the most onerous task in terms of time and the
-reconstruction of the image by the socket inside the giacomino function. At the
-same time, Giovanna's function starts a successiavemente to end almost
-simultaneously with the function. Then the cycle repeats itself.
+reconstruction of the image by the socket inside the
+\textbf{TcpClient::imageAvailable} function. 
+Meanwhile, \textbf{ModelTesnorFLowLite::run}'s function starts after about $10
+\,\si{\milli\second}$ to end almost simultaneously with the function. Then the
+cycle repeats itself.
 Performing the inference with the TensorFlow Lite model, described in section
 (\ref{sec:soft-inference}), on a laptop equipped with an Intel i7-7820HQ CPU
-$2.90 \si{\giga\hertz}$ processor shows the benefits due to compression and
+$2.90 \,\si{\giga\hertz}$ processor shows the benefits due to compression and
 quantization of the neural model.
-In particular, it is observed that the average time is $78 \si{\milli\second}$
+In particular, it is observed that the average time is $78 \,\si{\milli\second}$
 therefore a considerable performance boost if compared with the time required,
 when using the uncompressed model, is considerably slower when compared with the
 result obtained in this case.
@@ -72,3 +80,5 @@ hand, the number of false positive cases increases on the other.
 \end{figure}
 %
 %
+\subsection{Architecture armv7l}
+\label{ssec:armv7l-bench-inference}
