@@ -46,7 +46,7 @@ impossible to provide any hard guarantees.\cite{tflite-8bit}\\
 formula \eqref{eq:8-bit}.
 \begin{equation}
 \label{eq:8-bit}
-\text{\texttt{real}}_\text{\texttt{value}} = {\text{\texttt{int8}}_\text{value}-\text{\texttt{zero}}_\text{point}} \times \text{\texttt{scale}} 
+\text{\texttt{real}}_\text{\texttt{value}} = ({\text{\texttt{int8}}_\text{value}-\text{\texttt{zero}}_\text{point}}) \times \text{\texttt{scale}} 
 \end{equation}
 %
 Per-axis (aka per-channel in Conv ops) or per-tensor weights are represented by
