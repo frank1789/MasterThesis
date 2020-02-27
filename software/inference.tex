@@ -135,9 +135,17 @@ architecture previously discussed. although it has a longer execution time, the
 whole program is not affected by this aspect due to the optimization carried out
 by the compiler and by exploiting the multi-threading architecture as well as the
 possibility of using SIMD\footnote{Single Instruction Multiple Data}
-instructions.
+instructions.\\
+Finally, we want to remember that both data come from the same code executed by
+the machine, but two different architectures are being compared. 
+The first encountered \texttt{x86\_64} supports 64-bit instructions, benefiting
+from the larger size of the registers and in greater numbers, despite a much
+higher clock frequency and being able to count on 4 physical and 4 virtual
+cores. 
+On the other hand the ARM process with \texttt{armv7l} architecture executes 32
+bit instructions and has a much lower clock frequency.
 %
-\begin{figure}[ht]
+\begin{figure}[htb]
 	\centering
 	\subfloat[][\emph{thread}.\label{subfig:arm7-all-bench}]%
 		{\includegraphics[width=\textwidth]{arm_32_1.jpg}} \\
@@ -148,5 +156,4 @@ instructions.
 	\caption{Visual benchmark inference on \texttt{armv7l} architecture.}
 	\label{fig:armv7l-bench}
 \end{figure}
-%
 %
