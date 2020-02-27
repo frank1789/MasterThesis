@@ -22,7 +22,12 @@ Once the connection between server and client is established, the label is
 updated with the images received.
 %
 %
-% TODO figure interface
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{client_ui.jpg}
+	\caption{User interface client application.}
+	\label{fig:software-main-ui}
+\end{figure}
 %
 % software analysis
 \subsection{Software Analysis}
@@ -59,10 +64,10 @@ function where a \texttt{QMutex} needs to be locked. The mutex is locked when
 \texttt{QMutexLocker} is created. If locked, the mutex will be unlocked when
 the \texttt{QMutexLocker} is destroyed.
 Using \texttt{QMutexLocker} greatly simplifies the code, and makes it more
-readable.\cite{Qt:QMutexclass} \hfill \break
-The buffer is filled with reading from the socket and before putting the signal
+readable.\cite{Qt:QMutexclass}\\
+\\\noindent The buffer is filled with reading from the socket and before putting the signal
 to update the image in the interface a small interval of time is waited to
-guarantee the complete reception of the image.\\
+guarantee the complete reception of the image.
 Before updating the label on the dashboard, filter the image to verify that it
 is consistent and different from an empty or corrupt image, shows in listing
 (\ref{lst:coral-ui-code}). 

@@ -20,7 +20,7 @@ the transformation from original model to lite model, in fact the input will
 also be recalculated.
 %
 %
-\begin{listing}[ht] 
+\begin{listing}[!h] 
 \inputminted[frame=lines,framesep=2mm, linenos=true, autogobble, breaklines=true, fontsize=\scriptsize, firstline=29, lastline=70]{c++}{software/code/model_support_function.hpp} 
 \caption{function that adapts the input image to the input required by the neural model.} 
 \label{lst:inference-support} 
@@ -30,7 +30,7 @@ also be recalculated.
 For fully integer models, the inputs are unsigned integer 8-bit.\\ 
 The mean and standard deviation (\texttt{std\_dev}), calculated as in
 \eqref{eq:stddev}, values specify how to \texttt{uint8} values map to the float
-input values used while training the model.
+input values used while training the model.\\
 The mean is the integer value from $0$ to $255$ that maps to floating point
 \texttt{$0.0\text{f}$}. 
 \begin{equation}
@@ -108,3 +108,17 @@ hand, the number of false positive cases increases on the other.
 %
 \subsection{Architecture armv7l}
 \label{ssec:armv7l-bench-inference}
+%
+\begin{figure}[htb]
+	\centering
+	\subfloat[][\emph{thread}.\label{subfig:arm7-all-bench}]%
+		{\includegraphics[width=\textwidth]{x86_64_1.jpg}} \\
+	\subfloat[][\emph{time inference}.\label{subfig:arm7-time-inference}]%
+		{\includegraphics[width=\textwidth]{x86_64_2.jpg}} \\
+	\subfloat[][\emph{total time cycle}.\label{subfig:arm7-time-cycle}]%
+		{\includegraphics[width=\textwidth]{x86_64_3.jpg}}
+	\caption{Visual benchmark inference on \texttt{armv7l} architecture.}
+	\label{fig:armv7l-bench}
+\end{figure}
+%
+%
