@@ -3,3 +3,54 @@
 %
 % preface chapter
 \lettrine[lines=3]{T}{his}
+
+L'obiettivo di questa tesi è aumentare le capacità di automazione e calcolo a
+bordo con l'ausilio del machine learnig, in particolar modo risolvendo il
+problema comaputer vision ed in particolar modo di object detection.
+Il sitema utilizza una telecamera standard con risoluzione da 8 MegaPixels per
+acquisire immagini che verrano processate dalla rete neurale, cosi come pone può
+fare affidamento sulle tlecamera termica Lepton 2.5 per rilevare oggetti che
+emettono calore. In particolare il software realizzato è concepito per sfuttare
+al massimo la parallelizzazione del processore, appunto per gestire i flussi
+video provienti dalla telecamere. Dispone di una connessione TCP per inviare i
+due flussi ad un eventuale dispotivo connesso alla stessa rete.
+Così è possibile effettuare direttamente a bordo l'inferenza con il modello
+neurale che nel caso di immagini a colori cercherà di indentificare il tappetto
+di atterraggio, mentre nel caso della telecamera termica il secondo modello
+neurale cercherà di indentificare eventuali ostacoli, in questo caso persone,
+per evitarle durante l'esecuzione delle manovre. 
+Come discusso l'uso del deep learning permette di risolvere un problema specifico
+taradno la risposta su i dati in input per avere in risposta la classificazione
+dell'oggetto e la sua posizione del all'interno del frame catturato dalla
+fotocamera. In particolare utilizzando il modello di single shot detection
+basato su mobilenet, fornisce ottimi risulati sia nella classificazione degi
+soggetti inquadrati sia la posizione di bounding box che incornicia il medesimo.
+Le tecniche di fine tuning permettono cosi di addestrare in breve tempo il
+modello per classificare uno specifico target. Chiaramente questo come è detto
+non è possibile farlo a bordo del drone, ma sono necessari dipositivi ad elevate
+prestazioni computazioni come il cluster HPC di Ateneo messo a disposizione.
+L'uso del framework TensorFlow Lite comprimere il modello una volta addesstrato,
+per cui è possibile scegliere su usare valori in virgola mobile o interi. In
+particolare modo l'utillizzare un modello compresso permette di essere
+utilizzato su dispotivi embedded, tipicamente meno performanti, quali possono
+essere computer board card, come ad esempio la Raspberry Pi 3b usata in questo
+progetto, fornendo quindi prestazioni accettabili. L'uso invece di processori
+dedicati come TPU montato sulla Coral Dev-Board dimostra come ancora sia
+possibile aumentare la velocità di risposta del modello neurale grazie
+all'utilizzo spinto degli interi a 8-bit. Sebbene siano notevoli i benefici
+raggiunti la compressione penalizza il risultato finale a conclusione del
+processo inferenza in quanto la grande differenza tra le architetture dei
+processori, le ottimizzazioni intordotte dal compilatore e dall'utente
+influiscono sul riconoscimento del target producendo così un leggero aumento dei
+casi di falsi positivi.
+Malgrado sia possibile codificare qualsiasi modello in TensorFlow Lite questo
+non è sempre posiibile, infatti utilizzando layer custom possono impedire la
+compressione del modello addestrato.
+Per questo motivo si è optato ad utilizzare non un modello personalizzato come
+all'inizio, ma un modello maggiormente compatibile con TensorFlow Lite e che
+presentasse il giusto bilanciamento tra accuratezza e velocità di esecuzione,
+questo ha anche garantito la piena compatibilità anche la TPU.
+In definitiva è possibile rimarcare che il lavoro qui svolto produce un sistema
+in grado di aumentare le capacità di un drone grazie l'ausilio del deep learning
+senza ricorrere a soluzione preesistenti derivanti da licenze chiuse o
+commerciali abbiante a dispositivi in vendita.
