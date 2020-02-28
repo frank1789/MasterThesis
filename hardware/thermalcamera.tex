@@ -61,7 +61,7 @@ supplies the camera with master clock signal.\cite{breakoutboard}
 %
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.50\textwidth]{Lepton_Breakout_Board_-_s_550x825.jpg}
+    \includegraphics[width=0.60\textwidth]{Lepton_Breakout_Board_-_s_550x825.jpg}
     \captionsource{Breakout board.}{
     \href{https://groupgets.com/manufacturers/getlab/products/flir-lepton-breakout-board-v1-4}{https://groupgets.com/manufacturers/getlab/products/flir-lepton-breakout-board-v1-4}}
     \label{fig:breakoutboard}
@@ -106,7 +106,7 @@ colourization.
 %
 \begin{figure}[!h]
     \centering
-    \resizebox{0.65\textwidth}{!}{\input{hardware/blockdiagram.tex}}
+    \resizebox{0.75\textwidth}{!}{\input{hardware/blockdiagram.tex}}
     \captionsource{Lepton video pipeline block diagram.}{\cite{flirdatasheet}}
     \label{fig:videopipe}
 \end{figure}
@@ -168,7 +168,14 @@ bit in the telemetry line and starts a $10$ \si{\second} counter. If the
 temperature of the Lepton falls below $80$ \si{\celsius} before the counter
 times out, the ``\emph{shutdown imminent}" bit is cleared and the system
 transitions back to the on state. If the counter does time out, Lepton
-automatically transitions to the standby state. \end{itemize}
+automatically transitions to the standby state. 
+\end{itemize}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.65\textwidth]{lepton_power.jpg}
+    \captionsource{Lepton Power Sequencing.}{\cite{flirdatasheet}}
+    \label{fig:leptonarchitecture}
+\end{figure}
 %
 \subsection{FFC States}
 \label{ssec:FFCstates}
