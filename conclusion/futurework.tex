@@ -2,33 +2,37 @@
 \label{chap:future-work}
 %
 % preface chapter
-\lettrine[lines=3]{T}{his}
-
-Visti i riusltati raggiunti sono possibili ancora miglioramenti al software ma,
-all'intera struttura del progetto. Sarà possibile modificare il modello neurale
-per renderlo più efficiente e preciso ricorrendo a nuovi rete backbone che
-effettuano la classificazione o la possibilità di estrarre nuove
-caratteristiche.
-Il dataset può essere rivisto, ampliato o tarato per obiettivi più specifici,
-fornedo immagini ricche di dettaglio ed eventualmete realizzate con hardware
-dedicato. 
-Questo progetto ha focalizzato l'attenzione sulla realizzazione e addestramento
-di un modello di rete neurale per sistemi embededd, quindi sull'archiettura che
-fornisse i risultati migliori. Nonostente si sia utilzzato un dataset realizzato
-in 3D per le riprese aree, in futuro un dataset realizzato in vere condizioni di
-volo potrebe portare dei benefici.
-Si ricorda infatti che per l'inferenza sulle immagini termiche si è usato un
-dataset realizzato dalla FLIR, quindi realizzado uno con hardware specifico può
-migliorare le prestazioni della rete neurale. Se da una parte molti dei
-risultati delle rete neurale sono collegate al dataset utilizzato per
-addestrarle, altrettando si può fare modificando i parametri della rete.
-Modificando i valori degli iper-parametri è possibile operare delle tarature più
-selettive per durante l'addastramento del modello. Sebbene la compressione
-offerta da TensorFLow Lite sia un ottimo strumento per portare su dispotivi
-embedded mobili ed IoT, la quantizzazione mostra una deviazione dei risulati
-seppur piccola rispetto il modello non compresso.
-D'altra parte a partire dalla versione di TensorFLow 2.0 è disponibile
-l'addestrmaneto quantizzato, cioè durante la fase di addestramento della modello
-neurale, è possibile tenere conto dell'effetto della quantizzazione. Questo
-potrebbe garantire migliori risulati durante l'inferenza è una drastica
-riduzione di falsi positivi.
+\lettrine[lines=3]{G}{iven} the results achieved, further improvements to the 
+software are possible to the entire project structure. 
+It will be possible to modify the neural model to make it more efficient and
+precise by using new backbone networks that perform the classification with the
+possibility of extracting new ones features from the pictures.
+The dataset can be reviewed, expanded or calibrated for more specific
+objectives, I provide images rich in detail and possibly made with hardware
+dedicated.
+This project has focused attention on implementation and training
+of a neural network model for embededd systems, therefore on an architecture that
+would give the best results.
+Although a 3D dataset has been used for area shooting, in the future
+for a dataset made with images captured in real life flight conditions, this
+would lead to more detail and realism on the perception of the environment. 
+Then improving the data provided to the process training it will be possible to
+obtain a more accurate response of the model. 
+In fact, please note that for the inference on the thermal images a dataset made
+by FLIR, which was made with different hardware from the one used in this
+project.
+Making a new dataset with the use of the Lepton 2.5 camera will allow you to
+capture images with a different resolution allowing to capture different
+characteristics for the benefit of the results of the image analysis both in the
+training phase and in response to the computer vision problem.
+If on the one hand the results of the neural network are connected to the
+dataset for train them, just as you can intervene by changing the
+hyper-parameters of the model.
+By modifying the hyper-parameters it is possible to carry out more calibrations
+selective during training by changing the balance of accuracy and speed.
+Although the compression offered by TensorFLow Lite is an excellent tool to
+bring on devices embedded, the quantization shows a drift of the results with
+respect to the uncompressed model.
+Starting from the version of TensorFLow 2.0 it is possible to train the network
+with quantized values. This will allow to obtain better results during the
+execution of the inference and a drastic one reduction of false positives.
