@@ -2,4 +2,54 @@
 \label{chap:conclusion}
 %
 % preface chapter
-\lettrine[lines=3]{T}{his}
+\lettrine[lines=3]{T}{he aim} of this thesis is to increase automation and 
+calculation skills on board the drone with the help of the machine learnig, 
+solving the computer vision problem and in particular object detection problem.
+The system uses a standard camera with a resolution of 8 MegaPixels for acquire
+images that will be processed by the neural network, as it can rely on the
+Lepton 2.5 thermal camera to detect objects that they emit heat. In particular,
+the software created is designed to exploit at most the parallelization of the
+processor, precisely to manage the flows videos from the cameras. 
+The Raspberry Pi 3b has wifi connection therefore the software uses it on a TCP
+socket to send two flows to a possible device connected to the same network.
+Thus it is possible to carry out the inference with the model directly on board
+neural that in the case of color images will try to identify the carpet landing,
+while in the case of the thermal camera the second model neural will try to
+identify any obstacles, in this case people, to avoid them during the execution
+of the maneuvers.
+As discussed the use of deep learning allows to solve a specific problem
+calibrating the response on the input data to have the classification in
+response of the object and its position within the frame captured by the camera.
+In particular using the single shot detection model based on mobilenet, it
+provides excellent results both in the classification of subjects framed both
+the position of bounding box that frames the same.
+The fine tuning techniques thus allow to train the in a short time model to
+classify a specific target. Clearly this as it is said it is not possible to do
+it on board the drone, but high devices are required computational services such
+as the University HPC cluster made available.
+Using the TensorFlow Lite framework to compress the model once it has been
+trained, so you can choose to use floating point or integer values. 
+In particular, using a compressed model allows it to be used on embedded
+devices, typically less performing, as they can be computer board card, such as
+the Raspberry Pi 3b used in this project, thus providing acceptable performance.
+Use instead of processors dedicated as TPU mounted on the Coral Dev-Board shows
+how it still is possible to increase the response speed of the neural model
+thanks the heavy use of 8-bit integers. 
+Although the benefits are significant reached the compression penalizes the
+final result at the end of the inference process since the big difference
+between the architectures of the processors, the optimizations introduced by the
+compiler and the user affect the recognition of the target thus producing a
+slight increase in cases of false positives.
+Although it is possible to code any model in TensorFlow Lite this is it is not
+always possible, in fact using custom layers they can prevent the compression of
+the trained model.
+For this reason, during the development phase of the neural network, it was
+decided to use a network from the TensorFlow API unlike the preliminary phases
+in which a customized model had been adopted, therefore the model is more
+compatible with TensorFlow Lite. 
+Is presents the right balance between accuracy and speed of execution, this also
+ensured full compatibility with the TPU.
+Ultimately it is possible to remark that the work done here produces a system
+able to increase the capabilities of a drone thanks to the help of deep learning
+without resorting to pre-existing solutions deriving from closed licenses or
+commercial combined with devices for sale.
