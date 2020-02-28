@@ -143,9 +143,10 @@ input and generates a 24-bit RGB color output.
 \subsection{Power States}
 \label{ssec:powerstate}
 Lepton currently provides five power states. As depicted in the state diagram
-shown in Figure 6, most of the transitions among the power states are the result
-of explicit action from the host. The automatic transition to and from the
-overtemp state is an exception. In the figure, transitions that require specific
+shown in Figure (\ref{fig:leptonpower1}), most of the transitions among the power 
+states are the result of explicit action from the host. 
+The automatic transition to and from the overtemp state is an exception. 
+In the figure (\ref{fig:leptonpower2}), transitions that require specific
 host-side action are shown in bold. Automatic transitions are not bolded.
 %
 \begin{itemize} \item Off: When no voltage is applied, Lepton is in the off
@@ -170,12 +171,15 @@ times out, the ``\emph{shutdown imminent}" bit is cleared and the system
 transitions back to the on state. If the counter does time out, Lepton
 automatically transitions to the standby state. 
 \end{itemize}
+%
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.65\textwidth]{lepton_power.jpg}
+    \subfloat[][\emph{state diagram}.\label{fig:leptonpower1}]{\includegraphics[width=.40\textwidth]{leptonstate.jpg}} \quad
+    \subfloat[][\emph{lepton Power Sequencing}.\label{fig:leptonpower2}]{\includegraphics[width=.40\textwidth]{lepton_power.jpg}}
     \captionsource{Lepton Power Sequencing.}{\cite{flirdatasheet}}
-    \label{fig:leptonarchitecture}
+    \label{fig:leptonpower}
 \end{figure}
+%
 %
 \subsection{FFC States}
 \label{ssec:FFCstates}
