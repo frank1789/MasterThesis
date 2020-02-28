@@ -157,3 +157,47 @@ bit instructions and has a much lower clock frequency.
 	\label{fig:armv7l-bench}
 \end{figure}
 %
+\subsection{Architecture armv8a and TPU}
+\label{ssec:tpu}
+%
+%
+The last comparison is made on the processing capacity of Google's Coral
+Dev-Board and in particular by the TPU that makes available for the tensor
+calculation.
+In this analysis, unlike the previous ones, you are not using all the threads of
+the processor that you remember is a 64-bit ARM cortex-A53. 
+The calculation is moved to the TPU thus relieving the main processor from the
+calculation of the inference on the quantized model and compiled specifically to
+operate on the unit.
+Improvement can be observed with respect to the case of the execution of the
+inference on the \texttt{armv7l} architecture in that when the times drop
+drastically, in fact they are equal to those seen in section
+(\ref{ssec:x86-bench-inference}).  
+The TPU processing unit performs the inference in approximately $3243243 \,\si{\milli\second}$ observable in figure
+324323425657632.
+%
+%
+\begin{figure}[htb]
+	\centering
+	\subfloat[][\emph{thread}.\label{subfig:TPU-all-bench}]%
+		{\includegraphics[width=\textwidth]{TPU_1.jpg}} \\
+	\subfloat[][\emph{time inference}.\label{subfig:arm7-time-inference}]%
+		{\includegraphics[width=\textwidth]{TPU_2.jpg}} \\
+	\subfloat[][\emph{total time cycle}.\label{subfig:arm7-time-cycle}]%
+		{\includegraphics[width=\textwidth]{TPU_3.jpg}}
+	\caption{Visual benchmark inference on \texttt{TPU}.}
+	\label{fig:TPU-bench}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
