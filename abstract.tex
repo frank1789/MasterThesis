@@ -46,7 +46,7 @@ In particular, the construction of the training dataset affects the response
 provided by the neural network , so a dataset specifically calibrated for the
 task will guarantee better results. Therefore through the use of 3D graphics
 techniques, a dataset was built based on plausibly real scenarios and on the
-instruments mounted on board the drone such as cameras. \\
+instruments mounted on board the drone such as cameras.\\
 The training process based on fine-tuning techniques involves adjusting the
 parameters in order to ensure a good compromise between calculation times and
 accuracy of the result. The creation of ad-hoc software capable of being
@@ -55,17 +55,17 @@ this the use of a framework is essential for the success of this aspect.
 Furthermore, it is necessary to guarantee communication between the devices for
 this reason and being in an initial phase, it was preferred to resort to
 communication using the TCP protocol which guarantees the control and reception
-of packets sent within the computer network. \\ 
+of packets sent within the computer network.\\ 
 In the use of both color and thermal cameras, it is necessary that the
 acquisition of the video streams proceeds without blocking during the execution
 of the program using parallelization. 
 The processing of the neural network on general-purpose processors represents a
 high computational load which negatively affects the time required to obtain the
-response.  Therefore the use of a framework capable of guaranteeing a
+response.
+Therefore the use of a framework capable of guaranteeing a
 compression of the neural model to guarantee a response in extremely short times
 proves to be a winning choice also for hardware dedicated to mobile and IoT
 products.\\
-
 \noindent A brief introduction to the world of UAVs is given in chapter
 \ref{chap:introduction} where the general characteristics of these approaches
 are presented with a brief representation of their constituent components and
@@ -85,7 +85,7 @@ Finally, it is presented in the logic that makes the use of the Tensor Processor
 Unit so attractive and its implications in energy consumption and tensor
 calculation.\\
 \noindent In chapter \ref{chap:software} the software developed to be executed
-on the boards is analyzed. 
+on the boards is analyzed.\\ 
 In particular, they justify the choices taken to use the Qt framework in
 order to guarantee ease during the development phase and cross-platform support.
 The critical functions within the program are analyzed in detail, highlighting
