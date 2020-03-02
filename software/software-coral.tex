@@ -6,7 +6,7 @@ The software that acts as a client on the Coral dev-board, presented in chapter
 (\ref{sec:hard-devboard}), created by Google is based on the same Qt framework previously
 introduced in order to guarantee portability and reliability of the code. This,
 remember, has an ARM Cortex-A53 processor, but unlike the one mounted on
-Raspberry it executes 64-bit code and takes advantage of the new armv8
+Raspberry it executes 64-bit code and takes advantage of the new \textbf{armv8a}
 architecture with a significant performance gain. This difference arises from
 the execution of Machine Learning operations supported by the TPU, described in
 detail in section (\ref{sec:hard-tpu}).
@@ -14,12 +14,13 @@ detail in section (\ref{sec:hard-tpu}).
 % interface
 As seen for the main program, here too we find a main interface executed in the
 main thread. The simplest interface is divided into two areas: the first one
-where it is possible to observe the flow of images coming from the TCP socket. As hows in figure (\ref{fig:software-socket-server-client}).\hfill \break
+where it is possible to observe the flow of images coming from the TCP socket.
+As hows in figure (\ref{fig:software-socket-server-client}).\hfill \break
 On the other hand, the second zone offers the possibility of
 connecting to the TCP socket by entering the address and port of the machine on
 which the server is run, which is listening for possible connection requests.
-Once the connection between server and client is established, the label is
-updated with the images received.
+Once the connection between the server and the client is established, the label
+is updated with the images received. 
 %
 %
 \begin{figure}[htb]
@@ -50,7 +51,7 @@ structure in detail below.
 \\As you can see in the function code, shown in Listing
 (\ref{lst:coral-client-code}), we observe the instance of the \texttt{socket}
 member object of the \texttt{QTcpSocket} class type. 
-By starting the connection, the server. 
+By starting the connection, the server starts to transmit the frame. 
 The critical section from the \emph{while loop} is protected by a mutex,
 highlighted by the \texttt{QMutexLocker} class, a mutex indicates a
 process of synchronization between concurrent processes or threads, with which
@@ -69,7 +70,7 @@ readable.\cite{Qt:QMutexclass}\\
 to update the image in the interface a small interval of time is waited to
 guarantee the complete reception of the image.
 Before updating the label on the dashboard, filter the image to verify that it
-is consistent and different from an empty or corrupt image, shows in listing
+is consistent and different from an empty or corrupt image, shown in listing
 (\ref{lst:coral-ui-code}). 
 If this occurs, the function is immediately exited to
 avoid viewing an image being ready to receive a new image. 
