@@ -11,10 +11,10 @@ For this case, where you are interested in the problem of object detection, the
 size of the image is requested at the input and the number of color channels in
 this case is constant and fixed at three.
 Furthermore, the function reported in listing (\ref{lst:inference-support}) is
-analyzed, which allows to adapt the model input with the data, that is, the
-images coming from the camera, taking into account to satisfy the neural model
-input and to adapt the information for the tensor calculation if in floating
-point, or in 8-bit integers.
+analyzed, which allows you to adapt the model input with the data, that is, the
+images coming from the camera, taking into account the nedd to satisfy the
+neural model input and to adapt the information for the tensor calculation if in
+floating point, or in 8-bit integers.
 It also takes into account the process of quantization that took place during
 the transformation from original model to lite model, in fact the input will
 also be recalculated.
@@ -59,14 +59,16 @@ complement values in the range $[-128, 127]$, with a zero-point in range $[-128,
 \label{ssec:x86-bench-inference}
 We analyze in particular the inference cycle following the reception of the
 frame by the TCP socket described previously in section
-(\ref{ssec:software-coral-analysis}). It can be seen in figure
-(\ref{subfig:all-bench}) that the captured process, where it is possible to
-identify the functions performed:
+(\ref{ssec:software-coral-analysis}). 
+In figure (\ref{subfig:all-bench}) the captured process shows the functions
+performed:
+%
 \begin{itemize}
 	\item The dark green rectangle represents the socket's reception function.
 	\item The lighter green rectangle, on the other hand, is the time needed to calculate the inference.
 	\item The pink rectangle represents the time to update the image in the user interface.
 \end{itemize}
+%
 Although only one thread is shown here, in the solution adopted the TensorFLow
 Lite module uses 8 cores, but it is possible to set a number of cores greater
 than or equal to 1.
@@ -87,7 +89,7 @@ $2.90 \,\si{\giga\hertz}$ processor shows the benefits due to compression and
 quantization of the neural model.
 In particular, it is observed that the average time is $78 \,\si{\milli\second}$
 therefore a considerable performance boost if compared with the time required,
-when using the uncompressed model, is considerably slower when compared with the
+when using the uncompressed model, is considerably slower when compared to the
 result obtained in this case.
 Although it is important to note that if the required time drops on the one
 hand, the number of false positive cases increases on the other. 
@@ -178,7 +180,7 @@ drastically, in fact they are equal or better than to those seen in section
 (\ref{ssec:x86-bench-inference}).\\  
 The TPU processing unit performs the inference in approximately $36.317
 \,\si{\milli\second}$ highlighted by the pink segment reported in figure 
-(\ref{subfig:TPU-time-inference}) was called the \textbf{RunInference} 
+(\ref{subfig:TPU-time-inference}) so called the \textbf{RunInference} 
 function.
 %
 %
