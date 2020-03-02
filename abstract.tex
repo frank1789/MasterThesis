@@ -18,7 +18,7 @@ such as planning, localization, control and perception by starting from sensor
 data acquired in real environments make it suitable in autonomous robotic
 applications.\\
 The development of dedicated hardware and software such as CUDA for Nvidia GPUs
-which shows best performances in computer vision speech recognition signal
+which shows best performances in computer vision, speech recognition,
 signal processing applications and so on.\\
 A further aspect taken into consideration is the continuous evolution in the
 field of Information Technology (IT) driven by the continual request for
@@ -33,53 +33,50 @@ pushed the adoption of specific energy efficient and powerful processors.\\
 \noindent This project focuses the activity of providing the drone with greater 
 awareness of the environment that surrounds it, making it less dependent on the 
 pilot and therefore more autonomous in fulfilling set tasks.
-Although commercial solutions already implemented in drones available on the 
+Although thera are commercial solutions already implemented in drones available on the 
 market, these are distributed in closed form.
 Hence the idea of expanding the drone's capabilities through open source 
 software.\\
-The project to achieve the objectives is divided into several steps which are 
-not independent and which constrain certain design choices.
-The first problem is the need to classify and determine the position of a target
-within the image. This is solved by the use of deep neural networks,
-i.e. convolutional neural networks.
-In particular, the construction of the training dataset affects the response 
-provided by the neural network. 
-So a dataset specifically calibrated for the task will guarantee better results.
-So through the use of 3D graphics techniques, a dataset was built based on
-plausibly real scenarios and on the instruments mounted on board the drone such
-as cameras.\\
+The project to achieve the objectives is divided into several steps which are
+not independent and which constrain certain design choices. The first problem is
+the need to classify and determine the position of a target within the image. 
+This is solved by the use of deep neural networks, i.e. convolutional neural
+networks. 
+In particular, the construction of the training dataset affects the response
+provided by the neural network , so a dataset specifically calibrated for the
+task will guarantee better results. Therefore through the use of 3D graphics
+techniques, a dataset was built based on plausibly real scenarios and on the
+instruments mounted on board the drone such as cameras. \\
 The training process based on fine-tuning techniques involves adjusting the
 parameters in order to ensure a good compromise between calculation times and
-accuracy of the result.
-The creation of ad-hoc software capable of being executed on multiple platforms
-is a requirement in the prototyping phase. For this the use of a framework is
-essential for the success of this aspect.
+accuracy of the result. The creation of ad-hoc software capable of being
+executed on multiple platforms is a requirement in the prototyping phase. For
+this the use of a framework is essential for the success of this aspect. 
 Furthermore, it is necessary to guarantee communication between the devices for
 this reason and being in an initial phase, it was preferred to resort to
 communication using the TCP protocol which guarantees the control and reception
-of packets sent within the computer network.\\ 
-Use of both color and thermal cameras, it is necessary that the acquisition of 
-the video streams proceeds without blocking during the execution of the program 
-using parallelization.
+of packets sent within the computer network. \\ 
+In the use of both color and thermal cameras, it is necessary that the
+acquisition of the video streams proceeds without blocking during the execution
+of the program using parallelization. 
 The processing of the neural network on general-purpose processors represents a
 high computational load which negatively affects the time required to obtain the
-response.\\
-Therefore the use of a framework capable of guaranteeing a compression of the
-neural model to guarantee a response in extremely short times proves to be a
-winning choice also for hardware dedicated to mobile and IoT products.\\
+response.  Therefore the use of a framework capable of guaranteeing a
+compression of the neural model to guarantee a response in extremely short times
+proves to be a winning choice also for hardware dedicated to mobile and IoT
+products.\\
 
 \noindent A brief introduction to the world of UAVs is given in chapter
-\ref{chap:introduction} where the general characteristics of these apperaches
-are presented. 
-A brief representation of their constituent components and the autonomy levels
-that can be implemented in this type of aircraft.\\
+\ref{chap:introduction} where the general characteristics of these approaches
+are presented with a brief representation of their constituent components and
+the autonomy levels that can be implemented in this type of aircraft.\\
 \noindent Chapter \ref{chap:hardware} introduces the hardware used to make the
 prototype by analyzing the computer boards in particular the Raspberry Pi 3b and
 the Google Coral Dev-Board.\\
-These although similar differ for the mounted processor if for the first board
-we find an ARM cortex-A53 32-bit processor for the second board we find a
-processor of the same class but with 64-bit processing flanked by a Tensor
-Processor Unit for neural calculus.\\
+Although these are similar they differ in the mounted processor therefore if we
+use the first board we find an ARM cortex-A53 32-bit processor whereas for the
+second board we find a processor of the same class but with 64-bit processing
+flanked by a Tensor Processor Unit for neural calculus.\\
 There are also cameras used to acquire images, in particular there is the
 Raspberry PiCamera V2 equipped with sensor 8-Mega-pixels. 
 Instead, for the acquisition of thermal images, a FLIR Lepton 2.5 with a sensor
@@ -89,7 +86,7 @@ Unit so attractive and its implications in energy consumption and tensor
 calculation.\\
 \noindent In chapter \ref{chap:software} the software developed to be executed
 on the boards is analyzed. 
-In particular, they justify the choices to use the Qt framework in
+In particular, they justify the choices taken to use the Qt framework in
 order to guarantee ease during the development phase and cross-platform support.
 The critical functions within the program are analyzed in detail, highlighting
 the design and implementation choices.
