@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage{xcolor}
+\definecolor{bg}{HTML}{282828} % from https://github.com/kevinsawicki/monokai
+\definecolor{codeBlue}{RGB}{0,0,255}
+\definecolor{codeGreen}{RGB}{0,128,0}
+\definecolor{codePurple}{RGB}{128,0,255}
+\definecolor{codeOrange}{RGB}{255,128,128}
+\definecolor{codePink}{RGB}{255,0,255}
+\definecolor{codeGray}{rgb}{0.5,0.5,0.5}
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{babyblueeyes}{rgb}{0.63, 0.79, 0.95}
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}
+\definecolor{bananayellow}{rgb}{1.0, 0.88, 0.21}
+\definecolor{beaver}{rgb}{0.62, 0.51, 0.44}
+\definecolor{ceruleanblue}{rgb}{0.16, 0.32, 0.75}
+\definecolor{gold(web)(golden)}{rgb}{1.0, 0.84, 0.0}
+\usepackage{tikz,fp,ifthen,fullpage}
+\usepackage{pgfmath}
+\usetikzlibrary{decorations.pathmorphing,backgrounds,fit,calc,through}
+\usetikzlibrary{arrows, automata, positioning}
+\usetikzlibrary{shapes,decorations,shadows}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{mindmap}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.shapes}
+\usepackage{pgfplots}
+\usepgfplotslibrary{colorbrewer}
+\usepgfplotslibrary{patchplots}
+\pgfplotsset{compat=1.13}
+\usepgfplotslibrary{units} % to add units easily to axis
+\usepgfplotslibrary{fillbetween} % to fill inbetween curves
+\usepgfplotslibrary{colormaps} % to create colormaps
+\pgfplotsset{width=12.2cm, height=7cm}
+\pgfplotsset{compat=newest} %(making it only compatalbe with
+%new releases of pgfplots)
+\pgfdeclarehorizontalshading{visiblelight}{50bp}{
+color(0.00000000000000bp)=(violet);
+color(8.33333333333333bp)=(blue);
+color(16.66666666666670bp)=(cyan);
+color(25.00000000000000bp)=(green);
+color(33.33333333333330bp)=(yellow);
+color(41.66666666666670bp)=(orange);
+color(50.00000000000000bp)=(red)
+}
+\pgfkeys{/tikz/.cd,
+  background color/.initial=black,
+  background color/.get=\backcol,
+  background color/.store in=\backcol,
+}
+\tikzset{background rectangle/.style={
+    fill=\backcol,
+  },
+  use background/.style={    
+    show background rectangle
+  }
+}
+\pgfplotsset{
+    axis line style={white},
+    every axis label/.append style ={white},
+    every tick label/.append style={white}  
+}
+  
+  
+\usepackage{lscape}
+\usetikzlibrary{backgrounds}
+\pagestyle{empty}
+\begin{document}
+\begin{landscape}
+\begin{figure}
+\centering
+\begin{tikzpicture}[background color=black,use background, font=\sffamily]
+\begin{axis}[width=19cm, height=12cm,grid=major, grid style={dashed,gray!30},
+    xlabel=epoch,  ylabel=loss, legend pos=outer north east, legend cell align=left, smooth, axis background/.style={fill=black}, legend style={fill=none,draw=white}, ymax=1.5, xmax=200, ymin=0, xmin=100, every axis plot/.append style={line width=1.85pt}]
+		\addplot[red] 			table [x=step, y=val_loss, col sep=comma] 				{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize val.}}
+		\addplot[babyblueeyes] 	table [x=step, y=mrcnn_class_loss, col sep=comma] 		{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize mclass loss}}
+		\addplot[amber] 		table [x=step, y=val_rpn_bbox_loss, col sep=comma] 		{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize rpn boundin box loss}}
+		\addplot[amethyst] 		table [x=step, y=rpn_class_loss, col sep=comma] 		{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize rpn class loss}}
+		\addplot[orange] 		table [x=step, y=rpn_bbox_loss, col sep=comma] 			{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize rpn boundig box loss}}
+		\addplot[applegreen] 	table [x=step, y=val_mrcnn_class_loss, col sep=comma] 	{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize val class loss}}
+		\addplot[bananayellow] 	table [x=step, y=val_rpn_class_loss, col sep=comma] 	{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize val rpn class loss}}
+		\addplot[violet] 	table [x=step, y=val_mrcnn_bbox_loss, col sep=comma] 	{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize val bounding box loss}}
+		\addplot[beaver] 		table [x=step, y=mrcnn_bbox_loss, col sep=comma] 		{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize bounding box loss}}
+		\addplot[ceruleanblue] 	table [x=step, y=loss, col sep=comma] 					{neuralnetworks/scalars100-199.csv};
+		\addlegendentry[color=white]{{\scriptsize loss}}
+	\end{axis}
+\end{tikzpicture}
+\end{figure}
+\end{landscape}
+\end{document}
