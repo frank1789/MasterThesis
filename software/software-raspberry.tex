@@ -94,9 +94,9 @@ one that manages only the main interface, it can be observed that:
 \begin{itemize}
 \item (line 37--56) When the function starts, an instance of the \texttt{QImage}
 type object is instantiated to contain the image acquired during the cycle. The
-parameters of the frame size are provided and the color space this allows to
+parameters of the frame size are provided and the color space this allows you to
 increase the speed of the cycle as it will not be cyclically cancelled and
-reallocated the same, but will be reused. The communication with the thermal
+reallocated the same space, but will be reused. The communication with the thermal
 camera is opened via the SPI port if the cycle is not started or if the
 communication is interrupted the communication is closed.
 % code list
@@ -163,16 +163,18 @@ systems.
 \item A builds a message addressing B; 
 \item A executes a call to the communication module to send the message to B.
 \end{itemize}
-Of course, A and B need to speak the same language, i.e., they need to agree on the meaning
-of the bits being sent. The protocols define the rules for communication. 
-When
-data is exchanged through a computer network, the system rules are called a
-network protocol. A protocol must define the syntax, semantics, and timing of
-communication (i.e. how, what and when); the specified behaviour is typically
-independent of how it is to be implemented. Syntax: refers to the structure or
-the format of the data. Semantics: the way in which the bit patterns are
-interpreted. Timing: specify when the data can be sent and how fast it will be.
-Another term is synchronization.
+Of course, A and B need to speak the same language, i.e., they need to agree on
+the meaning of the bits being sent. The protocols define the rules for
+communication.  
+When data is exchanged through a computer network, the system rules are called a
+network protocol. 
+A protocol must define the syntax, semantics, and timing of communication (i.e.
+how, what and when); the specified behaviour is typically independent on how it
+is to be implemented. 
+Syntax: refers to the structure or the format of the data.
+Semantics: the way in which the bit patterns are interpreted. Timing: specify
+when the data can be sent and how fast it will be. Another term is
+synchronization.
 The communication between two nodes of a network occurs by sending messages. a
 message is broken down into a sequence of packets, and each packet is
 transmitted individually.
@@ -224,12 +226,13 @@ applications, i.e. the World Wide Web, e-mail, file transfer, rely on TCP.
 %
 \subsection{Server implementation}
 \label{ssec:soft-rasp-server}
-In our case, it implements \texttt{QTcpSocket} network communication.  So, there
-is a server service in main program shows in figure
-(\ref{fig:software-socket-server}). While there is a client application deepened
-later in section (\ref{sec:software-coral-intro}). Server application has
-\texttt{QTcpSocket} and it listens to some port, in our case $52693$.
- Client has \texttt{QTcpSocket}, but has not connected to the server yet:\linebreak
+In our case, it implements \texttt{QTcpSocket} network communication.  
+Therefore, there is a server service in main program shows in figure
+(\ref{fig:software-socket-server}). 
+While there is a client application see section (\ref{sec:software-coral-intro}). 
+Server application has \texttt{QTcpSocket} and it listens to some port, in our
+case $52693$. Client has \texttt{QTcpSocket}, but has not connected to the
+server yet:\linebreak
 %
 %
 \begin{figure}[!ht]
@@ -253,7 +256,7 @@ message, shows in figure (\ref{fig:software-socket-server-client}).
 %
 In particular, we observe the function reported in (\ref{lst:rasp-code-thread})
 implemented in server application which sends the image just captured by the RGB
-camera to the server to be  encapsulated in the message before send. 
+camera to the server to be encapsulated in the message before sending. 
 In the function it is possible to observe the presence of a mutex which is 
 locked to protect the resource and avoid overwriting through function calls.
 The frame, i.e. the resource, is converted and stored in buffer before
